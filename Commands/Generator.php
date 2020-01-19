@@ -109,13 +109,19 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
+     * Get the desired class name from the input.
+     */
+    public function generatorName(): string
+    {
+        return \trim($this->argument('name'));
+    }
+
+    /**
      * Generator options.
      */
     public function generatorOptions(): array
     {
-        return [
-            'name' => $this->generatorName(),
-        ];
+        return [];
     }
 
     /**
@@ -128,23 +134,5 @@ abstract class Generator extends Command implements GeneratesCodeListener
             : GeneratesCode::class;
 
         return new $class($this->preset, $this);
-    }
-
-    /**
-     * Get the desired class name from the input.
-     */
-    public function generatorName(): string
-    {
-        return \trim($this->argument('name'));
-    }
-
-    /**
-     * Get the desired class name from the input.
-     *
-     * @deprecated v4.2.0
-     */
-    protected function getNameInput(): string
-    {
-        return $this->generatorName();
     }
 }
