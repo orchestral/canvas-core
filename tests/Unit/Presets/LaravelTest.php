@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Unit\Core\Presets;
+namespace Orchestra\Canvas\Core\Tests\Unit\Core\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Presets\Laravel;
@@ -12,9 +12,10 @@ class LaravelTest extends TestCase
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
-        $preset = new Laravel([], $directory, new Filesystem());
+        $preset = new Laravel([], $directory, $files = new Filesystem());
 
         $this->assertSame('laravel', $preset->name());
+        $this->assertSame([], $preset->config());
         $this->assertTrue($preset->is('laravel'));
         $this->assertFalse($preset->is('package'));
 
@@ -29,6 +30,8 @@ class LaravelTest extends TestCase
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
+
+        $this->assertSame($files, $preset->filesystem());
     }
 
     /** @test */

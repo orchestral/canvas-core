@@ -12,7 +12,7 @@
 >
 
     <testsuites>
-        <testsuite name="Canvas Test Suite">
+        <testsuite name="Canvas Core Test Suite">
             <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>

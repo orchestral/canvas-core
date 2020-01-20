@@ -18,6 +18,11 @@
             "Orchestra\\Canvas\\Core\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Orchestra\\Canvas\\Core\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "illuminate/console": "^7.0",
         "illuminate/filesystem": "^7.0"
