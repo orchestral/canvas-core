@@ -12,9 +12,10 @@ class PackageTest extends TestCase
     public function it_has_proper_signatures()
     {
         $directory = __DIR__;
-        $preset = new Package(['namespace' => 'FooBar'], $directory, new Filesystem());
+        $preset = new Package(['namespace' => 'FooBar'], $directory, $files = new Filesystem());
 
         $this->assertSame('package', $preset->name());
+        $this->assertSame(['namespace' => 'FooBar'], $preset->config());
         $this->assertTrue($preset->is('package'));
         $this->assertFalse($preset->is('laravel'));
 
@@ -29,6 +30,8 @@ class PackageTest extends TestCase
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
+
+        $this->assertSame($files, $preset->filesystem());
     }
 
     /** @test */
