@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Tests\Core\Presets;
+namespace Orchestra\Canvas\Core\Tests\Core\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Presets\Package;
