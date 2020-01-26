@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Core;
 
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
 
 trait CommandsProvider
 {
@@ -11,7 +11,7 @@ trait CommandsProvider
      *
      * @return \Orchestra\Canvas\Core\Presets\Preset
      */
-    protected function presetForLaravel(Application $app): Presets\Preset
+    protected function presetForLaravel(Container $app): Presets\Preset
     {
         if ($app->bound('orchestra.canvas')) {
             return $app->make('orchestra.canvas');
