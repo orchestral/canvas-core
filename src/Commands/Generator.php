@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
 use Orchestra\Canvas\Core\Presets\Preset;
@@ -11,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Generator extends Command implements GeneratesCodeListener
 {
+    use CodeGenerator;
+
     /**
      * The filesystem instance.
      *
@@ -76,7 +79,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         $force = $this->hasOption('force') && $this->option('force') === true;
 
-        return $this->resolveGeneratesCodeProcessor()($force);
+        return $this->generateCode($force);
     }
 
     /**
@@ -100,38 +103,10 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
-     * Get the default namespace for the class.
-     */
-    public function getDefaultNamespace(string $rootNamespace): string
-    {
-        return $rootNamespace;
-    }
-
-    /**
      * Get the desired class name from the input.
      */
     public function generatorName(): string
     {
         return \trim($this->argument('name'));
-    }
-
-    /**
-     * Generator options.
-     */
-    public function generatorOptions(): array
-    {
-        return [];
-    }
-
-    /**
-     * Resolve generates code processor.
-     */
-    protected function resolveGeneratesCodeProcessor(): GeneratesCode
-    {
-        $class = \property_exists($this, 'processor')
-            ? $this->processor
-            : GeneratesCode::class;
-
-        return new $class($this->preset, $this);
     }
 }
