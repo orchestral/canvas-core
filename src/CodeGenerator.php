@@ -9,7 +9,7 @@ trait CodeGenerator
      *
      * @return mixed
      */
-    public function generateCode(bool $force)
+    public function generateCode(bool $force = false)
     {
         return $this->resolveGeneratesCodeProcessor()(
             $this->generatorName(), $force
