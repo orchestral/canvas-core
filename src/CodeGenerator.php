@@ -7,8 +7,6 @@ trait CodeGenerator
     /**
      * Generate code.
      *
-     * @param  bool   $force
-     *
      * @return mixed
      */
     public function generateCode(bool $force)
