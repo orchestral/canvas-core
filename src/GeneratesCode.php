@@ -50,8 +50,10 @@ class GeneratesCode
      *
      * @return mixed
      */
-    public function __invoke(string $name, bool $force = false)
+    public function __invoke(bool $force = false)
     {
+        $name = $this->listener->generatorName();
+
         $className = $this->qualifyClass($name);
 
         $path = $this->getPath($className);

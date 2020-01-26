@@ -74,10 +74,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = $this->generatorName();
         $force = $this->hasOption('force') && $this->option('force') === true;
 
-        return $this->resolveGeneratesCodeProcessor()($name, $force);
+        return $this->resolveGeneratesCodeProcessor()($force);
     }
 
     /**
