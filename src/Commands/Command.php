@@ -30,6 +30,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         $this->preset = $preset;
 
         parent::__construct();
+
+        $this->specifyParameters();
     }
 
     /**
