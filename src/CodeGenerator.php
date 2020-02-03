@@ -5,11 +5,32 @@ namespace Orchestra\Canvas\Core;
 trait CodeGenerator
 {
     /**
+     * Canvas preset.
+     *
+     * @var \Orchestra\Canvas\Presets\Preset
+     */
+    protected $preset;
+
+    /**
+     * Set Preset for generator.
+     *
+     * @param  \Orchestra\Canvas\Core\Presets\Preset  $preset
+     *
+     * @return $this
+     */
+    public function setPreset(Presets\Preset $preset)
+    {
+        $this->preset = $preset;
+
+        return $this;
+    }
+
+    /**
      * Generate code.
      *
      * @return mixed
      */
-    public function generateCode(bool $force)
+    public function generateCode(bool $force = false)
     {
         return $this->resolveGeneratesCodeProcessor()(
             $this->generatorName(), $force
