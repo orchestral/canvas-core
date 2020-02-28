@@ -188,7 +188,6 @@ class GeneratesCode
             ['DummyClass', '{{ class }}', '{{class}}'], $class, $stub
         );
 
-
         return \str_replace(
             ['DummyUser'], \class_basename($this->userProviderModel()), $stub
         );
