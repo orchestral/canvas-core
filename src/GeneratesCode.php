@@ -140,7 +140,17 @@ class GeneratesCode
      */
     protected function buildClass(string $name): string
     {
-        $stub = $this->files->get($this->listener->getStubFile());
+        if (! \is_null($publishedStubFile = $this->listener->getPublishedStubFile())) {
+            $stubFile = \sprintf(
+                '%s/stubs/%s',
+                $this->preset->basePath(),
+                $publishedStubFile
+            );
+        } else {
+            $stubFile = $this->listener->getStubFile();
+        }
+
+        $stub = $this->files->get($stubFile);
 
         return $this->replaceClass(
             $this->replaceNamespace($stub, $name), $name
