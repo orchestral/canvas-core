@@ -101,6 +101,14 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
+     * Get the published stub file for the generator.
+     */
+    public function getPublishedStubFile(): ?string
+    {
+        return null;
+    }
+
+    /**
      * Get the desired class name from the input.
      */
     public function generatorName(): string
