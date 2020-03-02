@@ -103,7 +103,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     /**
      * Get the published stub file for the generator.
      */
-    public function getPublishedStubFile(): ?string
+    public function getPublishedStubFileName(): ?string
     {
         return null;
     }

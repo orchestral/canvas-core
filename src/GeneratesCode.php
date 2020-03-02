@@ -140,7 +140,7 @@ class GeneratesCode
      */
     protected function buildClass(string $name): string
     {
-        if (! \is_null($publishedStubFile = $this->listener->getPublishedStubFile())) {
+        if (! \is_null($publishedStubFile = $this->listener->getPublishedStubFileName())) {
             $stubFile = \sprintf(
                 '%s/stubs/%s',
                 $this->preset->basePath(),
