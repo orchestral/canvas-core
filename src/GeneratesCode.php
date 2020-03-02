@@ -140,7 +140,7 @@ class GeneratesCode
      */
     protected function buildClass(string $name): string
     {
-        $stub = $this->files->get($this->getGeneratorStubFile());
+        $stub = $this->files->get($this->getListenerStubFile());
 
         return $this->replaceClass(
             $this->replaceNamespace($stub, $name), $name
@@ -150,7 +150,7 @@ class GeneratesCode
     /**
      * Get generator stub file.
      */
-    protected function getGeneratorStubFile(): string
+    protected function getListenerStubFile(): string
     {
         if (\is_null($publishedStubFile = $this->listener->getPublishedStubFileName())) {
             return $this->listener->getStubFile();
