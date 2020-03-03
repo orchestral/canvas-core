@@ -21,6 +21,11 @@ interface GeneratesCodeListener
     /**
      * Get the stub file for the generator.
      */
+    public function getPublishedStubFileName(): ?string;
+
+    /**
+     * Get the stub file for the generator.
+     */
     public function getStubFile(): string;
 
     /**

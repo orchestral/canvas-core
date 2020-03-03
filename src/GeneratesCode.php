@@ -140,11 +140,31 @@ class GeneratesCode
      */
     protected function buildClass(string $name): string
     {
-        $stub = $this->files->get($this->listener->getStubFile());
+        $stub = $this->files->get($this->getListenerStubFile());
 
         return $this->replaceClass(
             $this->replaceNamespace($stub, $name), $name
         );
+    }
+
+    /**
+     * Get generator stub file.
+     */
+    protected function getListenerStubFile(): string
+    {
+        if (\is_null($publishedStubFile = $this->listener->getPublishedStubFileName())) {
+            return $this->listener->getStubFile();
+        }
+
+        $stubFile = \sprintf(
+            '%s/stubs/%s', $this->preset->basePath(), $publishedStubFile
+        );
+
+        if (! $this->files->exists($stubFile)) {
+            return $this->listener->getStubFile();
+        }
+
+        return $stubFile;
     }
 
     /**
