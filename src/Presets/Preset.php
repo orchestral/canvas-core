@@ -138,6 +138,14 @@ abstract class Preset
     }
 
     /**
+     * Preset has custom stub path.
+     */
+    public function hasCustomStubPath(): bool
+    {
+        return ! \is_null($this->getCustomStubPath());
+    }
+
+    /**
      * Preset name.
      */
     abstract public function name(): string;
@@ -161,4 +169,9 @@ abstract class Preset
      * Provider namespace.
      */
     abstract public function providerNamespace(): string;
+
+    /**
+     * Get custom stub path.
+     */
+    abstract public function getCustomStubPath(): ?string;
 }
