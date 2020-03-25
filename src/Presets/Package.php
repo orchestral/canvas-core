@@ -55,4 +55,12 @@ class Package extends Preset
     {
         return $this->config('provider.namespace', $this->rootNamespace());
     }
+
+    /**
+     * Get custom stub path.
+     */
+    public function getCustomStubPath(): ?string
+    {
+        return null;
+    }
 }

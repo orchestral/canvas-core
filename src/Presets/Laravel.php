@@ -47,4 +47,12 @@ class Laravel extends Preset
     {
         return $this->config('provider.namespace', $this->rootNamespace().'\Providers');
     }
+
+    /**
+     * Get custom stub path.
+     */
+    public function getCustomStubPath(): ?string
+    {
+        return null;
+    }
 }
