@@ -172,6 +172,12 @@ class GeneratesCode
      */
     protected function replaceNamespace(string $stub, string $name): string
     {
+        $stub = \str_replace(
+            ['DummyRootNamespace\\', '{{ rootNamespace }}\\', '{{rootNamespace}}\\'],
+            '{{rootNamespace}}',
+            $stub
+        );
+
         $searches = [
             ['DummyNamespace', 'DummyRootNamespace', 'NamespacedDummyUserModel'],
             ['{{ namespace }}', '{{ rootNamespace }}', '{{ namespacedUserModel }}'],
@@ -181,7 +187,7 @@ class GeneratesCode
         foreach ($searches as $search) {
             $stub = \str_replace(
                 $search,
-                [$this->getNamespace($name), $this->rootNamespace(), $this->userProviderModel()],
+                [$this->getNamespace($name), $this->rootNamespace().'\\', $this->userProviderModel()],
                 $stub
             );
         }
