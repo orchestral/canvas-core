@@ -13,6 +13,6 @@ class GeneratesCommandCode extends GeneratesCode
     {
         $stub = parent::replaceClass($stub, $name);
 
-        return \str_replace('dummy:command', $this->options['command'], $stub);
+        return \str_replace(['dummy:command', '{{ command }}', '{{command}}'], $this->options['command'], $stub);
     }
 }
