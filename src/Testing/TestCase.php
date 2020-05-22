@@ -11,6 +11,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
     use Concerns\InteractsWithPublishedFiles;
 
     /**
+     * Stubs files.
+     *
+     * @var array
+     */
+    protected $files = [];
+
+    /**
      * Setup the test environment.
      */
     protected function setUp(): void

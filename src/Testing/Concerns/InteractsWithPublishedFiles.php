@@ -8,13 +8,6 @@ use Illuminate\Support\Str;
 trait InteractsWithPublishedFiles
 {
     /**
-     * Stubs files.
-     *
-     * @var array
-     */
-    protected $files = [];
-
-    /**
      * The filesystem implementation.
      *
      * @var \Illuminate\Filesystem\Filesystem
@@ -125,7 +118,7 @@ trait InteractsWithPublishedFiles
     protected function cleanUpFiles(): void
     {
         $this->filesystem->delete(
-            Collection::make($this->files)
+            Collection::make($this->files ?? [])
                 ->transform(function ($file) {
                     return $this->app->basePath($file);
                 })
