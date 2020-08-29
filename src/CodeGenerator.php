@@ -32,9 +32,7 @@ trait CodeGenerator
      */
     public function generateCode(bool $force = false)
     {
-        return $this->resolveGeneratesCodeProcessor()(
-            $this->generatorName(), $force
-        );
+        return $this->resolveGeneratesCodeProcessor()($force);
     }
 
     /**

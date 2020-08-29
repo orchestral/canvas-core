@@ -240,7 +240,7 @@ class GeneratesCode
      */
     protected function rootNamespace(): string
     {
-        return $this->preset->rootNamespace();
+        return $this->preset->rootNamespace().'\\';
     }
 
     /**
