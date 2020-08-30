@@ -22,7 +22,7 @@ class LaravelTest extends TestCase
         $this->assertSame($directory, $preset->basePath());
 
         $this->assertSame('App', $preset->rootNamespace());
-        $this->assertSame('App', $preset->modelNamespace());
+        $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());
@@ -55,7 +55,7 @@ class LaravelTest extends TestCase
         $preset = new Laravel(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
 
         $this->assertSame('App', $preset->rootNamespace());
-        $this->assertSame('App', $preset->modelNamespace());
+        $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App', $preset->providerNamespace());
     }
 }
