@@ -19,7 +19,7 @@ class Package extends Preset
      */
     public function sourcePath(): string
     {
-        return \sprintf(
+        return sprintf(
             '%s/%s',
             $this->basePath(),
             $this->config('paths.src', 'src')
@@ -31,7 +31,7 @@ class Package extends Preset
      */
     public function rootNamespace(): string
     {
-        $namespace = \trim($this->config['namespace'] ?? '');
+        $namespace = trim($this->config['namespace'] ?? '');
 
         if (empty($namespace)) {
             throw new InvalidArgumentException("Please configure namespace configuration under 'canvas.yaml'");

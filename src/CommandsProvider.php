@@ -19,7 +19,7 @@ trait CommandsProvider
 
         return new Presets\Laravel([
             'preset' => 'laravel',
-            'namespace' => \trim($this->app->getNamespace(), '\\'),
+            'namespace' => trim($this->app->getNamespace(), '\\'),
             'user-auth-provider' => $this->userProviderModel(),
         ], $app->basePath(), $app->make('files'));
     }
@@ -29,10 +29,10 @@ trait CommandsProvider
      */
     protected function userProviderModel(): ?string
     {
-        $guard = \config('auth.defaults.guard');
+        $guard = config('auth.defaults.guard');
 
-        $provider = \config("auth.guards.{$guard}.provider");
+        $provider = config("auth.guards.{$guard}.provider");
 
-        return \config("auth.providers.{$provider}.model");
+        return config("auth.providers.{$provider}.model");
     }
 }
