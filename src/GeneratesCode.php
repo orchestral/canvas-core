@@ -80,7 +80,7 @@ class GeneratesCode
      */
     protected function qualifyClass(string $name): string
     {
-        $name = \ltrim($name, '\\/');
+        $name = ltrim($name, '\\/');
 
         $rootNamespace = $this->rootNamespace();
 
@@ -88,10 +88,10 @@ class GeneratesCode
             return $name;
         }
 
-        $name = \str_replace('/', '\\', $name);
+        $name = str_replace('/', '\\', $name);
 
         return $this->qualifyClass(
-            $this->getDefaultNamespace(\trim($rootNamespace, '\\')).'\\'.$name
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
         );
     }
 
@@ -118,7 +118,7 @@ class GeneratesCode
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return $this->preset->sourcePath().'/'.\str_replace('\\', '/', $name).'.php';
+        return $this->preset->sourcePath().'/'.str_replace('\\', '/', $name).'.php';
     }
 
     /**
@@ -126,8 +126,8 @@ class GeneratesCode
      */
     protected function makeDirectory(string $path): string
     {
-        if (! $this->files->isDirectory(dirname($path))) {
-            $this->files->makeDirectory(dirname($path), 0777, true, true);
+        if (! $this->files->isDirectory(\dirname($path))) {
+            $this->files->makeDirectory(\dirname($path), 0777, true, true);
         }
 
         return $path;
@@ -156,7 +156,7 @@ class GeneratesCode
             return $this->listener->getStubFile();
         }
 
-        $stubFile = \sprintf(
+        $stubFile = sprintf(
             '%s/stubs/%s', $this->preset->basePath(), $publishedStubFile
         );
 
@@ -172,7 +172,7 @@ class GeneratesCode
      */
     protected function replaceNamespace(string $stub, string $name): string
     {
-        $stub = \str_replace(
+        $stub = str_replace(
             ['DummyRootNamespace\\', '{{ rootNamespace }}\\', '{{rootNamespace}}\\'],
             '{{rootNamespace}}',
             $stub
@@ -185,7 +185,7 @@ class GeneratesCode
         ];
 
         foreach ($searches as $search) {
-            $stub = \str_replace(
+            $stub = str_replace(
                 $search,
                 [$this->getNamespace($name), $this->rootNamespace().'\\', $this->userProviderModel()],
                 $stub
@@ -200,7 +200,7 @@ class GeneratesCode
      */
     protected function getNamespace(string $name): string
     {
-        return \trim(\implode('\\', \array_slice(\explode('\\', $name), 0, -1)), '\\');
+        return trim(implode('\\', \array_slice(explode('\\', $name), 0, -1)), '\\');
     }
 
     /**
@@ -208,14 +208,14 @@ class GeneratesCode
      */
     protected function replaceClass(string $stub, string $name): string
     {
-        $class = \str_replace($this->getNamespace($name).'\\', '', $name);
+        $class = str_replace($this->getNamespace($name).'\\', '', $name);
 
-        $stub = \str_replace(
+        $stub = str_replace(
             ['DummyClass', '{{ class }}', '{{class}}'], $class, $stub
         );
 
-        return \str_replace(
-            ['DummyUser'], \class_basename($this->userProviderModel()), $stub
+        return str_replace(
+            ['DummyUser'], class_basename($this->userProviderModel()), $stub
         );
     }
 
@@ -224,12 +224,12 @@ class GeneratesCode
      */
     protected function sortImports(string $stub): string
     {
-        if (\preg_match('/(?P<imports>(?:use [^;]+;$\n?)+)/m', $stub, $match)) {
-            $imports = \explode("\n", \trim($match['imports']));
+        if (preg_match('/(?P<imports>(?:use [^;]+;$\n?)+)/m', $stub, $match)) {
+            $imports = explode("\n", trim($match['imports']));
 
-            \sort($imports);
+            sort($imports);
 
-            return \str_replace(\trim($match['imports']), \implode("\n", $imports), $stub);
+            return str_replace(trim($match['imports']), implode("\n", $imports), $stub);
         }
 
         return $stub;

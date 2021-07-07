@@ -2,10 +2,6 @@
 
 namespace Orchestra\Canvas\Core\Testing;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use PHPUnit\Framework\Assert;
-
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use Concerns\InteractsWithPublishedFiles;

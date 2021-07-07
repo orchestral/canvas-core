@@ -1,8 +1,7 @@
 Code Generators Builder for Laravel Applications and Packages
 ==============
 
-
-[![Build Status](https://travis-ci.org/orchestral/canvas-core.svg?branch=master)](https://travis-ci.org/orchestral/canvas-core)
+[![tests](https://github.com/orchestral/canvas-core/workflows/tests/badge.svg?branch=master)](https://github.com/orchestral/canvas-core/actions?query=workflow%3Atests+branch%3Amaster)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/canvas-core/v/stable)](https://packagist.org/packages/orchestra/canvas-core)
 [![Total Downloads](https://poser.pugx.org/orchestra/canvas-core/downloads)](https://packagist.org/packages/orchestra/canvas-core)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/canvas-core/v/unstable)](https://packagist.org/packages/orchestra/canvas-core)

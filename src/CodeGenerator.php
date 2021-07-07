@@ -74,7 +74,7 @@ trait CodeGenerator
      */
     protected function resolveGeneratesCodeProcessor(): GeneratesCode
     {
-        $class = \property_exists($this, 'processor')
+        $class = property_exists($this, 'processor')
             ? $this->processor
             : GeneratesCode::class;
 
