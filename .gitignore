@@ -2,8 +2,8 @@
 composer.lock
 vendor/*
 
-# Subsplit
-/.subsplit/
+# PHPStan
+/phpstan.neon
 
 # PHPUnit
 /coverage/*
