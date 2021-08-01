@@ -1,0 +1,12 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method find\\(\\) on Symfony\\\\Component\\\\Console\\\\Application\\|null\\.$#"
+			count: 1
+			path: src/Commands/Command.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function trim expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Commands/Generator.php
+

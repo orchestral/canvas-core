@@ -19,7 +19,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     /**
      * Canvas preset.
      *
-     * @var \Orchestra\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Core\Presets\Preset
      */
     protected $preset;
 
