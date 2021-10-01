@@ -31,7 +31,7 @@ class GeneratesCode
     /**
      * Processor options.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $options = [];
 

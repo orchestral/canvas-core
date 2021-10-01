@@ -61,6 +61,8 @@ trait CodeGenerator
 
     /**
      * Generator options.
+     *
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {

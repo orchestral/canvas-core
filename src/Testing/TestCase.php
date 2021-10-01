@@ -9,7 +9,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Stubs files.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $files = [];
 
