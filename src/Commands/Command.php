@@ -19,7 +19,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     /**
      * Canvas preset.
      *
-     * @var \Orchestra\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Core\Presets\Preset
      */
     protected $preset;
 
@@ -40,7 +40,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      *
      * @return int
      */
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         $this->output = new OutputStyle($input, $output);
 

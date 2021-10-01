@@ -9,6 +9,7 @@
 /.php_cs export-ignore
 /.travis.yml export-ignore
 /canvas.yaml export-ignore
+/phpstan.neon.dist export-ignore
 /phpunit.xml export-ignore
 /sync.sh export-ignore
 /CHANGELOG-*.md export-ignore

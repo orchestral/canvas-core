@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
 
 class GeneratesCode
@@ -9,7 +10,7 @@ class GeneratesCode
     /**
      * The preset.
      *
-     * @var \Orchestra\Canvas\Presets\Preset
+     * @var \Orchestra\Canvas\Core\Presets\Preset
      */
     protected $preset;
 
@@ -23,7 +24,7 @@ class GeneratesCode
     /**
      * Processor listener implementation.
      *
-     * @var \Orchestra\Canvas\Contracts\GeneratesCodeListener
+     * @var \Orchestra\Canvas\Core\Contracts\GeneratesCodeListener
      */
     protected $listener;
 
@@ -246,8 +247,8 @@ class GeneratesCode
     /**
      * Get the model for the default guard's user provider.
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModel(): string
     {
-        return $this->preset->config('user-auth-provider');
+        return $this->preset->config('user-auth-provider', User::class);
     }
 }
