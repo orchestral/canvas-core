@@ -11,7 +11,7 @@ abstract class Preset
     /**
      * Preset configuration.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $config;
 
