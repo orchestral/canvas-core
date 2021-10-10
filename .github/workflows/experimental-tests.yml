@@ -15,15 +15,13 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - "8.2"
-        phpunit:
-          - "^10.0"
+          - "8.1"
         dependencies:
           - "highest"
         experimental:
           - true
 
-    name: PHP${{ matrix.php }} with PHPUnit${{ matrix.phpunit }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: PHP${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
 
     steps:
       - name: Checkout code
