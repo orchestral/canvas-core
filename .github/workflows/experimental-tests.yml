@@ -1,8 +1,6 @@
 name: experimental-tests
 
-on:
-  push:
-  pull_request:
+on: []
 
 jobs:
   experimental-php-test:
@@ -17,7 +15,6 @@ jobs:
         dependencies:
           - "highest"
           - "locked"
-          - "lowest"
         experimental:
           - true
 
