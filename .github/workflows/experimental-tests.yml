@@ -1,6 +1,8 @@
 name: experimental-tests
 
-on: []
+on:
+  schedule:
+    - cron: '0 0 * * 4'
 
 jobs:
   experimental-php-test:
