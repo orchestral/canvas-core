@@ -76,6 +76,7 @@ trait CodeGenerator
      */
     protected function resolveGeneratesCodeProcessor(): GeneratesCode
     {
+        /** @var \Orchestra\Canvas\Core\GeneratesCode $class */
         $class = property_exists($this, 'processor')
             ? $this->processor
             : GeneratesCode::class;
