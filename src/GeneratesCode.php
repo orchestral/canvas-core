@@ -216,7 +216,9 @@ class GeneratesCode
         );
 
         return str_replace(
-            ['DummyUser'], class_basename($this->userProviderModel()), $stub
+            ['DummyUser', '{{ userModel }}', '{{userModel}}'],
+            class_basename($this->userProviderModel()),
+            $stub
         );
     }
 
