@@ -133,6 +133,7 @@ abstract class Preset
     public function addAdditionalCommands(Application $app): void
     {
         foreach ($this->config('generators', []) as $generator) {
+            /** @var \Symfony\Component\Console\Command\Command $generator */
             $app->add(new $generator($this));
         }
     }
