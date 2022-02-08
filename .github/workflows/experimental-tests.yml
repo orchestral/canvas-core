@@ -1,8 +1,5 @@
 name: experimental-tests
 
-on:
-  push:
-
 jobs:
   experimental-php-test:
     runs-on: ${{ matrix.os }}
