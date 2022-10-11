@@ -25,13 +25,13 @@
     },
     "require": {
         "php": "^8.0",
-        "illuminate/console": "^9.0",
-        "illuminate/filesystem": "^9.0"
+        "illuminate/console": "^9.34",
+        "illuminate/filesystem": "^9.34"
     },
     "require-dev": {
         "laravel/pint": "^1.1",
         "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench": "^7.0"
+        "orchestra/testbench": "^7.10"
     },
     "config": {
         "sort-packages": true
