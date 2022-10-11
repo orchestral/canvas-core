@@ -31,7 +31,7 @@
     "require-dev": {
         "laravel/pint": "^1.1",
         "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench": "^7.10"
+        "orchestra/testbench": "^7.10.1"
     },
     "config": {
         "sort-packages": true
@@ -48,6 +48,9 @@
                 "Orchestra\\Canvas\\Core\\LaravelServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi"
     },
     "minimum-stability": "dev"
 }
