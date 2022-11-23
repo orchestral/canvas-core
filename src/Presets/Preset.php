@@ -17,7 +17,8 @@ abstract class Preset
         protected array $config,
         protected string $basePath,
         protected Filesystem $files
-    ) { }
+    ) {
+    }
 
     /**
      * Check if preset name equal to $name.
