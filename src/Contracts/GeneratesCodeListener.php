@@ -9,14 +9,14 @@ interface GeneratesCodeListener
      *
      * @return mixed
      */
-    public function codeAlreadyExists(string $className);
+    public function codeAlreadyExists(string $className): mixed;
 
     /**
      * Code successfully generated.
      *
      * @return mixed
      */
-    public function codeHasBeenGenerated(string $className);
+    public function codeHasBeenGenerated(string $className): mixed;
 
     /**
      * Get the stub file for the generator.

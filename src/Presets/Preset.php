@@ -9,35 +9,15 @@ use Symfony\Component\Console\Application;
 abstract class Preset
 {
     /**
-     * Preset configuration.
-     *
-     * @var array<string, mixed>
-     */
-    protected $config;
-
-    /**
-     * Preset base path.
-     *
-     * @var string
-     */
-    protected $basePath;
-
-    /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
-
-    /**
      * Construct a new preset.
+     *
+     * @param  array<string, mixed> $config
      */
-    public function __construct(array $config, string $basePath, Filesystem $files)
-    {
-        $this->config = $config;
-        $this->basePath = $basePath;
-        $this->files = $files;
-    }
+    public function __construct(
+        protected array $config,
+        protected string $basePath,
+        protected Filesystem $files
+    ) { }
 
     /**
      * Check if preset name equal to $name.

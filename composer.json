@@ -29,6 +29,7 @@
         "illuminate/filesystem": "^10.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.8",
         "orchestra/testbench": "^8.0"
     },
     "config": {

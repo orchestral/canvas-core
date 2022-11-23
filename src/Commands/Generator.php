@@ -27,17 +27,13 @@ abstract class Generator extends Command implements GeneratesCodeListener
 
     /**
      * The type of class being generated.
-     *
-     * @var string
      */
-    protected $type;
+    protected string $type;
 
     /**
      * The type of file being generated.
-     *
-     * @var string
      */
-    protected $fileType = 'class';
+    protected string $fileType = 'class';
 
     /**
      * Generator processor.
