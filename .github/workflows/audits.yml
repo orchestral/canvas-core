@@ -1,11 +1,11 @@
-name: experimental-tests
+name: audits
 
 on:
-  schedule:
-    - cron: '0 0 * * 4'
+  push:
+  workflow_dispatch:
 
 jobs:
-  experimental-php-test:
+  audit-dependencies:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -13,14 +13,12 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
+          - "8.1"
           - "8.2"
-        dependencies:
-          - "highest"
-          - "locked"
         experimental:
           - true
 
-    name: PHP${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: PHP${{ matrix.php }} on ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -36,8 +34,11 @@ jobs:
       - name: Install dependencies
         uses: "ramsey/composer-install@v1"
         with:
-          dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist --no-cache"
+          dependency-versions: "highest"
+          composer-options: "--prefer-dist --prefer-stable --no-cache"
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
+      - name: Installed dependencies
+        run: composer show -D
+
+      - name: Audit dependencies
+        run: composer audit
