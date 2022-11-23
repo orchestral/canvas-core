@@ -8,25 +8,11 @@ use Illuminate\Support\Str;
 class GeneratesCode
 {
     /**
-     * The preset.
-     *
-     * @var \Orchestra\Canvas\Core\Presets\Preset
-     */
-    protected $preset;
-
-    /**
      * The filesystem implementation.
      *
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
-
-    /**
-     * Processor listener implementation.
-     *
-     * @var \Orchestra\Canvas\Core\Contracts\GeneratesCodeListener
-     */
-    protected $listener;
 
     /**
      * Processor options.
@@ -38,11 +24,11 @@ class GeneratesCode
     /**
      * Construct a new processor.
      */
-    public function __construct(Presets\Preset $preset, Contracts\GeneratesCodeListener $listener)
-    {
-        $this->preset = $preset;
+    public function __construct(
+        protected Presets\Preset $preset,
+        protected Contracts\GeneratesCodeListener $listener
+    ) {
         $this->files = $preset->filesystem();
-        $this->listener = $listener;
         $this->options = $listener->generatorOptions();
     }
 
