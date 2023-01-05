@@ -1,11 +1,12 @@
-name: audits
+name: analyse
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
-  audit-dependencies:
+  tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -13,13 +14,13 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - "8.0"
-          - "8.1"
-          - "8.2"
+          - 8.1
+        dependencies:
+          - "highest"
         experimental:
-          - true
+          - false
 
-    name: PHP${{ matrix.php }} on ${{ matrix.os }}
+    name: PHP${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
 
     steps:
       - name: Checkout code
@@ -29,17 +30,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          dependency-versions: "highest"
-          composer-options: "--prefer-dist --prefer-stable --no-cache"
+          dependency-versions: "${{ matrix.dependencies }}"
+          composer-options: "--prefer-dist --no-cache"
 
-      - name: Installed dependencies
-        run: composer show -D
-
-      - name: Audit dependencies
-        run: composer audit
+      - name: Execute Static Code Analysis
+        run: vendor/bin/phpstan analyse
