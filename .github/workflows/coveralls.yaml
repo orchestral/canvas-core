@@ -16,8 +16,6 @@ jobs:
           - 8.1
         dependencies:
           - "highest"
-        laravel:
-          - "8.x"
         experimental:
           - false
 
