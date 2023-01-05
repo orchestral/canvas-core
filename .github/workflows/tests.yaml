@@ -19,8 +19,8 @@ jobs:
         php:
           - 8.2
         dependencies:
-          - "lowest"
           - "highest"
+          - "lowest"
         experimental:
           - false
 
