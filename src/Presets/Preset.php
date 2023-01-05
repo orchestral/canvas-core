@@ -11,13 +11,14 @@ abstract class Preset
     /**
      * Construct a new preset.
      *
-     * @param  array<string, mixed> $config
+     * @param  array<string, mixed>  $config
      */
     public function __construct(
         protected array $config,
         protected string $basePath,
         protected Filesystem $files
-    ) { }
+    ) {
+    }
 
     /**
      * Check if preset name equal to $name.

@@ -29,6 +29,7 @@
         "illuminate/filesystem": "^10.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.1",
         "phpstan/phpstan": "^1.8",
         "orchestra/testbench": "^8.0"
     },
@@ -49,7 +50,15 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi"
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php ./vendor/bin/testbench package:discover --ansi",
+        "ci": [
+            "@composer run prepare",
+            "@php vendor/bin/phpstan analyse",
+            "@php vendor/bin/pint",
+            "@composer run test"
+        ],
+        "test": "@php vendor/bin/phpunit -c ./ --color"
     },
     "minimum-stability": "dev"
 }
