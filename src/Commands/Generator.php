@@ -113,7 +113,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function generatorName(): string
     {
-        return transform($this->argument('name'), function (string $name) {
+        return transform($this->argument('name'), function ($name) {
+            /** @var string $name */
             return trim($name);
         });
     }
