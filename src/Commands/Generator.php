@@ -85,9 +85,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function codeAlreadyExists(string $className): int
     {
-        $this->error($this->type.' already exists!');
+        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
-        return 1;
+        return static::FAILURE;
     }
 
     /**
@@ -95,9 +95,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function codeHasBeenGenerated(string $className): int
     {
-        $this->info($this->type.' created successfully.');
+        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
-        return 0;
+        return static::SUCCESS;
     }
 
     /**
