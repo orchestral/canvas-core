@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Console\View\Components\Factory;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
@@ -76,6 +77,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $force = $this->hasOption('force') && $this->option('force') === true;
+
+        $this->components = new Factory($output);
 
         return $this->generateCode($force);
     }
