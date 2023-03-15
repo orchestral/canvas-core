@@ -31,7 +31,7 @@
     "require-dev": {
         "laravel/pint": "^1.6",
         "orchestra/testbench": "^8.0",
-        "phpstan/phpstan": "^1.10.5",
+        "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.0.7"
     },
     "config": {
@@ -54,11 +54,13 @@
         "post-autoload-dump": "@composer run prepare",
         "prepare": "@php ./vendor/bin/testbench package:discover --ansi",
         "ci": [
+            "@composer audit",
             "@composer run prepare",
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
         "test": "@php vendor/bin/phpunit -c ./ --color"
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }
