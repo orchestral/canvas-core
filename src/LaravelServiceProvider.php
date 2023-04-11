@@ -17,9 +17,7 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
      */
     public function register(): void
     {
-        $this->app->singleton(Presets\Preset::class, function (Container $app) {
-            return $this->presetForLaravel($app);
-        });
+        $this->app->singleton(Presets\Preset::class, fn (Container $app) => $this->presetForLaravel($app));
     }
 
     /**

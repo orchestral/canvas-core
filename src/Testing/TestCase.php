@@ -2,6 +2,9 @@
 
 namespace Orchestra\Canvas\Core\Testing;
 
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
+
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use Concerns\InteractsWithPublishedFiles;
@@ -20,7 +23,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
 
-        $this->setUpInteractsWithPublishedFiles();
+        if (InstalledVersions::satisfies(new VersionParser, 'orchestra/testbench-core', '<8.2.0')) {
+            $this->setUpInteractsWithPublishedFiles();
+        }
     }
 
     /**
@@ -28,7 +33,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function tearDown(): void
     {
-        $this->tearDownInteractsWithPublishedFiles();
+        if (InstalledVersions::satisfies(new VersionParser, 'orchestra/testbench-core', '<8.2.0')) {
+            $this->tearDownInteractsWithPublishedFiles();
+        }
 
         parent::tearDown();
     }

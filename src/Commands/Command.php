@@ -6,6 +6,7 @@ use Illuminate\Console\Concerns\CallsCommands;
 use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Console\View\Components\Factory;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,6 +45,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     public function run(InputInterface $input, OutputInterface $output): int
     {
         $this->output = new OutputStyle($input, $output);
+
+        $this->components = new Factory($this->output);
 
         return parent::run(
             $this->input = $input, $this->output

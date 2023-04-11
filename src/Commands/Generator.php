@@ -75,8 +75,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         $this->ignoreValidationErrors();
 
-        $this->setName($this->name)
-            ->setDescription($this->description)
+        $this->setName($this->getName())
+            ->setDescription($this->getDescription())
             ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
     }
 
@@ -99,9 +99,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function codeAlreadyExists(string $className): int
     {
-        $this->error($this->type.' already exists!');
+        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
-        return 1;
+        return static::FAILURE;
     }
 
     /**
@@ -109,9 +109,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function codeHasBeenGenerated(string $className): int
     {
-        $this->info($this->type.' created successfully.');
+        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
-        return 0;
+        return static::SUCCESS;
     }
 
     /**
@@ -127,7 +127,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function generatorName(): string
     {
-        return transform($this->argument('name'), function (string $name) {
+        return transform($this->argument('name'), function ($name) {
+            /** @var string $name */
             return trim($name);
         });
     }
