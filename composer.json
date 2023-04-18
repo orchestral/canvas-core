@@ -32,7 +32,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.1",
+        "orchestra/testbench": "^8.5",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1"
     },
