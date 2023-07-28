@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Core\Commands;
 
 use Illuminate\Console\Concerns\CallsCommands;
+use Illuminate\Console\Concerns\ConfiguresPrompts;
 use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\OutputStyle;
@@ -15,6 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class Command extends \Symfony\Component\Console\Command\Command
 {
     use CallsCommands,
+        ConfiguresPrompts,
         HasParameters,
         InteractsWithIO;
 
@@ -37,7 +39,6 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         $this->specifyParameters();
     }
 
-
     /**
      * Initializes the command after the input has been bound and before the input
      * is validated.
@@ -50,6 +51,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         $this->output = new OutputStyle($input, $output);
 
         $this->components = new Factory($this->output);
+
+        $this->configurePrompts($input);
     }
 
     /**
