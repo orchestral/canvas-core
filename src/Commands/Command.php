@@ -37,7 +37,6 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         $this->specifyParameters();
     }
 
-
     /**
      * Initializes the command after the input has been bound and before the input
      * is validated.
