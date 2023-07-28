@@ -45,7 +45,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->components = new Factory($output);
+        $this->components = new Factory($this->output);
     }
 
     /**
