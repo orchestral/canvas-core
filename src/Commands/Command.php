@@ -37,6 +37,21 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         $this->specifyParameters();
     }
 
+
+    /**
+     * Initializes the command after the input has been bound and before the input
+     * is validated.
+     *
+     * @return void
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->input = $input;
+        $this->output = new OutputStyle($input, $output);
+
+        $this->components = new Factory($this->output);
+    }
+
     /**
      * Run the console command.
      *
@@ -44,13 +59,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
-        $this->output = new OutputStyle($input, $output);
-
-        $this->components = new Factory($this->output);
-
-        return parent::run(
-            $this->input = $input, $this->output
-        );
+        return parent::run($this->input, $this->output);
     }
 
     /**
