@@ -45,10 +45,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->input = $input;
-        $this->output = new OutputStyle($input, $output);
-
-        $this->components = new Factory($this->output);
+        $this->components = new Factory($output);
     }
 
     /**
@@ -58,7 +55,10 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
-        return parent::run($this->input, $this->output);
+        return parent::run(
+            $this->input = $input,
+            $this->output = new OutputStyle($input, $output)
+        );
     }
 
     /**
