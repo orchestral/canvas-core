@@ -44,13 +44,12 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      * is validated.
      *
      * @return void
+     *
+     * @phpstan-param \Symfony\Component\Console\Output\OutputInterface&\Illuminate\Console\OutputStyle  $output
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->input = $input;
-        $this->output = new OutputStyle($input, $output);
-
-        $this->components = new Factory($this->output);
+        $this->components = new Factory($output);
 
         $this->configurePrompts($input);
     }
@@ -62,7 +61,10 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
-        return parent::run($this->input, $this->output);
+        return parent::run(
+            $this->input = $input,
+            $this->output = new OutputStyle($input, $output)
+        );
     }
 
     /**
