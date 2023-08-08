@@ -29,10 +29,9 @@
         "composer/semver": "^3.0",
         "illuminate/console": "^10.17",
         "illuminate/filesystem": "^10.17",
-        "laravel/prompts": "dev-main"
+        "laravel/prompts": "^0.1.3"
     },
     "require-dev": {
-        "laravel/framework": "dev-prompts as 10.x-dev",
         "laravel/pint": "^1.6",
         "orchestra/testbench": "^8.5.11",
         "phpstan/phpstan": "^1.10.6",
