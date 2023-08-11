@@ -9,6 +9,7 @@ use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Console\View\Components\Factory;
 use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Testbench\Foundation\Application as Testbench;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -61,6 +62,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
+        $this->laravel = Testbench::create(basePath: $this->preset->laravelPath());
+
         return parent::run(
             $this->input = $input,
             $this->output = new OutputStyle($input, $output)
@@ -80,5 +83,15 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
                 ? $command->getName()
                 : $command
         );
+    }
+
+    /**
+     * Get the Laravel application instance.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application
+     */
+    public function getLaravel()
+    {
+        return $this->laravel;
     }
 }

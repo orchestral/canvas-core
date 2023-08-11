@@ -60,6 +60,14 @@ abstract class Preset
     }
 
     /**
+     * Get the path to the base working directory.
+     */
+    public function vendorPath(): string
+    {
+        return "{$this->basePath}/vendor";
+    }
+
+    /**
      * Get the path to the resource directory.
      */
     public function resourcePath(): string
@@ -130,6 +138,11 @@ abstract class Preset
      * Preset name.
      */
     abstract public function name(): string;
+
+    /**
+     * Get the path to the base working directory.
+     */
+    abstract public function laravelPath(): string;
 
     /**
      * Get the path to the source directory.
