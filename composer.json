@@ -28,12 +28,11 @@
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
         "illuminate/console": "^10.17",
-        "illuminate/filesystem": "^10.17",
-        "orchestra/testbench-core": "^8.6.2"
+        "illuminate/filesystem": "^10.17"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.6.3",
+        "orchestra/testbench": "^8.8.1",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1"
     },
