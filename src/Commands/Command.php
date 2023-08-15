@@ -29,6 +29,13 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     protected $preset;
 
     /**
+     * The Laravel application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
+    protected $laravel;
+
+    /**
      * Construct a new generator command.
      */
     public function __construct(Preset $preset)
