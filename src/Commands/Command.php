@@ -8,6 +8,7 @@ use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Console\View\Components\Factory;
+use Illuminate\Container\Container;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Testbench\Foundation\Application as Testbench;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
@@ -69,7 +70,11 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
-        $this->laravel = Testbench::create(basePath: $this->preset->laravelPath());
+        $container = Container::getInstance();
+
+        $this->laravel = $container->bound('app')
+            ? $container->get('app')
+            : Testbench::create(basePath: $this->preset->laravelPath());
 
         return parent::run(
             $this->input = $input,
