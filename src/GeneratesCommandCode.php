@@ -2,8 +2,10 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Support\Str;
+
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
 class GeneratesCommandCode extends GeneratesCode
 {
@@ -16,6 +18,8 @@ class GeneratesCommandCode extends GeneratesCode
     {
         $stub = parent::replaceClass($stub, $name);
 
-        return str_replace(['dummy:command', '{{ command }}', '{{command}}'], $this->options['command'], $stub);
+        $command = $this->options['command'] ?: 'app:'.Str::of($name)->classBasename()->kebab()->value();
+
+        return str_replace(['dummy:command', '{{ command }}', '{{command}}'], $command, $stub);
     }
 }
