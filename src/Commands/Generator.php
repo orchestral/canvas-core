@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Core\Commands;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
+use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
@@ -115,7 +116,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
             /** @phpstan-ignore-next-line */
-            $this->handleTestCreation($path);
+            $this->handleTestCreation(Str::of($path)->after($this->preset->sourcePath()));
         }
     }
 
