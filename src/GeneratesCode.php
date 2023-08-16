@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
 
@@ -59,7 +60,12 @@ class GeneratesCode
 
         $this->files->put($path, $this->sortImports($this->buildClass($className)));
 
-        return $this->listener->codeHasBeenGenerated($className);
+        return tap($this->listener->codeHasBeenGenerated($className), function ($exitCode) use ($path) {
+            if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this->listener))) {
+                /** @phpstan-ignore-next-line */
+                $this->handleTestCreation($path);
+            }
+        });
     }
 
     /**
