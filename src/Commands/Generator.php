@@ -114,7 +114,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
             /** @phpstan-ignore-next-line */
-            $this->handleTestCreation(Str::of($path)->after($this->preset->sourcePath()));
+            $this->handleTestCreation($path);
         }
     }
 
