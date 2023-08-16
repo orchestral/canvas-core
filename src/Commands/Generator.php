@@ -51,6 +51,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->files = $preset->filesystem();
 
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
             $this->addTestOptions();
         }
 
@@ -103,6 +104,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
             $this->handleTestCreation($path);
         }
 
