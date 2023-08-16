@@ -50,11 +50,6 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         $this->files = $preset->filesystem();
 
-        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            /** @phpstan-ignore-next-line */
-            $this->addTestOptions();
-        }
-
         parent::__construct($preset);
     }
 
@@ -70,6 +65,11 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->setName($this->getName())
             ->setDescription($this->getDescription())
             ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
+
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->addTestOptions();
+        }
     }
 
     /**
