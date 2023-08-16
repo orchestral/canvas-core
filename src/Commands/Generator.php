@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
@@ -48,6 +49,10 @@ abstract class Generator extends Command implements GeneratesCodeListener
     public function __construct(Preset $preset)
     {
         $this->files = $preset->filesystem();
+
+        if (in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            $this->addTestOptions();
+        }
 
         parent::__construct($preset);
     }
@@ -96,6 +101,10 @@ abstract class Generator extends Command implements GeneratesCodeListener
     public function codeHasBeenGenerated(string $className): int
     {
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
+
+        if (in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            $this->handleTestCreation($path);
+        }
 
         return static::SUCCESS;
     }
