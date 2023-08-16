@@ -60,11 +60,8 @@ class GeneratesCode
 
         $this->files->put($path, $this->sortImports($this->buildClass($className)));
 
-        return tap($this->listener->codeHasBeenGenerated($className), function ($exitCode) use ($path) {
-            if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this->listener))) {
-                /** @phpstan-ignore-next-line */
-                $this->handleTestCreation($path);
-            }
+        return tap($this->listener->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
+            $this->listener->afterCodeHasBeenGenerated($className, $path);
         });
     }
 

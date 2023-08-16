@@ -107,6 +107,17 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
+     * Run after Code successfully generated.
+     */
+    public function afterCodeHasBeenGenerated(string $className, string $path): int
+    {
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->handleTestCreation($path);
+        }
+    }
+
+    /**
      * Get the published stub file for the generator.
      */
     public function getPublishedStubFileName(): ?string
