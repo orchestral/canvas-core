@@ -19,7 +19,7 @@ interface GeneratesCodeListener
     public function codeHasBeenGenerated(string $className): mixed;
 
     /**
-     * Code successfully generated.
+     * Run after code successfully generated.
      */
     public function afterCodeHasBeenGenerated(string $className, string $path): void;
 

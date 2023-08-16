@@ -108,9 +108,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
-     * Code successfully generated.
-     *
-     * @return void
+     * Run after code successfully generated.
      */
     public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
