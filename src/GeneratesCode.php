@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Core;
 
-use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
 

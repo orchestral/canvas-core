@@ -19,6 +19,11 @@ interface GeneratesCodeListener
     public function codeHasBeenGenerated(string $className): mixed;
 
     /**
+     * Code successfully generated.
+     */
+    public function afterCodeHasBeenGenerated(string $className, string $path): void;
+
+    /**
      * Get the stub file for the generator.
      */
     public function getPublishedStubFileName(): ?string;

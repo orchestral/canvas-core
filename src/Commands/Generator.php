@@ -107,9 +107,11 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
-     * Run after Code successfully generated.
+     * Code successfully generated.
+     *
+     * @return void
      */
-    public function afterCodeHasBeenGenerated(string $className, string $path): int
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
             /** @phpstan-ignore-next-line */
