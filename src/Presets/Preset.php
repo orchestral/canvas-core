@@ -111,8 +111,24 @@ abstract class Preset
         return sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config('seeder.path', 'database/seeds')
+            $this->config('seeder.path', 'database/seeders')
         );
+    }
+
+    /**
+     * Databases namespace.
+     */
+    public function databaseFactoryNamespace(): string
+    {
+        return $this->config('factory.namespace', 'Database\Factories\\');
+    }
+
+    /**
+     * Databases namespace.
+     */
+    public function databaseSeederNamespace(): string
+    {
+        return $this->config('seeder.path', 'Database\Factories\\');
     }
 
     /**
