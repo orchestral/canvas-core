@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Tests\Core\Presets;
+namespace Orchestra\Canvas\Core\Tests\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Presets\Package;
@@ -25,6 +25,8 @@ class PackageTest extends TestCase
         $this->assertSame('FooBar', $preset->rootNamespace());
         $this->assertSame('FooBar', $preset->modelNamespace());
         $this->assertSame('FooBar', $preset->providerNamespace());
+        $this->assertSame('Database\Factories', $preset->factoryNamespace());
+        $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/src", $preset->sourcePath());
         $this->assertSame("{$directory}/vendor", $preset->vendorPath());

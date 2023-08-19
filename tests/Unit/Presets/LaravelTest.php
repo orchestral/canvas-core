@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Tests\Unit\Core\Presets;
+namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Presets\Laravel;
@@ -25,6 +25,8 @@ class LaravelTest extends TestCase
         $this->assertSame('App', $preset->rootNamespace());
         $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
+        $this->assertSame('Database\Factories', $preset->factoryNamespace());
+        $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());
         $this->assertSame("{$directory}/vendor", $preset->vendorPath());
