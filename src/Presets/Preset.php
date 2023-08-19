@@ -116,19 +116,19 @@ abstract class Preset
     }
 
     /**
-     * Databases namespace.
+     * Database factory namespace.
      */
-    public function databaseFactoryNamespace(): string
+    public function factoryNamespace(): string
     {
-        return $this->config('factory.namespace', 'Database\Factories\\');
+        return $this->config('factory.namespace', 'Database\Factories');
     }
 
     /**
-     * Databases namespace.
+     * Database seeder namespace.
      */
-    public function databaseSeederNamespace(): string
+    public function seederNamespace(): string
     {
-        return $this->config('seeder.path', 'Database\Factories\\');
+        return $this->config('seeder.path', 'Database\Seeders');
     }
 
     /**
