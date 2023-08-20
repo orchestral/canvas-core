@@ -36,6 +36,9 @@
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1"
     },
+    "conflict": {
+        "orchestra/testbench-core": "<8.2.0"
+    },
     "config": {
         "sort-packages": true
     },
