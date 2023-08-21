@@ -29,7 +29,7 @@
         "illuminate/filesystem": "^8.75"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.22",
+        "orchestra/testbench": "^6.32",
         "phpstan/phpstan": "^1.10.6"
     },
     "conflict": {
