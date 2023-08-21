@@ -49,7 +49,10 @@
         }
     },
     "scripts": {
-        "lint": "vendor/bin/phpstan analyse"
+        "post-autoload-dump": "@prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "lint": "@php vendor/bin/phpstan analyse",
+        "test": "@php vendor/bin/phpunit -c ./ --color"
     },
     "minimum-stability": "dev"
 }
