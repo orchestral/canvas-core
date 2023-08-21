@@ -7,6 +7,6 @@ parameters:
   # The level 8 is the highest level
   level: 7
 
+  checkGenericClassInNonGenericObjectType: false
   checkMissingIterableValueType: false
-  noUnnecessaryCollectionCall: false
-  checkModelProperties: false
+  treatPhpDocTypesAsCertain: false
