@@ -30,8 +30,8 @@
     },
     "require-dev": {
         "laravel/pint": "^1.1",
-        "phpstan/phpstan": "^1.8",
-        "orchestra/testbench": "^7.18"
+        "orchestra/testbench": "^7.18",
+        "phpstan/phpstan": "^1.10.6"
     },
     "conflict": {
         "orchestra/testbench-core": "<7.25.0"
