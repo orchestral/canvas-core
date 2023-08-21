@@ -2,9 +2,6 @@
 
 namespace Orchestra\Canvas\Core\Testing;
 
-use Composer\InstalledVersions;
-use Composer\Semver\VersionParser;
-
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use Concerns\InteractsWithPublishedFiles;
