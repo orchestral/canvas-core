@@ -55,7 +55,12 @@
         "post-autoload-dump": "@prepare",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": "@php vendor/bin/phpstan analyse",
-        "test": "@php vendor/bin/phpunit -c ./ --color"
+        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "ci": [
+            "@prepare",
+            "@lint",
+            "@test"
+        ]
     },
     "minimum-stability": "dev"
 }

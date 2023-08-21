@@ -20,6 +20,8 @@ interface GeneratesCodeListener
 
     /**
      * Run after code successfully generated.
+     *
+     * @return void
      */
     public function afterCodeHasBeenGenerated(string $className, string $path);
 
