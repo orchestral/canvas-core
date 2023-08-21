@@ -12,24 +12,4 @@ class TestCase extends \Orchestra\Testbench\TestCase
      * @var array<int, string>|null
      */
     protected $files = [];
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->setUpInteractsWithPublishedFiles();
-    }
-
-    /**
-     * Teardown the test environment.
-     */
-    protected function tearDown(): void
-    {
-        $this->tearDownInteractsWithPublishedFiles();
-
-        parent::tearDown();
-    }
 }
