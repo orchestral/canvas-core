@@ -60,6 +60,14 @@ abstract class Preset
     }
 
     /**
+     * Get the path to the base working directory.
+     */
+    public function vendorPath(): string
+    {
+        return "{$this->basePath}/vendor";
+    }
+
+    /**
      * Get the path to the resource directory.
      */
     public function resourcePath(): string
@@ -103,8 +111,24 @@ abstract class Preset
         return sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config('seeder.path', 'database/seeds')
+            $this->config('seeder.path', 'database/seeders')
         );
+    }
+
+    /**
+     * Database factory namespace.
+     */
+    public function factoryNamespace(): string
+    {
+        return $this->config('factory.namespace', 'Database\Factories');
+    }
+
+    /**
+     * Database seeder namespace.
+     */
+    public function seederNamespace(): string
+    {
+        return $this->config('seeder.path', 'Database\Seeders');
     }
 
     /**
@@ -130,6 +154,11 @@ abstract class Preset
      * Preset name.
      */
     abstract public function name(): string;
+
+    /**
+     * Get the path to the base working directory.
+     */
+    abstract public function laravelPath(): string;
 
     /**
      * Get the path to the source directory.

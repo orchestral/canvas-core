@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Tests\Core\Presets;
+namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Presets\Package;
@@ -20,16 +20,20 @@ class PackageTest extends TestCase
         $this->assertFalse($preset->is('laravel'));
 
         $this->assertSame($directory, $preset->basePath());
+        $this->assertSame("{$directory}/vendor/orchestra/testbench-core/laravel", $preset->laravelPath());
 
         $this->assertSame('FooBar', $preset->rootNamespace());
         $this->assertSame('FooBar', $preset->modelNamespace());
         $this->assertSame('FooBar', $preset->providerNamespace());
+        $this->assertSame('Database\Factories', $preset->factoryNamespace());
+        $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/src", $preset->sourcePath());
+        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
-        $this->assertSame("{$directory}/database/seeds", $preset->seederPath());
+        $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
 
         $this->assertFalse($preset->hasCustomStubPath());
         $this->assertNull($preset->getCustomStubPath());

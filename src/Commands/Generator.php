@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
@@ -11,8 +12,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @property string  $name
- * @property string  $description
+ * @property string|null  $name
+ * @property string|null  $description
  */
 abstract class Generator extends Command implements GeneratesCodeListener
 {
@@ -78,6 +79,11 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->setName($this->getName())
             ->setDescription($this->getDescription())
             ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
+
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->addTestOptions();
+        }
     }
 
     /**
@@ -112,6 +118,17 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
         return static::SUCCESS;
+    }
+
+    /**
+     * Run after code successfully generated.
+     */
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
+    {
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->handleTestCreation($path);
+        }
     }
 
     /**
