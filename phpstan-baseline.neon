@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to private property \\$description of parent class Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\.$#"
+			count: 1
+			path: src/Commands/Generator.php
+
+		-
+			message: "#^Access to private property \\$name of parent class Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\.$#"
+			count: 1
+			path: src/Commands/Generator.php

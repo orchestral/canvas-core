@@ -51,10 +51,9 @@ abstract class Preset
      * Get configuration.
      *
      * @param  mixed|null  $default
-     *
      * @return mixed
      */
-    public function config(?string $key = null, $default = null)
+    public function config(string $key = null, $default = null)
     {
         if (\is_null($key)) {
             return $this->config;

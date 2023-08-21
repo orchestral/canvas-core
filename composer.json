@@ -48,5 +48,8 @@
             ]
         }
     },
+    "scripts": {
+        "lint": "vendor/bin/phpstan analyse"
+    },
     "minimum-stability": "dev"
 }

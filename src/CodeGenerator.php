@@ -15,7 +15,6 @@ trait CodeGenerator
      * Set Preset for generator.
      *
      * @param  \Orchestra\Canvas\Core\Presets\Preset  $preset
-     *
      * @return $this
      */
     public function setPreset(Presets\Preset $preset)
