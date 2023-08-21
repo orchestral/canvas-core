@@ -59,7 +59,9 @@ class GeneratesCode
 
         $this->files->put($path, $this->sortImports($this->buildClass($className)));
 
-        return $this->listener->codeHasBeenGenerated($className);
+        return tap($this->listener->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
+            $this->listener->afterCodeHasBeenGenerated($className, Str::of($path)->after($this->preset->sourcePath()));
+        });
     }
 
     /**

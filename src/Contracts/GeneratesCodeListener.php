@@ -19,6 +19,13 @@ interface GeneratesCodeListener
     public function codeHasBeenGenerated(string $className);
 
     /**
+     * Run after code successfully generated.
+     *
+     * @return void
+     */
+    public function afterCodeHasBeenGenerated(string $className, string $path);
+
+    /**
      * Get the stub file for the generator.
      */
     public function getPublishedStubFileName(): ?string;
