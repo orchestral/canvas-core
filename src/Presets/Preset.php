@@ -30,12 +30,12 @@ abstract class Preset
     /**
      * Add global command.
      *
-     * @param  class-string<\Symfony\Component\Console\Command\Command>  $generator
+     * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
      * @return void
      */
-    public static function addCommand(string $generator): void
+    public static function commands(array $generators): void
     {
-        static::$generators[] = $generator;
+        static::$generators = array_merge(static::$generators, $generators);
     }
 
     /**
