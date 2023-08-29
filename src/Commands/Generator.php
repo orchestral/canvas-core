@@ -65,8 +65,8 @@ abstract class Generator extends Command implements GeneratesCodeListener
     {
         $this->ignoreValidationErrors();
 
-        $this->setName($this->name)
-            ->setDescription($this->description)
+        $this->setName($this->getName())
+            ->setDescription($this->getDescription())
             ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
     }
 
