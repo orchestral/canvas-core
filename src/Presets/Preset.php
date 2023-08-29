@@ -30,6 +30,13 @@ abstract class Preset
     protected $files;
 
     /**
+     * List of global generators.
+     *
+     * @var array<int, class-string<\Symfony\Component\Console\Command\Command>>
+     */
+    protected static $generators = [];
+
+    /**
      * Construct a new preset.
      */
     public function __construct(array $config, string $basePath, Filesystem $files)
@@ -37,6 +44,17 @@ abstract class Preset
         $this->config = $config;
         $this->basePath = $basePath;
         $this->files = $files;
+    }
+
+    /**
+     * Add global command.
+     *
+     * @param  class-string<\Symfony\Component\Console\Command\Command>  $generator
+     * @return void
+     */
+    public static function addCommand(string $generator): void
+    {
+        static::$generators[] = $generator;
     }
 
     /**
@@ -147,10 +165,15 @@ abstract class Preset
      */
     public function addAdditionalCommands(Application $app): void
     {
-        $generators = $this->config('generators') ?? [];
+        tap($this->config('generators') ?? [], function ($generators) use ($app) {
+            foreach (Arr::wrap($generators) as $generator) {
+                /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
+                $app->add(new $generator($this));
+            }
+        });
 
-        foreach (Arr::wrap($generators) as $generator) {
-            /** @var \Symfony\Component\Console\Command\Command $generator */
+        foreach (Arr::wrap(static::$generators) as $generator) {
+            /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
             $app->add(new $generator($this));
         }
     }
