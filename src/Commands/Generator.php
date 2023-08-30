@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
@@ -68,6 +69,11 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $this->setName($this->getName())
             ->setDescription($this->getDescription())
             ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
+
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->addTestOptions();
+        }
     }
 
     /**
@@ -111,7 +117,10 @@ abstract class Generator extends Command implements GeneratesCodeListener
      */
     public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        //
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            /** @phpstan-ignore-next-line */
+            $this->handleTestCreation($path);
+        }
     }
 
     /**
