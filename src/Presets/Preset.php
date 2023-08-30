@@ -9,13 +9,6 @@ use Symfony\Component\Console\Application;
 abstract class Preset
 {
     /**
-     * List of global generators.
-     *
-     * @var array<int, class-string<\Symfony\Component\Console\Command\Command>>
-     */
-    protected static $generators = [];
-
-    /**
      * Construct a new preset.
      *
      * @param  array<string, mixed>  $config
@@ -25,17 +18,6 @@ abstract class Preset
         protected string $basePath,
         protected Filesystem $files
     ) {
-    }
-
-    /**
-     * Add global command.
-     *
-     * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
-     * @return void
-     */
-    public static function commands(array $generators): void
-    {
-        static::$generators = array_merge(static::$generators, $generators);
     }
 
     /**
@@ -160,11 +142,6 @@ abstract class Preset
                 $app->add(new $generator($this));
             }
         });
-
-        foreach (Arr::wrap(static::$generators) as $generator) {
-            /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-            $app->add(new $generator($this));
-        }
     }
 
     /**
