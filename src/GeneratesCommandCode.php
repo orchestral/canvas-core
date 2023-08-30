@@ -3,7 +3,7 @@
 namespace Orchestra\Canvas\Core;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ConsoleMakeCommand.php
  */
 class GeneratesCommandCode extends GeneratesCode
 {
