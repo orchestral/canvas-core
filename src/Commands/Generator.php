@@ -39,9 +39,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCode::class;
+    protected string $processor = GeneratesCode::class;
 
     /**
      * Construct a new generator command.
