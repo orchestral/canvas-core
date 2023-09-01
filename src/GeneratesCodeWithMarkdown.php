@@ -5,11 +5,11 @@ namespace Orchestra\Canvas\Core;
 class GeneratesCodeWithMarkdown extends GeneratesCode
 {
     /**
-     * Replace the namespace for the given stub.
+     * Handle generating code.
      */
-    protected function replaceNamespace(string $stub, string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
-        $stub = parent::replaceNamespace($stub, $name);
+        $stub = parent::generatingCode($stub, $name);
 
         if (! empty($this->options['view'])) {
             $stub = str_replace(['DummyView', '{{ view }}', '{{view}}'], $this->options['view'], $stub);
