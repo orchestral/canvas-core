@@ -145,8 +145,10 @@ class GeneratesCode
     {
         $stub = $this->files->get($this->getListenerStubFile());
 
-        return $this->replaceClass(
-            $this->replaceNamespace($stub, $name), $name
+        return $this->listener->generatingCode(
+            $this->replaceClass(
+                $this->replaceNamespace($stub, $name), $name
+            ), $name
         );
     }
 
@@ -195,7 +197,7 @@ class GeneratesCode
             );
         }
 
-        return $this->listener->generatingCode($stub, $name);
+        return $stub;
     }
 
     /**
