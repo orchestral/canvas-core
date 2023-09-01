@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
 class GeneratesCodeWithEloquent extends GeneratesCode
 {

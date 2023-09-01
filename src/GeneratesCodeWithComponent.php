@@ -6,7 +6,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Str;
 
 /**
- * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
+ * @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Foundation/Console/ComponentMakeCommand.php
  */
 class GeneratesCodeWithComponent extends GeneratesCode
 {
