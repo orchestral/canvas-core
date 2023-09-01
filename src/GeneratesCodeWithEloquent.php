@@ -6,8 +6,6 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 /**
- * @property \Orchestra\Canvas\Commands\Database\Observer $listener
- *
  * @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Foundation/Console/ObserverMakeCommand.php
  */
 class GeneratesCodeWithEloquent extends GeneratesCode
