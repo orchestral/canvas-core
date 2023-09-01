@@ -8,13 +8,11 @@ namespace Orchestra\Canvas\Core;
 class GeneratesCommandCode extends GeneratesCode
 {
     /**
-     * Replace the class name for the given stub.
-     *
-     * @todo need to be updated
+     * Handle generating code.
      */
-    protected function replaceClass(string $stub, string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
-        $stub = parent::replaceClass($stub, $name);
+        $stub = parent::generatingCode($stub, $name);
 
         return str_replace(['dummy:command', '{{ command }}', '{{command}}'], $this->options['command'], $stub);
     }

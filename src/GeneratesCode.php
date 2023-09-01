@@ -129,8 +129,16 @@ class GeneratesCode
      */
     protected function buildClass(string $name): string
     {
-        $stub = $this->files->get($this->getListenerStubFile());
+        return $this->generatingCode(
+            $this->files->get($this->getListenerStubFile()), $name
+        );
+    }
 
+    /**
+     * Handle generating code.
+     */
+    protected function generatingCode(string $stub, string $name): string
+    {
         return $this->listener->generatingCode(
             $this->replaceClass(
                 $this->replaceNamespace($stub, $name), $name

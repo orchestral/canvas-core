@@ -91,9 +91,7 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
-     * Code successfully generated.
-     *
-     * @return string
+     * Handle generating code.
      */
     public function generatingCode(string $stub, string $className): string
     {
