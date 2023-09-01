@@ -11,6 +11,14 @@ interface GeneratesCodeListener
      */
     public function codeAlreadyExists(string $className);
 
+
+    /**
+     * Code successfully generated.
+     *
+     * @return string
+     */
+    public function generatingCode(string $stub, string $className): string;
+
     /**
      * Code successfully generated.
      *

@@ -195,7 +195,7 @@ class GeneratesCode
             );
         }
 
-        return $stub;
+        return $this->listener->generatingCode($stub, $name);
     }
 
     /**
