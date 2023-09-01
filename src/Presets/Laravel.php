@@ -7,7 +7,6 @@ use Symfony\Component\Console\Application;
 
 class Laravel extends Preset
 {
-
     /**
      * List of global generators.
      *
@@ -85,6 +84,7 @@ class Laravel extends Preset
     {
         return sprintf('%s/%s', $this->basePath(), 'stubs');
     }
+
     /**
      * Sync commands to preset.
      */

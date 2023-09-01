@@ -14,6 +14,13 @@ interface GeneratesCodeListener
     /**
      * Code successfully generated.
      *
+     * @return string
+     */
+    public function generatingCode(string $stub, string $className): string;
+
+    /**
+     * Code successfully generated.
+     *
      * @return mixed
      */
     public function codeHasBeenGenerated(string $className): mixed;

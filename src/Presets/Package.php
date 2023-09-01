@@ -8,7 +8,6 @@ use Symfony\Component\Console\Application;
 
 class Package extends Preset
 {
-
     /**
      * List of global generators.
      *
