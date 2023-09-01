@@ -11,7 +11,6 @@ interface GeneratesCodeListener
      */
     public function codeAlreadyExists(string $className);
 
-
     /**
      * Code successfully generated.
      *
