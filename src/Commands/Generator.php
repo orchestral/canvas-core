@@ -29,15 +29,11 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
 
     /**
      * The type of class being generated.
-     *
-     * @var string
      */
     protected string $type;
 
     /**
      * The type of file being generated.
-     *
-     * @var string
      */
     protected string $fileType = 'class';
 
@@ -251,14 +247,11 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
 
     /**
      * Checks whether the given name is reserved.
-     *
-     * @param  string  $name
-     * @return bool
      */
-    protected function isReservedName($name)
+    protected function isReservedName(string $name): bool
     {
         $name = strtolower($name);
 
-        return in_array($name, $this->reservedNames);
+        return \in_array($name, $this->reservedNames);
     }
 }

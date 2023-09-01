@@ -40,8 +40,6 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
 
     /**
      * Run the console command.
-     *
-     * @return int
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
