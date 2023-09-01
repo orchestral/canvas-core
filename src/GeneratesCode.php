@@ -199,14 +199,6 @@ class GeneratesCode
     }
 
     /**
-     * Get the full namespace for a given class, without the class name.
-     */
-    protected function getNamespace(string $name): string
-    {
-        return trim(implode('\\', \array_slice(explode('\\', $name), 0, -1)), '\\');
-    }
-
-    /**
      * Replace the class name for the given stub.
      */
     protected function replaceClass(string $stub, string $name): string
@@ -222,6 +214,14 @@ class GeneratesCode
             class_basename($this->userProviderModel()),
             $stub
         );
+    }
+
+    /**
+     * Get the full namespace for a given class, without the class name.
+     */
+    protected function getNamespace(string $name): string
+    {
+        return trim(implode('\\', \array_slice(explode('\\', $name), 0, -1)), '\\');
     }
 
     /**
