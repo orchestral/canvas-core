@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Core\Commands;
 use Illuminate\Console\Concerns\CallsCommands;
 use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
+use Illuminate\Console\Concerns\PromptsForMissingInput;
 use Illuminate\Console\OutputStyle;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
@@ -15,7 +16,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
 {
     use CallsCommands,
         HasParameters,
-        InteractsWithIO;
+        InteractsWithIO,
+        PromptsForMissingInput;
 
     /**
      * Canvas preset.
