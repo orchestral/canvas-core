@@ -131,8 +131,10 @@ class GeneratesCode
     {
         $stub = $this->files->get($this->getListenerStubFile());
 
-        return $this->replaceClass(
-            $this->replaceNamespace($stub, $name), $name
+        return $this->listener->generatingCode(
+            $this->replaceClass(
+                $this->replaceNamespace($stub, $name), $name
+            ), $name
         );
     }
 
@@ -181,15 +183,7 @@ class GeneratesCode
             );
         }
 
-        return $this->listener->generatingCode($stub, $name);
-    }
-
-    /**
-     * Get the full namespace for a given class, without the class name.
-     */
-    protected function getNamespace(string $name): string
-    {
-        return trim(implode('\\', \array_slice(explode('\\', $name), 0, -1)), '\\');
+        return $stub;
     }
 
     /**
@@ -208,6 +202,14 @@ class GeneratesCode
             class_basename($this->userProviderModel()),
             $stub
         );
+    }
+
+    /**
+     * Get the full namespace for a given class, without the class name.
+     */
+    protected function getNamespace(string $name): string
+    {
+        return trim(implode('\\', \array_slice(explode('\\', $name), 0, -1)), '\\');
     }
 
     /**
