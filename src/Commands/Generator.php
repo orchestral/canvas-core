@@ -53,9 +53,9 @@ abstract class Generator extends Command implements GeneratesCodeListener
     /**
      * Generator processor.
      *
-     * @var string
+     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
      */
-    protected $processor = GeneratesCode::class;
+    protected string $processor = GeneratesCode::class;
 
     /**
      * Construct a new generator command.
@@ -98,6 +98,14 @@ abstract class Generator extends Command implements GeneratesCodeListener
         $force = $this->hasOption('force') && $this->option('force') === true;
 
         return $this->generateCode($force);
+    }
+
+    /**
+     * Handle generating code.
+     */
+    public function generatingCode(string $stub, string $className): string
+    {
+        return $stub;
     }
 
     /**

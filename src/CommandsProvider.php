@@ -8,8 +8,6 @@ trait CommandsProvider
 {
     /**
      * Setup preset for laravel.
-     *
-     * @return \Orchestra\Canvas\Core\Presets\Preset
      */
     protected function presetForLaravel(Container $app): Presets\Preset
     {
