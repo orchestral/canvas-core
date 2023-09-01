@@ -91,6 +91,16 @@ abstract class Generator extends Command implements GeneratesCodeListener
     }
 
     /**
+     * Code successfully generated.
+     *
+     * @return string
+     */
+    public function generatingCode(string $stub, string $className): string
+    {
+        return $stub;
+    }
+
+    /**
      * Code already exists.
      */
     public function codeAlreadyExists(string $className): int
