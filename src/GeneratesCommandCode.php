@@ -10,13 +10,11 @@ use Illuminate\Support\Str;
 class GeneratesCommandCode extends GeneratesCode
 {
     /**
-     * Replace the class name for the given stub.
-     *
-     * @todo need to be updated
+     * Handle generating code.
      */
-    protected function replaceClass(string $stub, string $name): string
+    protected function generatingCode(string $stub, string $name): string
     {
-        $stub = parent::replaceClass($stub, $name);
+        $stub = parent::generatingCode($stub, $name);
 
         $command = $this->options['command'] ?: 'app:'.Str::of($name)->classBasename()->kebab()->value();
 

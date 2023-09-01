@@ -12,9 +12,7 @@ interface GeneratesCodeListener
     public function codeAlreadyExists(string $className): mixed;
 
     /**
-     * Code successfully generated.
-     *
-     * @return string
+     * Handle generating code.
      */
     public function generatingCode(string $stub, string $className): string;
 

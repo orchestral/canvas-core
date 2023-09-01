@@ -18,7 +18,6 @@ class Laravel extends Preset
      * Add global command.
      *
      * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
-     * @return void
      */
     public static function commands(array $generators): void
     {
