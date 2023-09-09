@@ -247,15 +247,12 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
 
     /**
      * Checks whether the given name is reserved.
-     *
-     * @param  string  $name
-     * @return bool
      */
     protected function isReservedName(string $name): bool
     {
         $name = strtolower($name);
 
-        return in_array($name, $this->reservedNames);
+        return \in_array($name, $this->reservedNames);
     }
 
     /**

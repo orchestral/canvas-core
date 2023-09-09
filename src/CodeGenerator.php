@@ -25,8 +25,6 @@ trait CodeGenerator
 
     /**
      * Generate code.
-     *
-     * @return mixed
      */
     public function generateCode(bool $force = false)
     {
