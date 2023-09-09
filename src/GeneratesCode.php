@@ -34,6 +34,8 @@ class GeneratesCode
 
     /**
      * Execute generates code processor.
+     *
+     * @return int
      */
     public function __invoke(bool $force = false)
     {
