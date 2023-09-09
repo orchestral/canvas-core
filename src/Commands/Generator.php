@@ -11,6 +11,7 @@ use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
 /**
  * @property string|null  $name
@@ -255,6 +256,44 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
         $name = strtolower($name);
 
         return in_array($name, $this->reservedNames);
+    }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        $sourcePath = $this->preset->sourcePath();
+
+        $modelPath = is_dir("{$sourcePath}/Models") ? "{$sourcePath}/Models" : $sourcePath;
+
+        return collect((new Finder)->files()->depth(0)->in($modelPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
+    }
+
+    /**
+     * Get a list of possible event names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleEvents()
+    {
+        $eventPath = sprintf('%s/Events', $this->preset->sourcePath());
+
+        if (! is_dir($eventPath)) {
+            return [];
+        }
+
+        return collect((new Finder)->files()->depth(0)->in($eventPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
     }
 
     /**
