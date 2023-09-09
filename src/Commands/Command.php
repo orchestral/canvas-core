@@ -92,4 +92,14 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
                 : $command
         );
     }
+
+    /**
+     * Get the Laravel application instance.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application
+     */
+    public function getLaravel()
+    {
+        return $this->laravel;
+    }
 }

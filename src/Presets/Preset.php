@@ -18,6 +18,7 @@ abstract class Preset
         protected string $basePath,
         protected Filesystem $files
     ) {
+        //
     }
 
     /**
@@ -155,6 +156,11 @@ abstract class Preset
      * Preset name.
      */
     abstract public function name(): string;
+
+    /**
+     * Get the path to the base working directory.
+     */
+    abstract public function laravelPath(): string;
 
     /**
      * Get the path to the source directory.

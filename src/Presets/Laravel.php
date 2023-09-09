@@ -33,6 +33,14 @@ class Laravel extends Preset
     }
 
     /**
+     * Get the path to the base working directory.
+     */
+    public function laravelPath(): string
+    {
+        return $this->basePath();
+    }
+
+    /**
      * Get the path to the source directory.
      */
     public function sourcePath(): string

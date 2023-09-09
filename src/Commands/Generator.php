@@ -199,7 +199,7 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
      */
     public function codeAlreadyExists(string $className): int
     {
-        $this->error($this->type.' already exists!');
+        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
         return 1;
     }
@@ -209,7 +209,7 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
      */
     public function codeHasBeenGenerated(string $className): int
     {
-        $this->info($this->type.' created successfully.');
+        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
         return 0;
     }
@@ -240,7 +240,8 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
      */
     public function generatorName(): string
     {
-        return transform($this->argument('name'), function (string $name) {
+        return transform($this->argument('name'), function ($name) {
+            /** @var string $name */
             return trim($name);
         });
     }

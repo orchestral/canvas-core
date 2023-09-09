@@ -34,6 +34,14 @@ class Package extends Preset
     }
 
     /**
+     * Get the path to the base working directory.
+     */
+    public function laravelPath(): string
+    {
+        return sprintf('%s/orchestra/testbench-core/laravel', $this->vendorPath());
+    }
+
+    /**
      * Get the path to the source directory.
      */
     public function sourcePath(): string
@@ -80,7 +88,7 @@ class Package extends Preset
      */
     public function getCustomStubPath(): ?string
     {
-        return null;
+        return sprintf('%s/stubs', $this->basePath());
     }
 
     /**
