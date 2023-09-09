@@ -35,26 +35,22 @@ trait CodeGenerator
 
     /**
      * Code already exists.
-     *
-     * @return int
      */
-    public function codeAlreadyExists(string $className)
+    public function codeAlreadyExists(string $className): int
     {
         $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
-        return 1;
+        return static::FAILURE;
     }
 
     /**
      * Code successfully generated.
-     *
-     * @return int
      */
-    public function codeHasBeenGenerated(string $className)
+    public function codeHasBeenGenerated(string $className): int
     {
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
-        return 0;
+        return static::SUCCESS;
     }
 
     /**
