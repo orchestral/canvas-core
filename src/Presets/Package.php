@@ -88,7 +88,7 @@ class Package extends Preset
      */
     public function getCustomStubPath(): ?string
     {
-        return null;
+        return sprintf('%s/stubs', $this->basePath());
     }
 
     /**

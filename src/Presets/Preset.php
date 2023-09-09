@@ -18,6 +18,7 @@ abstract class Preset
         protected string $basePath,
         protected Filesystem $files
     ) {
+        //
     }
 
     /**
