@@ -20,6 +20,7 @@ class LaravelTest extends TestCase
         $this->assertFalse($preset->is('package'));
 
         $this->assertSame($directory, $preset->basePath());
+        $this->assertSame($preset->basePath(), $preset->laravelPath());
 
         $this->assertSame('App', $preset->rootNamespace());
         $this->assertSame('App\Models', $preset->modelNamespace());
@@ -28,6 +29,7 @@ class LaravelTest extends TestCase
         $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/app", $preset->sourcePath());
+        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());

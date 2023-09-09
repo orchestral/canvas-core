@@ -20,6 +20,7 @@ class PackageTest extends TestCase
         $this->assertFalse($preset->is('laravel'));
 
         $this->assertSame($directory, $preset->basePath());
+        $this->assertSame("{$directory}/vendor/orchestra/testbench-core/laravel", $preset->laravelPath());
 
         $this->assertSame('FooBar', $preset->rootNamespace());
         $this->assertSame('FooBar', $preset->modelNamespace());
@@ -28,6 +29,7 @@ class PackageTest extends TestCase
         $this->assertSame('Database\Seeders', $preset->seederNamespace());
 
         $this->assertSame("{$directory}/src", $preset->sourcePath());
+        $this->assertSame("{$directory}/vendor", $preset->vendorPath());
         $this->assertSame("{$directory}/resources", $preset->resourcePath());
         $this->assertSame("{$directory}/database/factories", $preset->factoryPath());
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
