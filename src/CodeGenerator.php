@@ -25,8 +25,6 @@ trait CodeGenerator
 
     /**
      * Generate code.
-     *
-     * @return mixed
      */
     public function generateCode(bool $force = false)
     {
@@ -60,7 +58,7 @@ trait CodeGenerator
     /**
      * Generator options.
      *
-     * @return array<string, mixed>
+     * @return array{name: string}
      */
     public function generatorOptions(): array
     {

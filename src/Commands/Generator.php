@@ -13,8 +13,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @property string  $name
- * @property string  $description
+ * @property string|null  $name
+ * @property string|null  $description
  */
 abstract class Generator extends Command implements GeneratesCodeListener, PromptsForMissingInput
 {

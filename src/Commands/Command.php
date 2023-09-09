@@ -8,7 +8,9 @@ use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\Concerns\PromptsForMissingInput;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Console\View\Components\Factory;
+use Illuminate\Container\Container;
 use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Testbench\Foundation\Application as Testbench;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,6 +30,13 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     protected $preset;
 
     /**
+     * The Laravel application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
+    protected $laravel;
+
+    /**
      * Construct a new generator command.
      */
     public function __construct(Preset $preset)
@@ -38,6 +47,7 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
 
         $this->specifyParameters();
     }
+
     /**
      * Initializes the command after the input has been bound and before the input
      * is validated.
@@ -56,10 +66,15 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {
-        $this->output = new OutputStyle($input, $output);
+        $container = Container::getInstance();
+
+        $this->laravel = $container->bound('app')
+            ? $container->get('app')
+            : Testbench::create(basePath: $this->preset->laravelPath());
 
         return parent::run(
-            $this->input = $input, $this->output
+            $this->input = $input,
+            $this->output = new OutputStyle($input, $output)
         );
     }
 
