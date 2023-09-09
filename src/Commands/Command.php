@@ -7,6 +7,7 @@ use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Console\Concerns\PromptsForMissingInput;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Console\View\Components\Factory;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Command\Command as SymfonyConsole;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,6 +37,18 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         parent::__construct();
 
         $this->specifyParameters();
+    }
+    /**
+     * Initializes the command after the input has been bound and before the input
+     * is validated.
+     *
+     * @return void
+     *
+     * @phpstan-param \Symfony\Component\Console\Output\OutputInterface&\Illuminate\Console\OutputStyle  $output
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->components = new Factory($output);
     }
 
     /**
