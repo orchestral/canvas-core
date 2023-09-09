@@ -195,7 +195,6 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
         return $stub;
     }
 
-
     /**
      * Run after code successfully generated.
      */
