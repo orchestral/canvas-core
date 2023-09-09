@@ -195,26 +195,6 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
     }
 
     /**
-     * Code already exists.
-     */
-    public function codeAlreadyExists(string $className): int
-    {
-        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
-
-        return 1;
-    }
-
-    /**
-     * Code successfully generated.
-     */
-    public function codeHasBeenGenerated(string $className): int
-    {
-        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
-
-        return 0;
-    }
-
-    /**
      * Run after code successfully generated.
      *
      * @return void
