@@ -255,4 +255,16 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
 
         return \in_array($name, $this->reservedNames);
     }
+
+    /**
+     * Prompt for missing input arguments using the returned questions.
+     *
+     * @return array
+     */
+    protected function promptForMissingArgumentsUsing()
+    {
+        return [
+            'name' => 'What should the '.strtolower($this->type).' be named?',
+        ];
+    }
 }
