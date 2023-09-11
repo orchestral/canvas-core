@@ -9,6 +9,7 @@ use Orchestra\Canvas\Core\TestGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
 use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Canvas\Core\TestGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
