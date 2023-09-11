@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class Generator extends Command implements GeneratesCodeListener, PromptsForMissingInput
 {
-    use CodeGenerator;
+    use CodeGenerator, TestGenerator;
 
     /**
      * The filesystem instance.
@@ -203,7 +203,7 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
             /** @phpstan-ignore-next-line */
-            $this->handleTestCreation($path);
+            $this->handleTestCreationUsingCanvas($path);
         }
     }
 
