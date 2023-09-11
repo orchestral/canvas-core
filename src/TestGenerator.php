@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Support\Str;
+
 trait TestGenerator
 {
     /**
@@ -17,7 +19,7 @@ trait TestGenerator
         }
 
         return $this->callSilent('make:test', [
-            'name' => Str::of($path)->after($this->preset->sourcePath())->beforeLast('.php')->append('Test')->replace('\\', '/'),
+            'name'   => Str::of($path)->after($this->preset->sourcePath())->beforeLast('.php')->append('Test')->replace('\\', '/'),
             '--pest' => $this->option('pest'),
         ]) == 0;
     }
