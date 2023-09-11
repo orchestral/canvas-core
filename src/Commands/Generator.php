@@ -5,7 +5,6 @@ namespace Orchestra\Canvas\Core\Commands;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Orchestra\Canvas\Core\CodeGenerator;
-use Orchestra\Canvas\Core\TestGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
 use Orchestra\Canvas\Core\Presets\Preset;
