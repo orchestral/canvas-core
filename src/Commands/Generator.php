@@ -202,7 +202,6 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
     public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            /** @phpstan-ignore-next-line */
             $this->handleTestCreationUsingCanvas($path);
         }
     }
