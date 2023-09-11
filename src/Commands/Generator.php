@@ -8,6 +8,7 @@ use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
 use Orchestra\Canvas\Core\GeneratesCode;
 use Orchestra\Canvas\Core\Presets\Preset;
+use Orchestra\Canvas\Core\TestGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -202,7 +203,6 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
     public function afterCodeHasBeenGenerated(string $className, string $path)
     {
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            /** @phpstan-ignore-next-line */
             $this->handleTestCreationUsingCanvas($path);
         }
     }

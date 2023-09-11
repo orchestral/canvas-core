@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Support\Str;
+
 trait TestGenerator
 {
     /**
