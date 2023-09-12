@@ -8,9 +8,6 @@ trait TestGenerator
 {
     /**
      * Create the matching test case if requested.
-     *
-     * @param  string  $path
-     * @return bool
      */
     protected function handleTestCreationUsingCanvas(string $path): bool
     {
