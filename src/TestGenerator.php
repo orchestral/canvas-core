@@ -12,14 +12,14 @@ trait TestGenerator
      * @param  string  $path
      * @return bool
      */
-    protected function handleTestCreationUsingCanvas($path)
+    protected function handleTestCreationUsingCanvas(string $path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
             return false;
         }
 
         return $this->callSilent('make:test', [
-            'name'   => Str::of($path)->after($this->preset->sourcePath())->beforeLast('.php')->append('Test')->replace('\\', '/'),
+            'name' => Str::of($path)->after($this->preset->sourcePath())->beforeLast('.php')->append('Test')->replace('\\', '/'),
             '--pest' => $this->option('pest'),
         ]) == 0;
     }
