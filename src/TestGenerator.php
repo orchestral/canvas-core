@@ -12,7 +12,7 @@ trait TestGenerator
      * @param  string  $path
      * @return bool
      */
-    protected function handleTestCreationUsingCanvas($path)
+    protected function handleTestCreationUsingCanvas(string $path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
             return false;
