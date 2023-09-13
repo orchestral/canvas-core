@@ -3,8 +3,11 @@
 namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
+use Mockery as m;
+use Orchestra\Canvas\Commands;
 use Orchestra\Canvas\Core\Presets\Package;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Application;
 
 class PackageTest extends TestCase
 {
@@ -23,6 +26,7 @@ class PackageTest extends TestCase
         $this->assertSame("{$directory}/vendor/orchestra/testbench-core/laravel", $preset->laravelPath());
 
         $this->assertSame('FooBar', $preset->rootNamespace());
+        $this->assertSame('FooBar\Tests', $preset->testingNamespace());
         $this->assertSame('FooBar', $preset->modelNamespace());
         $this->assertSame('FooBar', $preset->providerNamespace());
         $this->assertSame('Database\Factories', $preset->factoryNamespace());
@@ -72,5 +76,24 @@ class PackageTest extends TestCase
         $preset = new Package([], $directory, new Filesystem());
 
         $preset->rootNamespace();
+    }
+
+    /** @test */
+    public function it_can_add_additional_commands()
+    {
+        Package::commands([
+            Commands\Code::class,
+        ]);
+
+        $app = m::mock(Application::class);
+        $app->shouldReceive('add')
+            ->once()
+            ->with(m::type(Commands\Code::class))
+            ->andReturnUsing(fn ($generator) => $this->assertInstanceOf(Commands\Code::class, $generator));
+
+        $directory = __DIR__;
+        $preset = new Package(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
+
+        $preset->addAdditionalCommands($app);
     }
 }
