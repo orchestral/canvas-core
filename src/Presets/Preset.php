@@ -33,6 +33,7 @@ abstract class Preset
      * Get configuration.
      *
      * @param  mixed|null  $default
+     * @return mixed
      */
     public function config(?string $key = null, $default = null)
     {

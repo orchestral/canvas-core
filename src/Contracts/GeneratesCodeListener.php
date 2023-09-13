@@ -6,6 +6,8 @@ interface GeneratesCodeListener
 {
     /**
      * Code already exists.
+     *
+     * @return mixed
      */
     public function codeAlreadyExists(string $className);
 
@@ -16,6 +18,8 @@ interface GeneratesCodeListener
 
     /**
      * Code successfully generated.
+     *
+     * @return mixed
      */
     public function codeHasBeenGenerated(string $className);
 
