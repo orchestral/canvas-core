@@ -182,6 +182,11 @@ abstract class Preset
     abstract public function rootNamespace(): string;
 
     /**
+     * Testing namespace.
+     */
+    abstract public function testingNamespace(): string;
+
+    /**
      * Model namespace.
      */
     abstract public function modelNamespace(): string;
