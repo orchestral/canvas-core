@@ -61,7 +61,15 @@ abstract class Preset
     }
 
     /**
-     * Get the path to the base working directory.
+     * Get the path to the testing directory.
+     */
+    public function testingPath(): string
+    {
+        return "{$this->basePath}/tests";
+    }
+
+    /**
+     * Get the path to the vendor directory.
      */
     public function vendorPath(): string
     {
