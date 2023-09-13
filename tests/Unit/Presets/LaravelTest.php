@@ -4,7 +4,7 @@ namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Mockery as m;
-use Orchestra\Canvas\Commands;
+use Orchestra\Canvas\Core\Commands\Generators;
 use Orchestra\Canvas\Core\Presets\Laravel;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -79,14 +79,14 @@ class LaravelTest extends TestCase
     public function it_can_add_additional_commands()
     {
         Laravel::commands([
-            Commands\Code::class,
+            Generators\Code::class,
         ]);
 
         $app = m::mock(Application::class);
         $app->shouldReceive('add')
             ->once()
-            ->with(m::type(Commands\Code::class))
-            ->andReturnUsing(fn ($generator) => $this->assertInstanceOf(Commands\Code::class, $generator));
+            ->with(m::type(Generators\Code::class))
+            ->andReturnUsing(fn ($generator) => $this->assertInstanceOf(Generators\Code::class, $generator));
 
         $directory = __DIR__;
         $preset = new Laravel(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
