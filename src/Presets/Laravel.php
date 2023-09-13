@@ -61,6 +61,14 @@ class Laravel extends Preset
     }
 
     /**
+     * Testing namespace.
+     */
+    public function testingNamespace(): string
+    {
+        return $this->config('testing.namespace', 'Tests');
+    }
+
+    /**
      * Model namespace.
      */
     public function modelNamespace(): string

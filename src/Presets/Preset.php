@@ -18,6 +18,7 @@ abstract class Preset
         protected string $basePath,
         protected Filesystem $files
     ) {
+        //
     }
 
     /**
@@ -32,7 +33,6 @@ abstract class Preset
      * Get configuration.
      *
      * @param  mixed|null  $default
-     * @return mixed
      */
     public function config(?string $key = null, $default = null)
     {
@@ -60,7 +60,15 @@ abstract class Preset
     }
 
     /**
-     * Get the path to the base working directory.
+     * Get the path to the testing directory.
+     */
+    public function testingPath(): string
+    {
+        return "{$this->basePath}/tests";
+    }
+
+    /**
+     * Get the path to the vendor directory.
      */
     public function vendorPath(): string
     {
@@ -171,6 +179,11 @@ abstract class Preset
      * Preset namespace.
      */
     abstract public function rootNamespace(): string;
+
+    /**
+     * Testing namespace.
+     */
+    abstract public function testingNamespace(): string;
 
     /**
      * Model namespace.

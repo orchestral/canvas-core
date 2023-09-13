@@ -68,6 +68,14 @@ class Package extends Preset
     }
 
     /**
+     * Testing namespace.
+     */
+    public function testingNamespace(): string
+    {
+        return $this->config('testing.namespace', $this->rootNamespace().'\Tests');
+    }
+
+    /**
      * Model namespace.
      */
     public function modelNamespace(): string
@@ -88,7 +96,7 @@ class Package extends Preset
      */
     public function getCustomStubPath(): ?string
     {
-        return null;
+        return sprintf('%s/stubs', $this->basePath());
     }
 
     /**

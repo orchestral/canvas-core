@@ -26,7 +26,7 @@ trait CodeGenerator
     /**
      * Generate code.
      *
-     * @return mixed
+     * @return int
      */
     public function generateCode(bool $force = false)
     {
@@ -36,17 +36,21 @@ trait CodeGenerator
     /**
      * Code already exists.
      */
-    public function codeAlreadyExists(string $className)
+    public function codeAlreadyExists(string $className): int
     {
-        return false;
+        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
+
+        return static::FAILURE;
     }
 
     /**
      * Code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className)
+    public function codeHasBeenGenerated(string $className): int
     {
-        return true;
+        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
+
+        return static::SUCCESS;
     }
 
     /**
@@ -60,7 +64,7 @@ trait CodeGenerator
     /**
      * Generator options.
      *
-     * @return array{name: string}
+     * @return array<string, mixed>
      */
     public function generatorOptions(): array
     {

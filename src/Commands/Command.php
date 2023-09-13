@@ -6,6 +6,7 @@ use Illuminate\Console\Concerns\CallsCommands;
 use Illuminate\Console\Concerns\ConfiguresPrompts;
 use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Console\Concerns\InteractsWithIO;
+use Illuminate\Console\Concerns\PromptsForMissingInput;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Console\View\Components\Factory;
 use Illuminate\Container\Container;
@@ -20,7 +21,8 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
     use CallsCommands,
         ConfiguresPrompts,
         HasParameters,
-        InteractsWithIO;
+        InteractsWithIO,
+        PromptsForMissingInput;
 
     /**
      * Canvas preset.
@@ -65,8 +67,6 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
 
     /**
      * Run the console command.
-     *
-     * @return int
      */
     public function run(InputInterface $input, OutputInterface $output): int
     {

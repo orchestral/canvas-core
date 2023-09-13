@@ -12,8 +12,6 @@ class LaravelServiceProvider extends ServiceProvider implements DeferrableProvid
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {

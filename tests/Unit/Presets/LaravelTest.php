@@ -3,11 +3,22 @@
 namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
 
 use Illuminate\Filesystem\Filesystem;
+use Mockery as m;
+use Orchestra\Canvas\Core\Commands\Generators;
 use Orchestra\Canvas\Core\Presets\Laravel;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Application;
 
 class LaravelTest extends TestCase
 {
+    /**
+     * Teardown the test environment.
+     */
+    protected function tearDown(): void
+    {
+        m::close();
+    }
+
     /** @test */
     public function it_has_proper_signatures()
     {
@@ -23,6 +34,7 @@ class LaravelTest extends TestCase
         $this->assertSame($preset->basePath(), $preset->laravelPath());
 
         $this->assertSame('App', $preset->rootNamespace());
+        $this->assertSame('Tests', $preset->testingNamespace());
         $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App\Providers', $preset->providerNamespace());
         $this->assertSame('Database\Factories', $preset->factoryNamespace());
@@ -61,5 +73,24 @@ class LaravelTest extends TestCase
         $this->assertSame('App', $preset->rootNamespace());
         $this->assertSame('App\Models', $preset->modelNamespace());
         $this->assertSame('App', $preset->providerNamespace());
+    }
+
+    /** @test */
+    public function it_can_add_additional_commands()
+    {
+        Laravel::commands([
+            Generators\Code::class,
+        ]);
+
+        $app = m::mock(Application::class);
+        $app->shouldReceive('add')
+            ->once()
+            ->with(m::type(Generators\Code::class))
+            ->andReturnUsing(fn ($generator) => $this->assertInstanceOf(Generators\Code::class, $generator));
+
+        $directory = __DIR__;
+        $preset = new Laravel(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
+
+        $preset->addAdditionalCommands($app);
     }
 }
