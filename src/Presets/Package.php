@@ -72,7 +72,7 @@ class Package extends Preset
      */
     public function testingNamespace(): string
     {
-        return $this->preset->config('testing.namespace', 'Tests');
+        return $this->preset->config('testing.namespace', $this->rootNamespace().'\Tests');
     }
 
     /**
