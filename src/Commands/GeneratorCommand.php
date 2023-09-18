@@ -52,6 +52,16 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     }
 
     /**
+     * Qualify the given model class base name.
+     *
+     * @return string
+     */
+    protected function qualifyModel(string $model)
+    {
+        return $this->qualifyModelUsingCanvas($model);
+    }
+
+    /**
      * Get the root namespace for the class.
      *
      * @return string

@@ -7,6 +7,22 @@ use Illuminate\Support\Str;
 trait UsesGeneratorOverrides
 {
     /**
+     * Qualify the given model class base name.
+     */
+    protected function qualifyModelUsingCanvas(string $model): string
+    {
+        $model = ltrim($model, '\\/');
+
+        $model = str_replace('/', '\\', $model);
+
+        if (Str::startsWith($model, $this->rootNamespace())) {
+            return $model;
+        }
+
+        return $this->generatorPreset()->modelNamespace().$model;
+    }
+
+    /**
      * Get the destination class path.
      */
     protected function getPathUsingCanvas(string $name): string
