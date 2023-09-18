@@ -3,7 +3,6 @@
 namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
-use Illuminate\Support\Str;
 
 trait CodeGenerator
 {

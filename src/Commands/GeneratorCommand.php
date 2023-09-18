@@ -40,7 +40,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 
-
     /**
      * Get the destination class path.
      *
@@ -64,8 +63,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
 
     /**
      * Get the model for the default guard's user provider.
-     *
-     * @return string|null
      */
     protected function userProviderModel(): ?string
     {
@@ -75,7 +72,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $name
      * @return string
      */
     protected function viewPath($path = '')

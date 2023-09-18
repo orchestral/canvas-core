@@ -34,7 +34,6 @@ trait CreatesUsingGeneratorPreset
         return $this->laravel->make(PresetManager::class)->driver($this->option('preset'));
     }
 
-
     /**
      * Get the generator preset source path.
      */
