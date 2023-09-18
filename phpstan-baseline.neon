@@ -1,11 +1,1 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Container\\\\Container\\:\\:basePath\\(\\)\\.$#"
-			count: 1
-			path: src/LaravelServiceProvider.php
 
-		-
-			message: "#^Method Orchestra\\\\Canvas\\\\Core\\\\Presets\\\\Preset\\:\\:config\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Presets/Preset.php

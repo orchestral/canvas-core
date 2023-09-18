@@ -2,106 +2,177 @@
 
 namespace Orchestra\Canvas\Core\Presets;
 
-use Illuminate\Support\Arr;
-use Symfony\Component\Console\Application;
-
 class Laravel extends Preset
 {
     /**
-     * List of global generators.
-     *
-     * @var array<int, class-string<\Symfony\Component\Console\Command\Command>>
-     */
-    protected static $generators = [];
-
-    /**
-     * Add global command.
-     *
-     * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
-     */
-    public static function commands(array $generators): void
-    {
-        static::$generators = array_merge(static::$generators, $generators);
-    }
-
-    /**
      * Preset name.
+     *
+     * @return string
      */
-    public function name(): string
+    public function name()
     {
         return 'laravel';
     }
 
     /**
      * Get the path to the base working directory.
+     *
+     * @return string
      */
-    public function laravelPath(): string
+    public function basePath()
     {
-        return $this->basePath();
+        return $this->app->basePath();
     }
 
     /**
      * Get the path to the source directory.
+     *
+     * @return string
      */
-    public function sourcePath(): string
+    public function sourcePath()
     {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('paths.src', 'app')
-        );
+        return $this->app->basePath('app');
+    }
+
+    /**
+     * Get the path to the testing directory.
+     *
+     * @return string
+     */
+    public function testingPath()
+    {
+        return $this->app->basePath('tests');
+    }
+
+    /**
+     * Get the path to the resource directory.
+     *
+     * @return string
+     */
+    public function resourcePath()
+    {
+        return $this->app->resourcePath();
+    }
+
+    /**
+     * Get the path to the view directory.
+     *
+     * @return string
+     */
+    public function viewPath()
+    {
+        return $this->app['config']['view.paths'][0] ?? $this->app->resourcePath('views');
+    }
+
+    /**
+     * Get the path to the factory directory.
+     *
+     * @return string
+     */
+    public function factoryPath()
+    {
+        return $this->app->databasePath('factories');
+    }
+
+    /**
+     * Get the path to the migration directory.
+     *
+     * @return string
+     */
+    public function migrationPath()
+    {
+        return $this->app->databasePath('migrations');
+    }
+
+    /**
+     * Get the path to the seeder directory.
+     */
+    public function seederPath(): string
+    {
+        if (is_dir($seederPath = $this->app->databasePath('seeds'))) {
+            return $seederPath;
+        }
+
+        return $this->app->databasePath('seeders');
     }
 
     /**
      * Preset namespace.
+     *
+     * @return string
      */
-    public function rootNamespace(): string
+    public function rootNamespace()
     {
-        return $this->config['namespace'] ?? 'App';
+        return $this->app->getNamespace();
     }
 
     /**
-     * Testing namespace.
+     * Command namespace.
+     *
+     * @return string
      */
-    public function testingNamespace(): string
+    public function commandNamespace()
     {
-        return $this->config('testing.namespace', 'Tests');
+        return "{$this->rootNamespace()}Console\Commands\\";
     }
 
     /**
      * Model namespace.
+     *
+     * @return string
      */
-    public function modelNamespace(): string
+    public function modelNamespace()
     {
-        return $this->config('model.namespace', $this->rootNamespace().'\Models');
+        return is_dir("{$this->sourcePath()}/Models") ? "{$this->rootNamespace()}Models\\" : $this->rootNamespace();
     }
 
     /**
      * Provider namespace.
+     *
+     * @return string
      */
-    public function providerNamespace(): string
+    public function providerNamespace()
     {
-        return $this->config('provider.namespace', $this->rootNamespace().'\Providers');
+        return "{$this->rootNamespace()}Providers\\";
     }
 
     /**
-     * Get custom stub path.
+     * Testing namespace.
+     *
+     * @return string
      */
-    public function getCustomStubPath(): ?string
+    public function testingNamespace()
     {
-        return sprintf('%s/%s', $this->basePath(), 'stubs');
+        return 'Tests\\';
     }
 
     /**
-     * Sync commands to preset.
+     * Database factory namespace.
+     *
+     * @return string
      */
-    public function addAdditionalCommands(Application $app): void
+    public function factoryNamespace()
     {
-        parent::addAdditionalCommands($app);
+        return 'Database\Factories\\';
+    }
 
-        foreach (Arr::wrap(static::$generators) as $generator) {
-            /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-            $app->add(new $generator($this));
-        }
+    /**
+     * Database seeder namespace.
+     *
+     * @return string
+     */
+    public function seederNamespace()
+    {
+        return 'Database\Seeders\\';
+    }
+
+    /**
+     * Preset has custom stub path.
+     *
+     * @return bool
+     */
+    public function hasCustomStubPath()
+    {
+        return true;
     }
 }

@@ -34,13 +34,17 @@
         "illuminate/filesystem": "^10.17"
     },
     "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "mockery/mockery": "^1.5.1",
+        "laravel/framework": "^10.17",
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^8.9",
+        "orchestra/testbench-core": "^8.10.2",
         "phpstan/phpstan": "^1.10.6",
-        "phpunit/phpunit": "^10.1"
+        "phpunit/phpunit": "^10.1",
+        "symfony/yaml": "^6.2"
     },
     "conflict": {
-        "orchestra/canvas": "<8.8.0",
+        "orchestra/canvas": "<8.9.0",
         "orchestra/testbench-core": "<8.2.0"
     },
     "config": {
