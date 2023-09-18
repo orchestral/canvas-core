@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 
@@ -15,11 +16,9 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     use Concerns\CreatesUsingGeneratorPreset;
     use Concerns\TestGenerator;
 
-
     /**
      * Create a new controller creator command instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
     public function __construct(Filesystem $files)
