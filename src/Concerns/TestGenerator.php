@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 trait TestGenerator
 {
+    use CreatesUsingGeneratorPreset;
+
     /**
      * Create the matching test case if requested.
      */
