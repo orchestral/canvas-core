@@ -44,7 +44,7 @@
         "symfony/yaml": "^6.2"
     },
     "conflict": {
-        "orchestra/canvas": "<8.8.0",
+        "orchestra/canvas": "<8.9.0",
         "orchestra/testbench-core": "<8.2.0"
     },
     "config": {
