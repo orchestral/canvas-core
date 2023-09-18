@@ -26,6 +26,6 @@ trait TestGenerator
             '--pest' => $this->option('pest'),
         ], array_filter([
             '--preset' => $this->hasOption('preset') ? $this->option('preset') : null,
-        ])) == 0;
+        ]))) == 0;
     }
 }
