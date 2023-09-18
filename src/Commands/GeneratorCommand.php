@@ -14,6 +14,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
 {
     use Concerns\CodeGenerator;
     use Concerns\TestGenerator;
+    use Concerns\UsesGeneratorOverrides;
 
     /**
      * Create a new controller creator command instance.

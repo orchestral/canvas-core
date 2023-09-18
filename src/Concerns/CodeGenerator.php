@@ -102,7 +102,12 @@ trait CodeGenerator
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return $this->generatorPreset()->sourcePath().'/'.str_replace('\\', '/', $name).'.php';
+        return $this->getSourcePath().'/'.str_replace('\\', '/', $name).'.php';
+    }
+
+    protected function getSourcePath()
+    {
+        return $this->generatorPreset()->sourcePath();
     }
 
     /**
