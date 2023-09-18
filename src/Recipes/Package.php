@@ -1,13 +1,13 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Presets;
+namespace Orchestra\Canvas\Core\Recipes;
 
 use InvalidArgumentException;
 
-class Package extends Preset
+class Package extends Recipe
 {
     /**
-     * Preset name.
+     * Recipe name.
      */
     public function name(): string
     {
@@ -27,7 +27,7 @@ class Package extends Preset
     }
 
     /**
-     * Preset namespace.
+     * Root namespace.
      */
     public function rootNamespace(): string
     {

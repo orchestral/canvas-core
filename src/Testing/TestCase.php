@@ -2,9 +2,11 @@
 
 namespace Orchestra\Canvas\Core\Testing;
 
+use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
+
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    use Concerns\InteractsWithPublishedFiles;
+    use InteractsWithPublishedFiles;
 
     /**
      * Stubs files.

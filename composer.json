@@ -28,13 +28,18 @@
     },
     "require": {
         "php": "^8.0",
-        "illuminate/console": "^9.45",
-        "illuminate/filesystem": "^9.45"
+        "illuminate/console": "^9.52.15",
+        "illuminate/filesystem": "^9.52.15"
     },
     "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "mockery/mockery": "^1.5.1",
+        "laravel/framework": "^9.52.15",
         "laravel/pint": "^1.1",
-        "orchestra/testbench": "^7.30",
-        "phpstan/phpstan": "^1.10.6"
+        "orchestra/testbench-core": "^7.30",
+        "phpstan/phpstan": "^1.10.6",
+        "phpunit/phpunit": "^9.6",
+        "symfony/yaml": "^6.0.9"
     },
     "conflict": {
         "orchestra/canvas": "<7.8.0",

@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Presets;
+namespace Orchestra\Canvas\Core\Recipes;
 
 use Illuminate\Support\Arr;
 
-abstract class Preset
+abstract class Recipe
 {
     /**
      * Construct a new preset.
@@ -129,7 +129,7 @@ abstract class Preset
     }
 
     /**
-     * Preset name.
+     * Recipe name.
      */
     abstract public function name(): string;
 
@@ -139,7 +139,7 @@ abstract class Preset
     abstract public function sourcePath(): string;
 
     /**
-     * Preset namespace.
+     * Root namespace.
      */
     abstract public function rootNamespace(): string;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Tests\Unit\Presets;
+namespace Orchestra\Canvas\Core\Tests\Unit\Recipes;
 
 use Illuminate\Filesystem\Filesystem;
 use Mockery as m;
 use Orchestra\Canvas\Core\Commands\Generators;
-use Orchestra\Canvas\Core\Presets\Package;
+use Orchestra\Canvas\Core\Recipes\Package;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 
@@ -23,7 +23,6 @@ class PackageTest extends TestCase
         $this->assertFalse($preset->is('laravel'));
 
         $this->assertSame($directory, $preset->basePath());
-        $this->assertSame("{$directory}/vendor/orchestra/testbench-core/laravel", $preset->laravelPath());
 
         $this->assertSame('FooBar', $preset->rootNamespace());
         $this->assertSame('FooBar\Tests', $preset->testingNamespace());
@@ -39,10 +38,7 @@ class PackageTest extends TestCase
         $this->assertSame("{$directory}/database/migrations", $preset->migrationPath());
         $this->assertSame("{$directory}/database/seeders", $preset->seederPath());
 
-        $this->assertTrue($preset->hasCustomStubPath());
-        $this->assertSame("{$directory}/stubs", $preset->getCustomStubPath());
-
-        $this->assertSame($files, $preset->filesystem());
+        $this->assertNull($preset->getCustomStubPath());
     }
 
     /** @test */
@@ -76,24 +72,5 @@ class PackageTest extends TestCase
         $preset = new Package([], $directory, new Filesystem());
 
         $preset->rootNamespace();
-    }
-
-    /** @test */
-    public function it_can_add_additional_commands()
-    {
-        Package::commands([
-            Generators\Code::class,
-        ]);
-
-        $app = m::mock(Application::class);
-        $app->shouldReceive('add')
-            ->once()
-            ->with(m::type(Generators\Code::class))
-            ->andReturnUsing(fn ($generator) => $this->assertInstanceOf(Generators\Code::class, $generator));
-
-        $directory = __DIR__;
-        $preset = new Package(['namespace' => 'App', 'provider' => ['namespace' => 'App']], $directory, new Filesystem());
-
-        $preset->addAdditionalCommands($app);
     }
 }

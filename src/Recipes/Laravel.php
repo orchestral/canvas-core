@@ -1,28 +1,11 @@
 <?php
 
-namespace Orchestra\Canvas\Core\Presets;
+namespace Orchestra\Canvas\Core\Recipes;
 
-class Laravel extends Preset
+class Laravel extends Recipe
 {
     /**
-     * List of global generators.
-     *
-     * @var array<int, class-string<\Symfony\Component\Console\Command\Command>>
-     */
-    protected static $generators = [];
-
-    /**
-     * Add global command.
-     *
-     * @param  array<int, class-string<\Symfony\Component\Console\Command\Command>>  $generators
-     */
-    public static function commands(array $generators): void
-    {
-        static::$generators = array_merge(static::$generators, $generators);
-    }
-
-    /**
-     * Preset name.
+     * Recipe name.
      */
     public function name(): string
     {
@@ -38,7 +21,7 @@ class Laravel extends Preset
     }
 
     /**
-     * Preset namespace.
+     * Root namespace.
      */
     public function rootNamespace(): string
     {
