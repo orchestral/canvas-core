@@ -2,176 +2,26 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
-use Illuminate\Console\Concerns\CreatesMatchingTest;
-use Illuminate\Contracts\Console\PromptsForMissingInput;
+use Illuminate\Console\GeneratorCommand;
 use Orchestra\Canvas\Core\CodeGenerator;
-use Orchestra\Canvas\Core\Contracts\GeneratesCodeListener;
-use Orchestra\Canvas\Core\GeneratesCode;
-use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Canvas\Core\TestGenerator;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @property string|null  $name
  * @property string|null  $description
  */
-abstract class Generator extends Command implements GeneratesCodeListener, PromptsForMissingInput
+abstract class Generator extends GeneratorCommand
 {
     use CodeGenerator, TestGenerator;
 
     /**
-     * The filesystem instance.
+     * Execute the console command.
      *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
-
-    /**
-     * The type of class being generated.
-     */
-    protected string $type;
-
-    /**
-     * The type of file being generated.
-     */
-    protected string $fileType = 'class';
-
-    /**
-     * Generator processor.
-     *
-     * @var class-string<\Orchestra\Canvas\Core\GeneratesCode>
-     */
-    protected string $processor = GeneratesCode::class;
-
-    /**
-     * Reserved names that cannot be used for generation.
-     *
-     * @var array<int, string>
-     */
-    protected array $reservedNames = [
-        '__halt_compiler',
-        'abstract',
-        'and',
-        'array',
-        'as',
-        'break',
-        'callable',
-        'case',
-        'catch',
-        'class',
-        'clone',
-        'const',
-        'continue',
-        'declare',
-        'default',
-        'die',
-        'do',
-        'echo',
-        'else',
-        'elseif',
-        'empty',
-        'enddeclare',
-        'endfor',
-        'endforeach',
-        'endif',
-        'endswitch',
-        'endwhile',
-        'enum',
-        'eval',
-        'exit',
-        'extends',
-        'false',
-        'final',
-        'finally',
-        'fn',
-        'for',
-        'foreach',
-        'function',
-        'global',
-        'goto',
-        'if',
-        'implements',
-        'include',
-        'include_once',
-        'instanceof',
-        'insteadof',
-        'interface',
-        'isset',
-        'list',
-        'match',
-        'namespace',
-        'new',
-        'or',
-        'print',
-        'private',
-        'protected',
-        'public',
-        'readonly',
-        'require',
-        'require_once',
-        'return',
-        'self',
-        'static',
-        'switch',
-        'throw',
-        'trait',
-        'true',
-        'try',
-        'unset',
-        'use',
-        'var',
-        'while',
-        'xor',
-        'yield',
-        '__CLASS__',
-        '__DIR__',
-        '__FILE__',
-        '__FUNCTION__',
-        '__LINE__',
-        '__METHOD__',
-        '__NAMESPACE__',
-        '__TRAIT__',
-    ];
-
-    /**
-     * Construct a new generator command.
-     */
-    public function __construct(Preset $preset)
-    {
-        $this->files = $preset->filesystem();
-
-        parent::__construct($preset);
-    }
-
-    /**
-     * Configure the command options.
-     *
-     * @return void
-     */
-    protected function configure()
-    {
-        $this->ignoreValidationErrors();
-
-        $this->setName($this->getName())
-            ->setDescription($this->getDescription())
-            ->addArgument('name', InputArgument::REQUIRED, "The name of the {$this->fileType}");
-
-        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            /** @phpstan-ignore-next-line */
-            $this->addTestOptions();
-        }
-    }
-
-    /**
-     * Execute the command.
-     *
-     * @return int 0 if everything went fine, or an exit code
+     * @return bool|null
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function handle()
     {
         // First we need to ensure that the given name is not a reserved word within the PHP
         // language and that the class name will actually be valid. If it is not valid we
@@ -179,7 +29,7 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
         if ($this->isReservedName($name = $this->generatorName())) {
             $this->components->error('The name "'.$name.'" is reserved by PHP.');
 
-            return Command::FAILURE;
+            return GeneratorCommand::FAILURE;
         }
 
         $force = $this->hasOption('force') && $this->option('force') === true;
@@ -188,63 +38,24 @@ abstract class Generator extends Command implements GeneratesCodeListener, Promp
     }
 
     /**
+     * Build the class with the given name.
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    protected function buildClass($name)
+    {
+        $stub = $this->files->get($this->getStub());
+
+        return $this->generatingCode(
+            $this->replaceNamespace($stub, $name)->replaceClass($stub, $name), $name
+        );
+    }
+
+    /**
      * Handle generating code.
      */
     public function generatingCode(string $stub, string $className): string
     {
         return $stub;
-    }
-
-    /**
-     * Run after code successfully generated.
-     *
-     * @return void
-     */
-    public function afterCodeHasBeenGenerated(string $className, string $path)
-    {
-        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            $this->handleTestCreationUsingCanvas($path);
-        }
-    }
-
-    /**
-     * Get the published stub file for the generator.
-     */
-    public function getPublishedStubFileName(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * Get the desired class name from the input.
-     */
-    public function generatorName(): string
-    {
-        return transform($this->argument('name'), function ($name) {
-            /** @var string $name */
-            return trim($name);
-        });
-    }
-
-    /**
-     * Checks whether the given name is reserved.
-     */
-    protected function isReservedName(string $name): bool
-    {
-        $name = strtolower($name);
-
-        return \in_array($name, $this->reservedNames);
-    }
-
-    /**
-     * Prompt for missing input arguments using the returned questions.
-     *
-     * @return array
-     */
-    protected function promptForMissingArgumentsUsing()
-    {
-        return [
-            'name' => 'What should the '.strtolower($this->type).' be named?',
-        ];
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Presets;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
-use Symfony\Component\Console\Application;
 
 abstract class Preset
 {
@@ -15,8 +13,7 @@ abstract class Preset
      */
     public function __construct(
         protected array $config,
-        protected string $basePath,
-        protected Filesystem $files
+        protected string $basePath
     ) {
         //
     }
@@ -34,21 +31,13 @@ abstract class Preset
      *
      * @param  mixed|null  $default
      */
-    public function config(?string $key = null, $default = null)
+    public function config(?string $key = null, $default = null): mixed
     {
         if (\is_null($key)) {
             return $this->config;
         }
 
         return Arr::get($this->config, $key, $default);
-    }
-
-    /**
-     * Get the filesystem instance.
-     */
-    public function filesystem(): Filesystem
-    {
-        return $this->files;
     }
 
     /**
@@ -136,39 +125,13 @@ abstract class Preset
      */
     public function seederNamespace(): string
     {
-        return $this->config('seeder.path', 'Database\Seeders');
-    }
-
-    /**
-     * Sync commands to preset.
-     */
-    public function addAdditionalCommands(Application $app): void
-    {
-        tap($this->config('generators') ?? [], function ($generators) use ($app) {
-            foreach (Arr::wrap($generators) as $generator) {
-                /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-                $app->add(new $generator($this));
-            }
-        });
-    }
-
-    /**
-     * Preset has custom stub path.
-     */
-    public function hasCustomStubPath(): bool
-    {
-        return ! \is_null($this->getCustomStubPath());
+        return $this->config('seeder.namespace', 'Database\Seeders');
     }
 
     /**
      * Preset name.
      */
     abstract public function name(): string;
-
-    /**
-     * Get the path to the base working directory.
-     */
-    abstract public function laravelPath(): string;
 
     /**
      * Get the path to the source directory.
@@ -181,9 +144,9 @@ abstract class Preset
     abstract public function rootNamespace(): string;
 
     /**
-     * Testing namespace.
+     * Command namespace.
      */
-    abstract public function testingNamespace(): string;
+    abstract public function commandNamespace(): string;
 
     /**
      * Model namespace.
@@ -194,6 +157,11 @@ abstract class Preset
      * Provider namespace.
      */
     abstract public function providerNamespace(): string;
+
+    /**
+     * Testing namespace.
+     */
+    abstract public function testingNamespace(): string;
 
     /**
      * Get custom stub path.

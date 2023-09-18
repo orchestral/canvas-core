@@ -2,9 +2,6 @@
 
 namespace Orchestra\Canvas\Core\Presets;
 
-use Illuminate\Support\Arr;
-use Symfony\Component\Console\Application;
-
 class Laravel extends Preset
 {
     /**
@@ -33,23 +30,11 @@ class Laravel extends Preset
     }
 
     /**
-     * Get the path to the base working directory.
-     */
-    public function laravelPath(): string
-    {
-        return $this->basePath();
-    }
-
-    /**
      * Get the path to the source directory.
      */
     public function sourcePath(): string
     {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('paths.src', 'app')
-        );
+        return implode('/', [$this->basePath(), $this->config('paths.src', 'app')]);
     }
 
     /**
@@ -61,11 +46,11 @@ class Laravel extends Preset
     }
 
     /**
-     * Testing namespace.
+     * Command namespace.
      */
-    public function testingNamespace(): string
+    public function commandNamespace(): string
     {
-        return $this->config('testing.namespace', 'Tests');
+        return $this->config('console.namespace', $this->rootNamespace().'\Console\Commands');
     }
 
     /**
@@ -85,23 +70,18 @@ class Laravel extends Preset
     }
 
     /**
+     * Testing namespace.
+     */
+    public function testingNamespace(): string
+    {
+        return $this->config('testing.namespace', 'Tests');
+    }
+
+    /**
      * Get custom stub path.
      */
     public function getCustomStubPath(): ?string
     {
         return sprintf('%s/%s', $this->basePath(), 'stubs');
-    }
-
-    /**
-     * Sync commands to preset.
-     */
-    public function addAdditionalCommands(Application $app): void
-    {
-        parent::addAdditionalCommands($app);
-
-        foreach (Arr::wrap(static::$generators) as $generator) {
-            /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-            $app->add(new $generator($this));
-        }
     }
 }

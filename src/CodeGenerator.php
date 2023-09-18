@@ -2,27 +2,11 @@
 
 namespace Orchestra\Canvas\Core;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
+use Symfony\Component\Console\Command\Command;
+
 trait CodeGenerator
 {
-    /**
-     * Canvas preset.
-     *
-     * @var \Orchestra\Canvas\Core\Presets\Preset
-     */
-    protected $preset;
-
-    /**
-     * Set Preset for generator.
-     *
-     * @return $this
-     */
-    public function setPreset(Presets\Preset $preset)
-    {
-        $this->preset = $preset;
-
-        return $this;
-    }
-
     /**
      * Generate code.
      *
@@ -30,7 +14,31 @@ trait CodeGenerator
      */
     public function generateCode(bool $force = false)
     {
-        return $this->resolveGeneratesCodeProcessor()($force);
+        $name = $this->getInputName();
+        $className = $this->qualifyClass($name);
+        $path = $this->getPath($this->qualifyClass($name));
+
+        // Next, We will check to see if the class already exists. If it does, we don't want
+        // to create the class and overwrite the user's code. So, we will bail out so the
+        // code is untouched. Otherwise, we will continue generating this class' files.
+        if (! $force && $this->alreadyExists($name)) {
+            return $this->codeAlreadyExists($className);
+        }
+
+        // Next, we will generate the path to the location where this class' file should get
+        // written. Then, we will build the class and make the proper replacements on the
+        // stub files so that it gets the correctly formatted namespace and class name.
+        $this->makeDirectory($path);
+
+        $this->files->put($path, $this->sortImports($this->buildClass($className)));
+
+        return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
+            if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+                $this->handleTestCreationUsingCanvas($path);
+            }
+
+            $this->afterCodeHasBeenGenerated($className, $path);
+        });
     }
 
     /**
@@ -42,7 +50,7 @@ trait CodeGenerator
     {
         $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
-        return 1;
+        return Command::FAILURE;
     }
 
     /**
@@ -54,39 +62,18 @@ trait CodeGenerator
     {
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     /**
-     * Get the default namespace for the class.
-     */
-    public function getDefaultNamespace(string $rootNamespace): string
-    {
-        return $rootNamespace;
-    }
-
-    /**
-     * Generator options.
+     * Run after code successfully generated.
      *
-     * @return array<string, mixed>
+     * @return void
      */
-    public function generatorOptions(): array
+    public function afterCodeHasBeenGenerated(string $className, string $path)
     {
-        return [
-            'name' => $this->generatorName(),
-        ];
-    }
-
-    /**
-     * Resolve generates code processor.
-     */
-    protected function resolveGeneratesCodeProcessor(): GeneratesCode
-    {
-        /** @var \Orchestra\Canvas\Core\GeneratesCode $class */
-        $class = property_exists($this, 'processor')
-            ? $this->processor
-            : GeneratesCode::class;
-
-        return new $class($this->preset, $this);
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            $this->handleTestCreationUsingCanvas($path);
+        }
     }
 }
