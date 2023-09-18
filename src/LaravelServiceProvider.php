@@ -2,33 +2,30 @@
 
 namespace Orchestra\Canvas\Core;
 
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    use CommandsProvider;
-
     /**
-     * Register services.
+     * Register the service provider.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->singleton(Presets\Preset::class, fn (Container $app) => $this->presetForLaravel($app));
+        $this->app->singleton(PresetManager::class, fn ($app) => new PresetManager($app));
     }
 
     /**
      * Get the services provided by the provider.
      *
-     * @return array<int, class-string|string>
+     * @return array<int, class-string>
      */
     public function provides()
     {
         return [
-            Presets\Preset::class,
+            PresetManager::class,
         ];
     }
 }
