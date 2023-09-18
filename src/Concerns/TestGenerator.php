@@ -21,9 +21,11 @@ trait TestGenerator
             ? $this->generatorPreset()->sourcePath()
             : $this->laravel['path'];
 
-        return $this->call('make:test', [
+        return $this->call('make:test', array_merge([
             'name' => Str::of($path)->after($sourcePath)->beforeLast('.php')->append('Test')->replace('\\', '/'),
             '--pest' => $this->option('pest'),
-        ]) == 0;
+        ], array_filter([
+            '--preset' => $this->hasOption('preset') ? $this->option('preset') : null,
+        ]))) == 0;
     }
 }
