@@ -36,6 +36,12 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      */
     public function handle()
     {
-        return $this->generateCode();
+        $status = $this->generateCode();
+
+        if (is_bool($status) && $status === false) {
+            return self::FAILURE;
+        }
+
+        return self::SUCCESS;
     }
 }
