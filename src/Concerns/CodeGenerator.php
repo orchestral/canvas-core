@@ -11,7 +11,7 @@ trait CodeGenerator
     /**
      * Generate code.
      *
-     * @return bool|null
+     * @return bool
      */
     public function generateCode()
     {
@@ -50,8 +50,9 @@ trait CodeGenerator
             $this->handleTestCreationUsingCanvas($path);
         }
 
-        $this->codeHasBeenGenerated($className);
-        $this->afterCodeHasBeenGenerated($className, $path);
+        return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
+            $this->afterCodeHasBeenGenerated($className, $path);
+        });
     }
 
     /**
@@ -65,7 +66,7 @@ trait CodeGenerator
     /**
      * Code already exists.
      */
-    public function codeAlreadyExists(string $className): ?bool
+    public function codeAlreadyExists(string $className): bool
     {
         $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
@@ -75,7 +76,7 @@ trait CodeGenerator
     /**
      * Code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): ?bool
+    public function codeHasBeenGenerated(string $className): bool
     {
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
