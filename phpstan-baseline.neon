@@ -1,1 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot access offset 'path' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
+			count: 1
+			path: src/Commands/GeneratorCommand.php
 
+		-
+			message: "#^Parameter \\#1 \\$app of class Orchestra\\\\Canvas\\\\Core\\\\Presets\\\\Laravel constructor expects Illuminate\\\\Contracts\\\\Foundation\\\\Application, Illuminate\\\\Contracts\\\\Container\\\\Container given\\.$#"
+			count: 1
+			path: src/PresetManager.php
