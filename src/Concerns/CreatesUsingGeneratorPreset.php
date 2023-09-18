@@ -24,6 +24,11 @@ trait CreatesUsingGeneratorPreset
         ));
     }
 
+    /**
+     * Resolve the generator preset.
+     *
+     * @return \Preset
+     */
     protected function generatorPreset()
     {
         return $this->laravel[PresetManager::class]->driver($this->option('preset'));

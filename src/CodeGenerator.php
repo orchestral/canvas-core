@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core;
+namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Symfony\Component\Console\Command\Command;
@@ -39,6 +39,26 @@ trait CodeGenerator
 
             $this->afterCodeHasBeenGenerated($className, $path);
         });
+    }
+
+    /**
+     * Get generator stub file.
+     */
+    protected function getListenerStubFile(): string
+    {
+        if (\is_null($publishedStubFile = $this->listener->getPublishedStubFileName())) {
+            return $this->listener->getStubFile();
+        }
+
+        $stubFile = sprintf(
+            '%s/stubs/%s', $this->preset->basePath(), $publishedStubFile
+        );
+
+        if (! $this->files->exists($stubFile)) {
+            return $this->listener->getStubFile();
+        }
+
+        return $stubFile;
     }
 
     /**

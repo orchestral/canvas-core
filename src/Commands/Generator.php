@@ -4,13 +4,14 @@ namespace Orchestra\Canvas\Core\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Orchestra\Canvas\Core\CodeGenerator;
+use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 use Orchestra\Canvas\Core\TestGenerator;
 
 /**
  * @property string|null  $name
  * @property string|null  $description
  */
-abstract class Generator extends GeneratorCommand
+abstract class Generator extends GeneratorCommand implements GeneratesCode
 {
     use CodeGenerator, TestGenerator;
 
@@ -44,7 +45,7 @@ abstract class Generator extends GeneratorCommand
      */
     protected function buildClass($name)
     {
-        $stub = $this->files->get($this->getStub());
+        $stub = $this->files->get($this->getStubFile());
 
         return $this->generatingCode(
             $this->replaceNamespace($stub, $name)->replaceClass($stub, $name), $name
