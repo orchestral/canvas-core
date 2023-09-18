@@ -27,9 +27,9 @@ trait UsesGeneratorOverrides
     /**
      * Get the model for the default guard's user provider.
      */
-    protected function userProviderModelUsingCanvas(): ?string
+    protected function userProviderModelUsingCanvas(?string $guard = null): ?string
     {
-        return $this->generatorPreset()->userProviderModel();
+        return $this->generatorPreset()->userProviderModel($guard);
     }
 
     /**
