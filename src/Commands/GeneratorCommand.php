@@ -88,4 +88,24 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     {
         return $this->viewPathUsingCanvas($path);
     }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        return $this->possibleModelsUsingCanvas();
+    }
+
+    /**
+     * Get a list of possible event names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleEvents()
+    {
+        return $this->possibleEventsUsingCanvas();
+    }
 }
