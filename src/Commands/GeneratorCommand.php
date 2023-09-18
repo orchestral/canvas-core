@@ -39,4 +39,47 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
+
+
+    /**
+     * Get the destination class path.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function getPath($name)
+    {
+        return $this->getPathUsingCanvas($name);
+    }
+
+    /**
+     * Get the root namespace for the class.
+     *
+     * @return string
+     */
+    protected function rootNamespace()
+    {
+        return $this->rootNamespaceUsingCanvas();
+    }
+
+    /**
+     * Get the model for the default guard's user provider.
+     *
+     * @return string|null
+     */
+    protected function userProviderModel(): ?string
+    {
+        return $this->userProviderModelUsingCanvas();
+    }
+
+    /**
+     * Get the first view directory path from the application configuration.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function viewPath($path = '')
+    {
+        return $this->viewPathUsingCanvas($path);
+    }
 }
