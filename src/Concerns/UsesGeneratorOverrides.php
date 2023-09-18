@@ -9,7 +9,7 @@ trait UsesGeneratorOverrides
     /**
      * Get the destination class path.
      */
-    protected function getPath(string $name): string
+    protected function getPathUsingCanvas(string $name): string
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
@@ -19,7 +19,7 @@ trait UsesGeneratorOverrides
     /**
      * Get the root namespace for the class.
      */
-    protected function rootNamespace(): string
+    protected function rootNamespacUsingCanvas(): string
     {
         return $this->generatorPreset()->rootNamespace();
     }
@@ -27,7 +27,7 @@ trait UsesGeneratorOverrides
     /**
      * Get the model for the default guard's user provider.
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModelUsingCanvas(): ?string
     {
         return $this->generatorPreset()->userProviderModel();
     }
@@ -35,7 +35,7 @@ trait UsesGeneratorOverrides
     /**
      * Get the first view directory path from the application configuration.
      */
-    protected function viewPath(string $path = ''): string
+    protected function viewPathUsingCanvas(string $path = ''): string
     {
         $views = $this->generatorPreset()->viewPath();
 
