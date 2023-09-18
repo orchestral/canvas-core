@@ -34,6 +34,9 @@
         "illuminate/filesystem": "^11.0"
     },
     "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "mockery/mockery": "^1.5.1",
+        "laravel/framework": "^10.17",
         "laravel/pint": "^1.6",
         "orchestra/testbench": "^9.0",
         "phpstan/phpstan": "^1.10.6"
