@@ -2,201 +2,175 @@
 
 namespace Orchestra\Canvas\Core\Presets;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
-use Symfony\Component\Console\Application;
+use Illuminate\Contracts\Foundation\Application;
+use LogicException;
 
 abstract class Preset
 {
     /**
+     * The application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
+    protected $app;
+
+    /**
      * Construct a new preset.
      *
-     * @param  array<string, mixed>  $config
+     * @return void
      */
-    public function __construct(
-        protected array $config,
-        protected string $basePath,
-        protected Filesystem $files
-    ) {
-        //
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
     }
 
     /**
      * Check if preset name equal to $name.
+     *
+     * @param  string  $name
+     * @return bool
      */
-    public function is(string $name): bool
+    public function is($name)
     {
         return $this->name() === $name;
     }
 
     /**
-     * Get configuration.
+     * Get the model for the default guard's user provider.
      *
-     * @param  mixed|null  $default
+     * @param  string|null  $guard
+     * @return string|null
      */
-    public function config(?string $key = null, $default = null)
+    public function userProviderModel($guard = null)
     {
-        if (\is_null($key)) {
-            return $this->config;
+        /** @var \Illuminate\Contracts\Config\Repository $config */
+        $config = $this->app->make('config');
+
+        $guard = $guard ?: $config->get('auth.defaults.guard');
+
+        if (\is_null($provider = $config->get('auth.guards.'.$guard.'.provider'))) {
+            throw new LogicException('The ['.$guard.'] guard is not defined in your "auth" configuration file.');
         }
 
-        return Arr::get($this->config, $key, $default);
-    }
-
-    /**
-     * Get the filesystem instance.
-     */
-    public function filesystem(): Filesystem
-    {
-        return $this->files;
-    }
-
-    /**
-     * Get the path to the base working directory.
-     */
-    public function basePath(): string
-    {
-        return $this->basePath;
-    }
-
-    /**
-     * Get the path to the testing directory.
-     */
-    public function testingPath(): string
-    {
-        return "{$this->basePath}/tests";
-    }
-
-    /**
-     * Get the path to the vendor directory.
-     */
-    public function vendorPath(): string
-    {
-        return "{$this->basePath}/vendor";
-    }
-
-    /**
-     * Get the path to the resource directory.
-     */
-    public function resourcePath(): string
-    {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('paths.resource', 'resources')
-        );
-    }
-
-    /**
-     * Get the path to the factory directory.
-     */
-    public function factoryPath(): string
-    {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('factory.path', 'database/factories')
-        );
-    }
-
-    /**
-     * Get the path to the migration directory.
-     */
-    public function migrationPath(): string
-    {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('migration.path', 'database/migrations')
-        );
-    }
-
-    /**
-     * Get the path to the seeder directory.
-     */
-    public function seederPath(): string
-    {
-        return sprintf(
-            '%s/%s',
-            $this->basePath(),
-            $this->config('seeder.path', 'database/seeders')
-        );
-    }
-
-    /**
-     * Database factory namespace.
-     */
-    public function factoryNamespace(): string
-    {
-        return $this->config('factory.namespace', 'Database\Factories');
-    }
-
-    /**
-     * Database seeder namespace.
-     */
-    public function seederNamespace(): string
-    {
-        return $this->config('seeder.path', 'Database\Seeders');
-    }
-
-    /**
-     * Sync commands to preset.
-     */
-    public function addAdditionalCommands(Application $app): void
-    {
-        tap($this->config('generators') ?? [], function ($generators) use ($app) {
-            foreach (Arr::wrap($generators) as $generator) {
-                /** @var class-string<\Symfony\Component\Console\Command\Command> $generator */
-                $app->add(new $generator($this));
-            }
-        });
-    }
-
-    /**
-     * Preset has custom stub path.
-     */
-    public function hasCustomStubPath(): bool
-    {
-        return ! \is_null($this->getCustomStubPath());
+        return $config->get("auth.providers.{$provider}.model");
     }
 
     /**
      * Preset name.
+     *
+     * @return string
      */
-    abstract public function name(): string;
+    abstract public function name();
 
     /**
      * Get the path to the base working directory.
+     *
+     * @return string
      */
-    abstract public function laravelPath(): string;
+    abstract public function basePath();
 
     /**
      * Get the path to the source directory.
+     *
+     * @return string
      */
-    abstract public function sourcePath(): string;
+    abstract public function sourcePath();
+
+    /**
+     * Get the path to the testing directory.
+     *
+     * @return string
+     */
+    abstract public function testingPath();
+
+    /**
+     * Get the path to the resource directory.
+     *
+     * @return string
+     */
+    abstract public function resourcePath();
+
+    /**
+     * Get the path to the view directory.
+     *
+     * @return string
+     */
+    abstract public function viewPath();
+
+    /**
+     * Get the path to the factory directory.
+     *
+     * @return string
+     */
+    abstract public function factoryPath();
+
+    /**
+     * Get the path to the migration directory.
+     *
+     * @return string
+     */
+    abstract public function migrationPath();
+
+    /**
+     * Get the path to the seeder directory.
+     *
+     * @return string
+     */
+    abstract public function seederPath();
 
     /**
      * Preset namespace.
+     *
+     * @return string
      */
-    abstract public function rootNamespace(): string;
+    abstract public function rootNamespace();
 
     /**
-     * Testing namespace.
+     * Command namespace.
+     *
+     * @return string
      */
-    abstract public function testingNamespace(): string;
+    abstract public function commandNamespace();
 
     /**
      * Model namespace.
+     *
+     * @return string
      */
-    abstract public function modelNamespace(): string;
+    abstract public function modelNamespace();
 
     /**
      * Provider namespace.
+     *
+     * @return string
      */
-    abstract public function providerNamespace(): string;
+    abstract public function providerNamespace();
 
     /**
-     * Get custom stub path.
+     * Testing namespace.
+     *
+     * @return string
      */
-    abstract public function getCustomStubPath(): ?string;
+    abstract public function testingNamespace();
+
+    /**
+     * Database factory namespace.
+     *
+     * @return string
+     */
+    abstract public function factoryNamespace();
+
+    /**
+     * Database seeder namespace.
+     *
+     * @return string
+     */
+    abstract public function seederNamespace();
+
+    /**
+     * Preset has custom stub path.
+     *
+     * @return bool
+     */
+    abstract public function hasCustomStubPath();
 }

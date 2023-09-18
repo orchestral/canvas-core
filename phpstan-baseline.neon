@@ -1,11 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Container\\\\Container\\:\\:basePath\\(\\)\\.$#"
+			message: "#^Cannot access offset 'path' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
 			count: 1
-			path: src/LaravelServiceProvider.php
+			path: src/Commands/GeneratorCommand.php
 
 		-
-			message: "#^Method Orchestra\\\\Canvas\\\\Core\\\\Presets\\\\Preset\\:\\:config\\(\\) has no return type specified\\.$#"
+			message: "#^Parameter \\#1 \\$app of class Orchestra\\\\Canvas\\\\Core\\\\Presets\\\\Laravel constructor expects Illuminate\\\\Contracts\\\\Foundation\\\\Application, Illuminate\\\\Contracts\\\\Container\\\\Container given\\.$#"
 			count: 1
-			path: src/Presets/Preset.php
+			path: src/PresetManager.php
