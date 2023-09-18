@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
-use Illuminate\Console\GeneratorCommand;
+use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 use Orchestra\Canvas\Core\TestGenerator;
@@ -11,9 +11,10 @@ use Orchestra\Canvas\Core\TestGenerator;
  * @property string|null  $name
  * @property string|null  $description
  */
-abstract class Generator extends GeneratorCommand implements GeneratesCode
+abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
-    use CodeGenerator, TestGenerator;
+    use Concerns\CodeGenerator;
+    use Concerns\TestGenerator;
 
     /**
      * Execute the console command.

@@ -2,8 +2,8 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-use Illuminate\Console\Generators\PresetManager;
 use Illuminate\Support\Str;
+use Orchestra\Canvas\Core\PresetManager;
 use Symfony\Component\Console\Input\InputOption;
 
 trait CreatesUsingGeneratorPreset
