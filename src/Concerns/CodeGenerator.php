@@ -3,18 +3,17 @@
 namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
-use Symfony\Component\Console\Command\Command;
 
 trait CodeGenerator
 {
     /**
      * Generate code.
      *
-     * @return int
+     * @return bool|null
      */
     public function generateCode(bool $force = false)
     {
-        $name = $this->getInputName();
+        $name = $this->getNameInput();
         $className = $this->qualifyClass($name);
         $path = $this->getPath($this->qualifyClass($name));
 
@@ -43,37 +42,29 @@ trait CodeGenerator
 
     /**
      * Code already exists.
-     *
-     * @return int
      */
-    public function codeAlreadyExists(string $className)
+    public function codeAlreadyExists(string $className): ?bool
     {
         $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
 
-        return Command::FAILURE;
+        return false;
     }
 
     /**
      * Code successfully generated.
-     *
-     * @return int
      */
-    public function codeHasBeenGenerated(string $className)
+    public function codeHasBeenGenerated(string $className): ?bool
     {
         $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
 
-        return Command::SUCCESS;
+        return true;
     }
 
     /**
      * Run after code successfully generated.
-     *
-     * @return void
      */
-    public function afterCodeHasBeenGenerated(string $className, string $path)
+    public function afterCodeHasBeenGenerated(string $className, string $path): void
     {
-        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            $this->handleTestCreationUsingCanvas($path);
-        }
+        //
     }
 }

@@ -7,7 +7,7 @@ interface GeneratesCode
     /**
      * Code already exists.
      */
-    public function codeAlreadyExists(string $className);
+    public function codeAlreadyExists(string $className): mixed;
 
     /**
      * Handle generating code.
@@ -17,7 +17,7 @@ interface GeneratesCode
     /**
      * Code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className);
+    public function codeHasBeenGenerated(string $className): mixed;
 
     /**
      * Run after code successfully generated.

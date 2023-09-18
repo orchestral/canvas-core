@@ -3,9 +3,7 @@
 namespace Orchestra\Canvas\Core;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Yaml\Yaml;
 
 class LaravelServiceProvider extends ServiceProvider implements DeferrableProvider
 {

@@ -27,10 +27,10 @@ trait CreatesUsingGeneratorPreset
     /**
      * Resolve the generator preset.
      *
-     * @return \Preset
+     * @return \Orchestra\Canvas\Core\Presets\Preset
      */
     protected function generatorPreset()
     {
-        return $this->laravel[PresetManager::class]->driver($this->option('preset'));
+        return $this->laravel->make(PresetManager::class)->driver($this->option('preset'));
     }
 }

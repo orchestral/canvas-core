@@ -86,8 +86,6 @@ class Laravel extends Preset
 
     /**
      * Get the path to the seeder directory.
-     *
-     * @return string
      */
     public function seederPath(): string
     {

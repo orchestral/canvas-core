@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Canvas\Core;
+namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Support\Str;
 
@@ -9,7 +9,7 @@ trait TestGenerator
     /**
      * Create the matching test case if requested.
      */
-    protected function handleTestCreationViaCanvas(string $path): bool
+    protected function handleTestCreationUsingCanvas(string $path): bool
     {
         if (! $this->option('test') && ! $this->option('pest')) {
             return false;

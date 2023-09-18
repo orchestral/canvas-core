@@ -17,7 +17,6 @@ abstract class Preset
     /**
      * Construct a new preset.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
     public function __construct(Application $app)
@@ -44,11 +43,12 @@ abstract class Preset
      */
     public function userProviderModel($guard = null)
     {
-        $config = $this->app['config'];
+        /** @var \Illuminate\Contracts\Config\Repository $config */
+        $config = $this->app->make('config');
 
         $guard = $guard ?: $config->get('auth.defaults.guard');
 
-        if (is_null($provider = $config->get('auth.guards.'.$guard.'.provider'))) {
+        if (\is_null($provider = $config->get('auth.guards.'.$guard.'.provider'))) {
             throw new LogicException('The ['.$guard.'] guard is not defined in your "auth" configuration file.');
         }
 

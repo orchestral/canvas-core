@@ -3,9 +3,7 @@
 namespace Orchestra\Canvas\Core\Commands;
 
 use Orchestra\Canvas\Core\Concerns;
-use Orchestra\Canvas\Core\CodeGenerator;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
-use Orchestra\Canvas\Core\TestGenerator;
 
 /**
  * @property string|null  $name
@@ -14,6 +12,7 @@ use Orchestra\Canvas\Core\TestGenerator;
 abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
     use Concerns\CodeGenerator;
+    use Concerns\CreatesUsingGeneratorPreset;
     use Concerns\TestGenerator;
 
     /**
@@ -28,10 +27,10 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
         // First we need to ensure that the given name is not a reserved word within the PHP
         // language and that the class name will actually be valid. If it is not valid we
         // can error now and prevent from polluting the filesystem using invalid files.
-        if ($this->isReservedName($name = $this->generatorName())) {
+        if ($this->isReservedName($name = $this->getNameInput())) {
             $this->components->error('The name "'.$name.'" is reserved by PHP.');
 
-            return GeneratorCommand::FAILURE;
+            return false;
         }
 
         $force = $this->hasOption('force') && $this->option('force') === true;
@@ -46,7 +45,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      */
     protected function buildClass($name)
     {
-        $stub = $this->files->get($this->getStubFile());
+        $stub = $this->files->get($this->getStub());
 
         return $this->generatingCode(
             $this->replaceNamespace($stub, $name)->replaceClass($stub, $name), $name
