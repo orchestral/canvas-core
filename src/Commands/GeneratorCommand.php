@@ -15,6 +15,20 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     use Concerns\CreatesUsingGeneratorPreset;
     use Concerns\TestGenerator;
 
+
+    /**
+     * Create a new controller creator command instance.
+     *
+     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @return void
+     */
+    public function __construct(Filesystem $files)
+    {
+        parent::__construct($files);
+
+        $this->addGeneratorPresetOptions();
+    }
+
     /**
      * Execute the console command.
      *
