@@ -19,7 +19,7 @@ trait UsesGeneratorOverrides
     /**
      * Get the root namespace for the class.
      */
-    protected function rootNamespacUsingCanvas(): string
+    protected function rootNamespaceUsingCanvas(): string
     {
         return $this->generatorPreset()->rootNamespace();
     }
