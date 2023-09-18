@@ -13,7 +13,6 @@ use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
     use Concerns\CodeGenerator;
-    use Concerns\CreatesUsingGeneratorPreset;
     use Concerns\TestGenerator;
 
     /**
@@ -37,6 +36,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      */
     public function handle()
     {
-        return $this->generateCode($force);
+        return $this->generateCode();
     }
 }

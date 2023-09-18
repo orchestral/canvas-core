@@ -46,13 +46,12 @@ trait CodeGenerator
             $path, $this->sortImports($this->generatingCode($this->buildClass($className), $className))
         );
 
-        return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
-            if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-                $this->handleTestCreationUsingCanvas($path);
-            }
+        if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
+            $this->handleTestCreationUsingCanvas($path);
+        }
 
-            $this->afterCodeHasBeenGenerated($className, $path);
-        });
+        $this->codeHasBeenGenerated($className);
+        $this->afterCodeHasBeenGenerated($className, $path);
     }
 
     /**
