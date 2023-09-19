@@ -4,7 +4,6 @@ namespace Orchestra\Canvas\Core\Contracts;
 
 interface GeneratesCode
 {
-
     /**
      * Handle generating code.
      */
