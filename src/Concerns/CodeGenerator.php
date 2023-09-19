@@ -69,7 +69,7 @@ trait CodeGenerator
     {
         $this->components->error(
             sprintf(
-                '%s [%s] already exists!', $this->type, Str::after($path, $this->generatorPreset()->basePath())
+                '%s [%s] already exists!', $this->type, Str::after($path, $this->generatorPreset()->basePath().DIRECTORY_SEPARATOR)
             )
         );
 
@@ -83,7 +83,7 @@ trait CodeGenerator
     {
         $this->components->info(
             sprintf(
-                '%s [%s] created successfully.', $this->type, Str::after($path, $this->generatorPreset()->basePath())
+                '%s [%s] created successfully.', $this->type, Str::after($path, $this->generatorPreset()->basePath().DIRECTORY_SEPARATOR)
             )
         );
 
