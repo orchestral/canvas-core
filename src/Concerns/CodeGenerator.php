@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
+use Illuminate\Support\Str;
 
 trait CodeGenerator
 {
@@ -48,7 +49,7 @@ trait CodeGenerator
             $this->handleTestCreationUsingCanvas($path);
         }
 
-        return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
+        return tap($this->codeHasBeenGenerated($className, $path), function ($exitCode) use ($className, $path) {
             $this->afterCodeHasBeenGenerated($className, $path);
         });
     }
@@ -66,7 +67,11 @@ trait CodeGenerator
      */
     public function codeAlreadyExists(string $className, string $path): bool
     {
-        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $path));
+        $this->components->error(
+            sprintf(
+                '%s [%s] already exists!', $this->type, Str::after($path, $this->generatorPreset()->basePath())
+            )
+        );
 
         return false;
     }
@@ -76,7 +81,11 @@ trait CodeGenerator
      */
     public function codeHasBeenGenerated(string $className, string $path): bool
     {
-        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $path));
+        $this->components->info(
+            sprintf(
+                '%s [%s] created successfully.', $this->type, Str::after($path, $this->generatorPreset()->basePath())
+            )
+        );
 
         return true;
     }
