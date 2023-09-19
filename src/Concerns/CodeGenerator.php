@@ -10,10 +10,8 @@ trait CodeGenerator
 
     /**
      * Generate code.
-     *
-     * @return bool
      */
-    public function generateCode()
+    public function generateCode(): bool
     {
         $name = $this->getNameInput();
         $force = $this->hasOption('force') && $this->option('force') === true;

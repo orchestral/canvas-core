@@ -4,6 +4,7 @@ namespace Orchestra\Canvas\Core\Concerns;
 
 use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\PresetManager;
+use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Console\Input\InputOption;
 
 trait CreatesUsingGeneratorPreset
@@ -26,10 +27,8 @@ trait CreatesUsingGeneratorPreset
 
     /**
      * Resolve the generator preset.
-     *
-     * @return \Orchestra\Canvas\Core\Presets\Preset
      */
-    protected function generatorPreset()
+    protected function generatorPreset(): Preset
     {
         return $this->laravel->make(PresetManager::class)->driver($this->option('preset'));
     }

@@ -21,8 +21,6 @@ interface GeneratesCode
 
     /**
      * Run after code successfully generated.
-     *
-     * @return void
      */
-    public function afterCodeHasBeenGenerated(string $className, string $path);
+    public function afterCodeHasBeenGenerated(string $className, string $path): void;
 }
