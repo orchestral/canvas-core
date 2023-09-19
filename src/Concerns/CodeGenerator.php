@@ -45,7 +45,7 @@ trait CodeGenerator
         );
 
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            $this->handleTestCreationUsingCanvas($path, $path);
+            $this->handleTestCreationUsingCanvas($path);
         }
 
         return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
