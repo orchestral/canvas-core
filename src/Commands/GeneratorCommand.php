@@ -73,8 +73,10 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
 
     /**
      * Get the model for the default guard's user provider.
+     *
+     * @return string|null
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModel()
     {
         return $this->userProviderModelUsingCanvas();
     }
