@@ -32,7 +32,7 @@ trait CodeGenerator
         // to create the class and overwrite the user's code. So, we will bail out so the
         // code is untouched. Otherwise, we will continue generating this class' files.
         if (! $force && $this->alreadyExists($name)) {
-            return $this->codeAlreadyExists($className);
+            return $this->codeAlreadyExists($className, $path);
         }
 
         // Next, we will generate the path to the location where this class' file should get
@@ -45,7 +45,7 @@ trait CodeGenerator
         );
 
         if (\in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            $this->handleTestCreationUsingCanvas($path);
+            $this->handleTestCreationUsingCanvas($path, $path);
         }
 
         return tap($this->codeHasBeenGenerated($className), function ($exitCode) use ($className, $path) {
@@ -64,9 +64,9 @@ trait CodeGenerator
     /**
      * Code already exists.
      */
-    public function codeAlreadyExists(string $className): bool
+    public function codeAlreadyExists(string $className, string $path): bool
     {
-        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $className));
+        $this->components->error(sprintf('%s [%s] already exists!', $this->type, $path));
 
         return false;
     }
@@ -74,9 +74,9 @@ trait CodeGenerator
     /**
      * Code successfully generated.
      */
-    public function codeHasBeenGenerated(string $className): bool
+    public function codeHasBeenGenerated(string $className, string $path): bool
     {
-        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $className));
+        $this->components->info(sprintf('%s [%s] created successfully.', $this->type, $path));
 
         return true;
     }
