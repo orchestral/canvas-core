@@ -13,7 +13,7 @@ interface GeneratesCode
     /**
      * Code already exists.
      */
-    public function codeAlreadyExists(string $className, string $path): bool
+    public function codeAlreadyExists(string $className, string $path): bool;
 
     /**
      * Code successfully generated.
