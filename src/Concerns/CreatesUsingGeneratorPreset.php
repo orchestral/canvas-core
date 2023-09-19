@@ -16,11 +16,17 @@ trait CreatesUsingGeneratorPreset
      */
     protected function addGeneratorPresetOptions()
     {
+        $message = 'to running the command';
+
+        if (property_exists($this, 'type') && ! empty($this->type)) {
+            $message = 'when generating '.Str::lower($this->type);
+        }
+
         $this->getDefinition()->addOption(new InputOption(
             'preset',
             null,
             InputOption::VALUE_OPTIONAL,
-            sprintf('Preset used when generating %s', Str::lower($this->type)),
+            sprintf('Preset used %s', $message),
             null,
         ));
     }
