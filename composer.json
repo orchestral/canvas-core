@@ -41,6 +41,7 @@
         "orchestra/testbench-core": "^9.0",
         "orchestra/workbench": "dev-next",
         "phpstan/phpstan": "^1.10.6",
+        "phpunit/phpunit": "^10.1",
         "symfony/yaml": "^6.2"
     },
     "config": {
