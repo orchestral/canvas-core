@@ -27,7 +27,7 @@
         }
     },
     "require": {
-        "php": ">=8.2.0 <8.3.0",
+        "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
         "illuminate/console": "^11.0",
@@ -35,11 +35,13 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
-        "mockery/mockery": "^1.5.1",
         "laravel/framework": "^11.0",
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^9.0",
-        "phpstan/phpstan": "^1.10.6"
+        "mockery/mockery": "^1.5.1",
+        "orchestra/testbench-core": "^9.0",
+        "orchestra/workbench": "dev-next",
+        "phpstan/phpstan": "^1.10.6",
+        "symfony/yaml": "^6.2"
     },
     "config": {
         "sort-packages": true

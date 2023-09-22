@@ -15,10 +15,8 @@ class PresetManager extends Manager
 
     /**
      * Create "laravel" driver.
-     *
-     * @return \Orchestra\Canvas\Core\Presets\Laravel
      */
-    public function createLaravelDriver()
+    public function createLaravelDriver(): Presets\Laravel
     {
         return new Presets\Laravel($this->container);
     }
