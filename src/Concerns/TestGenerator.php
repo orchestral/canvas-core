@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
+use Illuminate\Console\Concerns\CreatesUsingGeneratorPreset;
 use Illuminate\Support\Str;
 
 trait TestGenerator
