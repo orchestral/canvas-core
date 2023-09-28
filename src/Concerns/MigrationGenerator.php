@@ -2,11 +2,9 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-use Illuminate\Console\Concerns\CreatesUsingGeneratorPreset;
-
 trait MigrationGenerator
 {
-    use CreatesUsingGeneratorPreset;
+    use UsingGeneratorPreset;
 
     /**
      * Create a base migration file for the table.

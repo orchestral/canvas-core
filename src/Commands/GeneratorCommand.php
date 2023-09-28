@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 
@@ -10,14 +9,14 @@ use Orchestra\Canvas\Core\Contracts\GeneratesCode;
  * @property string|null  $name
  * @property string|null  $description
  */
-abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommandd implements GeneratesCode
+abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
     use Concerns\CodeGenerator;
-    use Concerns\TestGenerator;
     use Concerns\ResolvesPresetStubsOverrides;
+    use Concerns\TestGenerator;
     use Concerns\UsesGeneratorOverrides;
 
-   /**
+    /**
      * Execute the console command.
      *
      * @return bool|null
@@ -106,7 +105,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommandd im
      * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath(string $stub)
+    protected function resolveStubPath($stub)
     {
         return $this->resolveStubPathUsingCanvas($stub);
     }

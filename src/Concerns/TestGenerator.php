@@ -2,12 +2,11 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-use Illuminate\Console\Concerns\CreatesUsingGeneratorPreset;
 use Illuminate\Support\Str;
 
 trait TestGenerator
 {
-    use CreatesUsingGeneratorPreset;
+    use UsingGeneratorPreset;
 
     /**
      * Create the matching test case if requested.
@@ -18,9 +17,7 @@ trait TestGenerator
             return false;
         }
 
-        $sourcePath = \in_array(CreatesUsingGeneratorPreset::class, class_uses_recursive($this))
-            ? $this->generatorPreset()->sourcePath()
-            : $this->laravel['path'];
+        $sourcePath = $this->generatorPreset()->sourcePath();
 
         return $this->call('make:test', array_merge([
             'name' => Str::of($path)->after($sourcePath)->beforeLast('.php')->append('Test')->replace('\\', '/'),

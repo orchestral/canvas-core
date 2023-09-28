@@ -6,9 +6,6 @@ trait ResolvesPresetStubsOverrides
 {
     /**
      * Resolve the fully-qualified path to the stub.
-     *
-     * @param  string  $stub
-     * @return string
      */
     protected function resolveStubPathUsingCanvas(string $stub): string
     {
