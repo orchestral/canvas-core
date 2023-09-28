@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-trait ResolvesPresetStubs
+trait ResolvesPresetStubsOverrides
 {
     /**
      * Resolve the fully-qualified path to the stub.
@@ -10,7 +10,7 @@ trait ResolvesPresetStubs
      * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub)
+    protected function resolveStubPathUsingCanvas(string $stub): string
     {
         $preset = $this->generatorPreset();
 
@@ -25,8 +25,5 @@ trait ResolvesPresetStubs
      * @param  string  $stub
      * @return string
      */
-    protected function resolveDefaultStubPath($stub)
-    {
-        return $stub;
-    }
+    abstract protected function resolveDefaultStubPath($stub);
 }

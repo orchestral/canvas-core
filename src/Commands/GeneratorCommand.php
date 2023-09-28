@@ -4,14 +4,30 @@ namespace Orchestra\Canvas\Core\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns;
+use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 
 /**
  * @property string|null  $name
  * @property string|null  $description
  */
-abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
+abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommandd implements GeneratesCode
 {
+    use Concerns\CodeGenerator;
+    use Concerns\TestGenerator;
+    use Concerns\ResolvesPresetStubsOverrides;
     use Concerns\UsesGeneratorOverrides;
+
+   /**
+     * Execute the console command.
+     *
+     * @return bool|null
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function handle()
+    {
+        return $this->generateCode() ? self::SUCCESS : self::FAILURE;
+    }
 
     /**
      * Get the destination class path.
@@ -82,5 +98,16 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
     protected function possibleEvents()
     {
         return $this->possibleEventsUsingCanvas();
+    }
+
+    /**
+     * Resolve the fully-qualified path to the stub.
+     *
+     * @param  string  $stub
+     * @return string
+     */
+    protected function resolveStubPath(string $stub)
+    {
+        return $this->resolveStubPathUsingCanvas($stub);
     }
 }
