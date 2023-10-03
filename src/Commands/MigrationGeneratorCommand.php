@@ -10,15 +10,13 @@ use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
  * @property string|null  $name
  * @property string|null  $description
  */
-class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
+abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
 {
     use MigrationGenerator;
 
     /**
      * Create a new notifications table command instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
     public function __construct(Filesystem $files, Composer $composer)
