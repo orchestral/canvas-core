@@ -6,6 +6,10 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 
+/**
+ * @property string|null  $name
+ * @property string|null  $description
+ */
 class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
 {
     use MigrationGenerator;
