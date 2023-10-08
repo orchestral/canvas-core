@@ -30,7 +30,8 @@ class GeneratorCommandTest extends TestCase
     /** @test */
     public function it_cannot_generate_class_file_given_reserved_name()
     {
-        $this->artisan('make:code', ['name' => '__CLASS__'])
+        $this->artisan('make:code', ['name' => '__halt_compiler'])
+            ->expectsOutputToContain('The name "__halt_compiler" is reserved by PHP.')
             ->assertFailed();
     }
 }
