@@ -26,4 +26,11 @@ class GeneratorCommandTest extends TestCase
             'class Foo',
         ], 'app/Value/Foo.php');
     }
+
+    /** @test */
+    public function it_cannot_generate_class_file_given_reserved_name()
+    {
+        $this->artisan('make:code', ['name' => '__CLASS__'])
+            ->assertFailed();
+    }
 }
