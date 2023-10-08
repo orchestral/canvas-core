@@ -2,11 +2,14 @@
 
 namespace Workbench\App\Console;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Orchestra\Canvas\Core\Commands\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 class CodeGeneratorCommand extends GeneratorCommand
 {
+    use CreatesMatchingTest;
+
     /**
      * The name of the console command.
      *

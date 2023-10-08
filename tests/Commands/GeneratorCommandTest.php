@@ -13,12 +13,64 @@ class GeneratorCommandTest extends TestCase
 
     protected $files = [
         'app/Value/Foo.php',
+        'tests/Feature/Value/FooTest.php',
     ];
 
     /** @test */
     public function it_can_generate_class_file()
     {
         $this->artisan('make:code', ['name' => 'Value/Foo'])
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace App\Value;',
+            'class Foo',
+        ], 'app/Value/Foo.php');
+    }
+
+    /** @test */
+    public function it_can_generate_class_file_with_phpunit_test()
+    {
+        $this->artisan('make:code', ['name' => 'Value/Foo', '--test' => true])
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace App\Value;',
+            'class Foo',
+        ], 'app/Value/Foo.php');
+
+        $this->assertFileContains([
+            'namespace Tests\Feature\Value;',
+            'use Tests\TestCase;',
+            'class FooTest extends TestCase',
+        ], 'tests/Feature/Value/FooTest.php');
+    }
+
+
+    /** @test */
+    public function it_can_generate_class_file_with_pest_test()
+    {
+        $this->artisan('make:code', ['name' => 'Value/Foo', '--pest' => true])
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace App\Value;',
+            'class Foo',
+        ], 'app/Value/Foo.php');
+
+        $this->assertFileContains([
+            'test(\'example\', function () {',
+            '$response = $this->get(\'/\');',
+            '$response->assertStatus(200);',
+        ], 'tests/Feature/Value/FooTest.php');
+    }
+
+    /** @test */
+    public function it_can_generate_class_file_when_file_already_exist_using_force_option()
+    {
+        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
+
+        $this->artisan('make:code', ['name' => 'Value/Foo', '--force' => true])
             ->assertSuccessful();
 
         $this->assertFileContains([
@@ -43,19 +95,5 @@ class GeneratorCommandTest extends TestCase
         $this->artisan('make:code', ['name' => 'Value/Foo'])
             ->expectsOutputToContain('class [app/Value/Foo.php] already exists!')
             ->assertFailed();
-    }
-
-    /** @test */
-    public function it_can_generate_class_file_when_file_already_exist_using_force_option()
-    {
-        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
-
-        $this->artisan('make:code', ['name' => 'Value/Foo', '--force' => true])
-            ->assertSuccessful();
-
-        $this->assertFileContains([
-            'namespace App\Value;',
-            'class Foo',
-        ], 'app/Value/Foo.php');
     }
 }
