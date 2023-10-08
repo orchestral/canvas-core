@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot access offset 'path' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
-			count: 1
-			path: src/Commands/GeneratorCommand.php
-
-		-
 			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Foundation\\\\Application\\:\\:joinPaths\\(\\)\\.$#"
 			count: 1
 			path: src/Commands/MigrationGeneratorCommand.php
