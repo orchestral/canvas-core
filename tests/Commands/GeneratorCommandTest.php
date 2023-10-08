@@ -46,7 +46,6 @@ class GeneratorCommandTest extends TestCase
         ], 'tests/Feature/Value/FooTest.php');
     }
 
-
     /** @test */
     public function it_can_generate_class_file_with_pest_test()
     {
