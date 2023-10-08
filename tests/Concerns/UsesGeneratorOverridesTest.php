@@ -22,6 +22,8 @@ class UsesGeneratorOverridesTest extends TestCase
         $this->assertSame([
             'user-model' => 'App\Models\User',
             'welcome-view' => $this->app->joinPaths(base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'welcome.blade.php')),
+            'possible-models' => [],
+            'possible-events' => [],
         ], $stub->toArray());
     }
 }
@@ -50,6 +52,8 @@ class UsesGeneratorOverridesTestStub implements Arrayable
         return [
             'user-model' => $this->qualifyModelUsingCanvas('User'),
             'welcome-view' => $this->viewPathUsingCanvas('welcome.blade.php'),
+            'possible-models' => $this->possibleModelsUsingCanvas(),
+            'possible-events' => $this->possibleEventsUsingCanvas(),
         ];
     }
 

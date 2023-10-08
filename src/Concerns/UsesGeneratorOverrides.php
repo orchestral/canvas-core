@@ -105,7 +105,6 @@ trait UsesGeneratorOverrides
      */
     abstract protected function rootNamespace();
 
-
     /**
      * Resolve the generator preset.
      */
