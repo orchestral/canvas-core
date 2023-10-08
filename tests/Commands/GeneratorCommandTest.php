@@ -34,4 +34,28 @@ class GeneratorCommandTest extends TestCase
             ->expectsOutputToContain('The name "__halt_compiler" is reserved by PHP.')
             ->assertFailed();
     }
+
+    /** @test */
+    public function it_cannot_generate_class_file_when_file_already_exist()
+    {
+        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
+
+        $this->artisan('make:code', ['name' => 'Value/Foo'])
+            ->expectsOutputToContain('class [app/Value/Foo.php] already exists!')
+            ->assertFailed();
+    }
+
+    /** @test */
+    public function it_can_generate_class_file_when_file_already_exist_using_force_option()
+    {
+        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
+
+        $this->artisan('make:code', ['name' => 'Value/Foo', '--force' => true])
+            ->assertSuccessful();
+
+        $this->assertFileContains([
+            'namespace App\Value;',
+            'class Foo',
+        ], 'app/Value/Foo.php');
+    }
 }

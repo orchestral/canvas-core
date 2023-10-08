@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Tests;
 
+use Illuminate\Support\Manager;
 use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Testbench\TestCase;
 
@@ -12,6 +13,7 @@ class PresetManagerTest extends TestCase
     {
         $manager = $this->app[PresetManager::class];
 
+        $this->assertInstanceOf(Manager::class, $manager);
         $this->assertSame('laravel', $manager->getDefaultDriver());
     }
 

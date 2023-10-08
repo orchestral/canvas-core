@@ -3,7 +3,7 @@
 namespace Workbench\App\Console;
 
 use Orchestra\Canvas\Core\Commands\GeneratorCommand;
-use Orchestra\Canvas\Core\Concerns\ResolvesPresetStubs;
+use Symfony\Component\Console\Input\InputOption;
 
 class CodeGeneratorCommand extends GeneratorCommand
 {
@@ -36,5 +36,17 @@ class CodeGeneratorCommand extends GeneratorCommand
     protected function getStub()
     {
         return __DIR__.'/stubs/class.stub';
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the cast already exists'],
+        ];
     }
 }
