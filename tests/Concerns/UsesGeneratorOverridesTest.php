@@ -3,6 +3,7 @@
 namespace Orchestra\Canvas\Core\Tests\Concerns;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Canvas\Core\Presets\Preset;
@@ -15,9 +16,14 @@ class UsesGeneratorOverridesTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->beforeApplicationDestroyed(function () {
-            $filesystem = new Filesystem();
+        $filesystem = new Filesystem();
 
+        $this->afterApplicationCreated(static function () use ($filesystem) {
+            $filesystem->ensureDirectoryExists(base_path('app/Events'));
+            $filesystem->ensureDirectoryExists(base_path('app/Models'));
+        });
+
+        $this->beforeApplicationDestroyed(static function () use ($filesystem) {
             $filesystem->deleteDirectory(base_path('app/Events'));
             $filesystem->deleteDirectory(base_path('app/Models'));
         });
@@ -28,11 +34,6 @@ class UsesGeneratorOverridesTest extends TestCase
     /** @test */
     public function it_can_get_qualify_model_class()
     {
-        $filesystem = $this->app['files'];
-
-        $filesystem->ensureDirectoryExists(base_path('app/Events'));
-        $filesystem->ensureDirectoryExists(base_path('app/Models'));
-
         $stub = new UsesGeneratorOverridesTestStub();
 
         $this->assertSame([

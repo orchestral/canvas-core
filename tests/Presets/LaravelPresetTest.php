@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Tests;
 
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Testbench\Concerns\WithWorkbench;
@@ -10,6 +11,26 @@ use Orchestra\Testbench\TestCase;
 class LaravelPresetTest extends TestCase
 {
     use WithWorkbench;
+
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
+    {
+        $filesystem = new Filesystem();
+
+        $this->afterApplicationCreated(static function () use ($filesystem) {
+            $filesystem->ensureDirectoryExists(base_path('app/Events'));
+            $filesystem->ensureDirectoryExists(base_path('app/Models'));
+        });
+
+        $this->beforeApplicationDestroyed(static function () use ($filesystem) {
+            $filesystem->deleteDirectory(base_path('app/Events'));
+            $filesystem->deleteDirectory(base_path('app/Models'));
+        });
+
+        parent::setUp();
+    }
 
     /** @test */
     public function it_can_be_resolved()
