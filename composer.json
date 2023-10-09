@@ -42,7 +42,7 @@
         "orchestra/workbench": "dev-next",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1",
-        "symfony/yaml": "^6.2"
+        "symfony/yaml": "^6.4 || ^7.0"
     },
     "config": {
         "sort-packages": true
