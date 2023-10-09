@@ -10,11 +10,27 @@ use Orchestra\Testbench\TestCase;
 
 class UsesGeneratorOverridesTest extends TestCase
 {
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
+    {
+        $this->beforeApplicationDestroyed(function () {
+            $filesystem = new Filesystem();
+
+            $filesystem->deleteDirectory(base_path('app/Events'));
+            $filesystem->deleteDirectory(base_path('app/Models'));
+        });
+
+        parent::setUp();
+    }
+
     /** @test */
     public function it_can_get_qualify_model_class()
     {
         $filesystem = $this->app['files'];
 
+        $filesystem->ensureDirectoryExists(base_path('app/Events'));
         $filesystem->ensureDirectoryExists(base_path('app/Models'));
 
         $stub = new UsesGeneratorOverridesTestStub();
