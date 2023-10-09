@@ -2,9 +2,14 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 
-class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
+/**
+ * @property string|null  $name
+ * @property string|null  $description
+ */
+abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
 {
     use MigrationGenerator;
 

@@ -1,9 +1,14 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot access offset 'path' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
+			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Foundation\\\\Application\\:\\:joinPaths\\(\\)\\.$#"
 			count: 1
-			path: src/Commands/GeneratorCommand.php
+			path: src/Commands/MigrationGeneratorCommand.php
+
+		-
+			message: "#^Cannot access offset 'migration\\.creator' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
+			count: 1
+			path: src/Commands/MigrationGeneratorCommand.php
 
 		-
 			message: "#^Parameter \\#1 \\$app of class Orchestra\\\\Canvas\\\\Core\\\\Presets\\\\Laravel constructor expects Illuminate\\\\Contracts\\\\Foundation\\\\Application, Illuminate\\\\Contracts\\\\Container\\\\Container given\\.$#"
