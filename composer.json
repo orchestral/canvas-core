@@ -34,15 +34,10 @@
         "illuminate/filesystem": "^10.26"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.21",
-        "laravel/framework": "^10.26",
         "laravel/pint": "^1.6",
-        "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^8.11",
-        "orchestra/workbench": "^0.3.0 || ^0.4.0",
+        "orchestra/testbench": "^8.13",
         "phpstan/phpstan": "^1.10.6",
-        "phpunit/phpunit": "^10.1",
-        "symfony/yaml": "^6.2"
+        "phpunit/phpunit": "^10.1"
     },
     "conflict": {
         "orchestra/canvas": "<8.11.0",
