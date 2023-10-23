@@ -5,6 +5,7 @@ namespace Orchestra\Canvas\Core\Tests\Commands;
 use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class GeneratorCommandTest extends TestCase
 {
@@ -16,7 +17,7 @@ class GeneratorCommandTest extends TestCase
         'tests/Feature/Value/FooTest.php',
     ];
 
-    /** @test */
+    #[Test]
     public function it_can_generate_class_file()
     {
         $this->artisan('make:code', ['name' => 'Value/Foo'])
@@ -28,7 +29,7 @@ class GeneratorCommandTest extends TestCase
         ], 'app/Value/Foo.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_class_file_with_phpunit_test()
     {
         $this->artisan('make:code', ['name' => 'Value/Foo', '--test' => true])
@@ -46,7 +47,7 @@ class GeneratorCommandTest extends TestCase
         ], 'tests/Feature/Value/FooTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_class_file_with_pest_test()
     {
         $this->artisan('make:code', ['name' => 'Value/Foo', '--pest' => true])
@@ -64,7 +65,7 @@ class GeneratorCommandTest extends TestCase
         ], 'tests/Feature/Value/FooTest.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_generate_class_file_when_file_already_exist_using_force_option()
     {
         file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
@@ -78,7 +79,7 @@ class GeneratorCommandTest extends TestCase
         ], 'app/Value/Foo.php');
     }
 
-    /** @test */
+    #[Test]
     public function it_cannot_generate_class_file_given_reserved_name()
     {
         $this->artisan('make:code', ['name' => '__halt_compiler'])
@@ -86,7 +87,7 @@ class GeneratorCommandTest extends TestCase
             ->assertFailed();
     }
 
-    /** @test */
+    #[Test]
     public function it_cannot_generate_class_file_when_file_already_exist()
     {
         file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
