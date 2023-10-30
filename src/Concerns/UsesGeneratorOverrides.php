@@ -2,6 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
+use Illuminate\Console\Generators\Presets\Preset;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 
@@ -96,4 +97,16 @@ trait UsesGeneratorOverrides
             ->values()
             ->all();
     }
+
+    /**
+     * Get the root namespace for the class.
+     *
+     * @return string
+     */
+    abstract protected function rootNamespace();
+
+    /**
+     * Resolve the generator preset.
+     */
+    abstract protected function generatorPreset(): Preset;
 }
