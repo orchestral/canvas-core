@@ -7,6 +7,7 @@ use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Canvas\Core\Presets\Laravel;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LaravelPresetTest extends TestCase
 {
@@ -32,7 +33,7 @@ class LaravelPresetTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_resolved()
     {
         $preset = $this->app[PresetManager::class]->driver('laravel');
@@ -62,7 +63,7 @@ class LaravelPresetTest extends TestCase
         $this->assertSame('Illuminate\Foundation\Auth\User', $preset->userProviderModel());
     }
 
-    /** @test */
+    #[Test]
     public function it_available_as_default_driver()
     {
         $preset = $this->app[PresetManager::class]->driver();

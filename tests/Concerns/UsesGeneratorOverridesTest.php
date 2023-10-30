@@ -8,6 +8,7 @@ use Orchestra\Canvas\Core\Concerns\UsesGeneratorOverrides;
 use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UsesGeneratorOverridesTest extends TestCase
 {
@@ -31,7 +32,7 @@ class UsesGeneratorOverridesTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_qualify_model_class()
     {
         $stub = new UsesGeneratorOverridesTestStub();

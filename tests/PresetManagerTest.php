@@ -5,10 +5,11 @@ namespace Orchestra\Canvas\Core\Tests;
 use Illuminate\Support\Manager;
 use Orchestra\Canvas\Core\PresetManager;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PresetManagerTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_resolved()
     {
         $manager = $this->app[PresetManager::class];
@@ -17,7 +18,7 @@ class PresetManagerTest extends TestCase
         $this->assertSame('laravel', $manager->getDefaultDriver());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_override_default_driver()
     {
         $manager = $this->app[PresetManager::class];
