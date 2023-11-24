@@ -39,8 +39,7 @@
         "orchestra/testbench-core": "^8.15",
         "orchestra/workbench": "^8.0",
         "phpstan/phpstan": "^1.10.6",
-        "phpunit/phpunit": "^10.1",
-        "symfony/yaml": "^6.2"
+        "phpunit/phpunit": "^10.1"
     },
     "conflict": {
         "orchestra/canvas": "<8.11.0",
