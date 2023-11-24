@@ -21,7 +21,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files)
     {
         parent::__construct($files);
