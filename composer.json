@@ -35,11 +35,12 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
+        "laravel/framework": "^10.26",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench-core": "^8.15",
-        "orchestra/workbench": "^8.0",
         "phpstan/phpstan": "^1.10.6",
-        "phpunit/phpunit": "^10.1"
+        "phpunit/phpunit": "^10.1",
+        "symfony/yaml": "^6.2"
     },
     "conflict": {
         "orchestra/canvas": "<8.11.0",
@@ -68,7 +69,6 @@
         ],
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
         "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
