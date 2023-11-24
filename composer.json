@@ -37,7 +37,7 @@
         "laravel/pint": "^1.6",
         "laravel/framework": "^10.26",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^8.15",
+        "orchestra/testbench": "^8.15",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1",
         "symfony/yaml": "^6.2"
