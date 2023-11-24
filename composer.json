@@ -35,7 +35,6 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "laravel/framework": "^10.26",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench-core": "^8.15",
         "orchestra/workbench": "^8.0",
