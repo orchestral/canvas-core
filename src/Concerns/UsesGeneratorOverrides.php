@@ -2,7 +2,6 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-use Illuminate\Console\Generators\Presets\Preset;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 
@@ -107,6 +106,8 @@ trait UsesGeneratorOverrides
 
     /**
      * Resolve the generator preset.
+     *
+     * @return \Illuminate\Console\Generators\Presets\Preset
      */
-    abstract protected function generatorPreset(): Preset;
+    abstract protected function generatorPreset();
 }
