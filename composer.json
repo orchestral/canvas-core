@@ -35,9 +35,8 @@
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
-        "laravel/framework": "dev-generator-presets as 10.x-dev",
         "laravel/pint": "^1.6",
-        "laravel/framework": "^10.26",
+        "laravel/framework": "dev-generator-presets as 10.x-dev",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench-core": "^8.15",
         "phpstan/phpstan": "^1.10.6",
