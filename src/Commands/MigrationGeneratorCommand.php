@@ -19,7 +19,6 @@ abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGe
      *
      * @return void
      */
-    #[\Override]
     public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct($files, $composer);
