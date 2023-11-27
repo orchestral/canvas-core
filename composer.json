@@ -31,13 +31,16 @@
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
         "illuminate/console": "^11.0",
-        "illuminate/filesystem": "^11.0"
+        "illuminate/filesystem": "^11.0",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "laravel/framework": "^11.0",
         "laravel/pint": "^1.6",
-        "orchestra/testbench": "^9.0",
+        "mockery/mockery": "^1.5.1",
+        "orchestra/testbench-core": "^9.0",
         "phpstan/phpstan": "^1.10.6",
+        "phpunit/phpunit": "^10.1",
         "symfony/yaml": "^7.0"
     },
     "config": {
@@ -61,9 +64,8 @@
             "@clear",
             "@prepare"
         ],
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
