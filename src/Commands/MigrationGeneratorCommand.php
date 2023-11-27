@@ -19,6 +19,7 @@ abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGe
      *
      * @return void
      */
+    #[\Override]
     public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct($files, $composer);
@@ -32,6 +33,7 @@ abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGe
      * @param  string  $table
      * @return string
      */
+    #[\Override]
     protected function createBaseMigration($table)
     {
         return $this->createBaseMigrationUsingCanvas($table);
@@ -43,6 +45,7 @@ abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGe
      * @param  string  $table
      * @return bool
      */
+    #[\Override]
     protected function migrationExists($table)
     {
         return $this->migrationExistsUsingCanvas($table);

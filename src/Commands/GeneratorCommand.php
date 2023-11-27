@@ -23,6 +23,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    #[\Override]
     public function handle()
     {
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
@@ -34,6 +35,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      * @param  string  $name
      * @return string
      */
+    #[\Override]
     protected function getPath($name)
     {
         return $this->getPathUsingCanvas($name);
@@ -44,6 +46,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return string
      */
+    #[\Override]
     protected function qualifyModel(string $model)
     {
         return $this->qualifyModelUsingCanvas($model);
@@ -54,6 +57,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return string
      */
+    #[\Override]
     protected function rootNamespace()
     {
         return $this->rootNamespaceUsingCanvas();
@@ -64,6 +68,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return string|null
      */
+    #[\Override]
     protected function userProviderModel()
     {
         return $this->userProviderModelUsingCanvas();
@@ -74,6 +79,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return string
      */
+    #[\Override]
     protected function viewPath($path = '')
     {
         return $this->viewPathUsingCanvas($path);
@@ -84,6 +90,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return array<int, string>
      */
+    #[\Override]
     protected function possibleModels()
     {
         return $this->possibleModelsUsingCanvas();
@@ -94,6 +101,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
      *
      * @return array<int, string>
      */
+    #[\Override]
     protected function possibleEvents()
     {
         return $this->possibleEventsUsingCanvas();
