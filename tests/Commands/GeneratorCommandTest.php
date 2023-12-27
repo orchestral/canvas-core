@@ -7,6 +7,8 @@ use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
+use function Illuminate\Filesystem\join_paths;
+
 class GeneratorCommandTest extends TestCase
 {
     use InteractsWithPublishedFiles;
@@ -90,7 +92,7 @@ class GeneratorCommandTest extends TestCase
     #[Test]
     public function it_cannot_generate_class_file_when_file_already_exist()
     {
-        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
+        file_put_contents(base_path(join_paths('app', 'Value', 'Foo.php')), '<?php '.PHP_EOL);
 
         $this->artisan('make:code', ['name' => 'Value/Foo'])
             ->expectsOutputToContain('class [app/Value/Foo.php] already exists!')
