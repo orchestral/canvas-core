@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Finder\Finder;
 
+use function Illuminate\Filesystem\join_paths;
+
 trait UsesGeneratorOverrides
 {
     /**
@@ -31,7 +33,7 @@ trait UsesGeneratorOverrides
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return $this->getGeneratorSourcePath().'/'.str_replace('\\', '/', $name).'.php';
+        return join_paths($this->getGeneratorSourcePath(), str_replace('\\', '/', $name).'.php');
     }
 
     /**
@@ -57,7 +59,7 @@ trait UsesGeneratorOverrides
     {
         $views = $this->generatorPreset()->viewPath();
 
-        return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return join_paths($views, $path);
     }
 
     /**
@@ -69,7 +71,7 @@ trait UsesGeneratorOverrides
     {
         $sourcePath = $this->generatorPreset()->sourcePath();
 
-        $modelPath = is_dir("{$sourcePath}/Models") ? "{$sourcePath}/Models" : $sourcePath;
+        $modelPath = is_dir(join_paths($sourcePath, 'Models')) ? join_paths($sourcePath, 'Models') : $sourcePath;
 
         return collect((new Finder)->files()->depth(0)->in($modelPath))
             ->map(fn ($file) => $file->getBasename('.php'))
@@ -85,7 +87,7 @@ trait UsesGeneratorOverrides
      */
     protected function possibleEventsUsingCanvas(): array
     {
-        $eventPath = sprintf('%s/Events', $this->generatorPreset()->sourcePath());
+        $eventPath = join_paths($this->generatorPreset()->sourcePath(), 'Events');
 
         if (! is_dir($eventPath)) {
             return [];

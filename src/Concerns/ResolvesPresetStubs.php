@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
+use function Illuminate\Filesystem\join_paths;
+
 trait ResolvesPresetStubs
 {
     /**
@@ -14,7 +16,7 @@ trait ResolvesPresetStubs
     {
         $preset = $this->generatorPreset();
 
-        return $preset->hasCustomStubPath() && file_exists($customPath = implode('/', [$preset->basePath(), trim($stub, '/')]))
+        return $preset->hasCustomStubPath() && file_exists($customPath = join_paths($preset->basePath(), trim($stub, '/')))
             ? $customPath
             : $this->resolveDefaultStubPath($stub);
     }
