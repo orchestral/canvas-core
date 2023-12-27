@@ -38,7 +38,7 @@
         "laravel/pint": "^1.6",
         "laravel/framework": "^10.38.1",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^8.15",
+        "orchestra/testbench-core": "^8.19",
         "phpstan/phpstan": "^1.10.6",
         "phpunit/phpunit": "^10.1",
         "symfony/yaml": "^6.2"
@@ -82,5 +82,6 @@
             "@test"
         ]
     },
-    "minimum-stability": "stable"
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
