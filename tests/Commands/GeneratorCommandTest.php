@@ -5,7 +5,10 @@ namespace Orchestra\Canvas\Core\Tests\Commands;
 use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
 use PHPUnit\Framework\Attributes\Test;
+
+use function Illuminate\Filesystem\join_paths;
 
 class GeneratorCommandTest extends TestCase
 {
@@ -88,12 +91,24 @@ class GeneratorCommandTest extends TestCase
     }
 
     #[Test]
+    #[RequiresOperatingSystem('Linux|DAR')]
     public function it_cannot_generate_class_file_when_file_already_exist()
     {
-        file_put_contents(base_path('app/Value/Foo.php'), '<?php '.PHP_EOL);
+        file_put_contents(base_path(join_paths('app', 'Value', 'Foo.php')), '<?php '.PHP_EOL);
 
         $this->artisan('make:code', ['name' => 'Value/Foo'])
             ->expectsOutputToContain('class [app/Value/Foo.php] already exists!')
+            ->assertFailed();
+    }
+
+    #[Test]
+    #[RequiresOperatingSystem('Windows')]
+    public function it_cannot_generate_class_file_when_file_already_exist_on_windows()
+    {
+        file_put_contents(base_path(join_paths('app', 'Value', 'Foo.php')), '<?php '.PHP_EOL);
+
+        $this->artisan('make:code', ['name' => 'Value/Foo'])
+            ->expectsOutputToContain('class [app\Value\Foo.php] already exists!')
             ->assertFailed();
     }
 }

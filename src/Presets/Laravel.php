@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Core\Presets;
 
+use function Illuminate\Filesystem\join_paths;
+
 class Laravel extends Preset
 {
     /**
@@ -123,7 +125,7 @@ class Laravel extends Preset
      */
     public function modelNamespace()
     {
-        return is_dir("{$this->sourcePath()}/Models") ? "{$this->rootNamespace()}Models\\" : $this->rootNamespace();
+        return is_dir(join_paths($this->sourcePath(), 'Models')) ? "{$this->rootNamespace()}Models\\" : $this->rootNamespace();
     }
 
     /**

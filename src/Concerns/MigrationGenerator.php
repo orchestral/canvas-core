@@ -2,6 +2,8 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
+use function Illuminate\Filesystem\join_paths;
+
 trait MigrationGenerator
 {
     use CreatesUsingGeneratorPreset;
@@ -22,7 +24,7 @@ trait MigrationGenerator
     protected function migrationExistsUsingCanvas(string $table): bool
     {
         return \count($this->files->glob(
-            $this->laravel->joinPaths($this->generatorPreset()->migrationPath(), '*_*_*_*_create_'.$table.'_table.php')
+            join_paths($this->generatorPreset()->migrationPath(), '*_*_*_*_create_'.$table.'_table.php')
         )) !== 0;
     }
 }
