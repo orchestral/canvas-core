@@ -10,6 +10,8 @@ use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
+use function Illuminate\Filesystem\join_paths;
+
 class UsesGeneratorOverridesTest extends TestCase
 {
     /**
@@ -20,13 +22,13 @@ class UsesGeneratorOverridesTest extends TestCase
         $filesystem = new Filesystem();
 
         $this->afterApplicationCreated(static function () use ($filesystem) {
-            $filesystem->ensureDirectoryExists(base_path('app/Events'));
-            $filesystem->ensureDirectoryExists(base_path('app/Models'));
+            $filesystem->ensureDirectoryExists(join_paths(base_path('app'), 'Events'));
+            $filesystem->ensureDirectoryExists(join_paths(base_path('app'), 'Models'));
         });
 
         $this->beforeApplicationDestroyed(static function () use ($filesystem) {
-            $filesystem->deleteDirectory(base_path('app/Events'));
-            $filesystem->deleteDirectory(base_path('app/Models'));
+            $filesystem->deleteDirectory(join_paths(base_path('app'), 'Events'));
+            $filesystem->deleteDirectory(join_paths(base_path('app'), 'Models'));
         });
 
         parent::setUp();
@@ -39,7 +41,7 @@ class UsesGeneratorOverridesTest extends TestCase
 
         $this->assertSame([
             'user-model' => 'App\Models\User',
-            'welcome-view' => $this->app->joinPaths(base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'welcome.blade.php')),
+            'welcome-view' => join_paths(base_path('resources'), 'views', 'welcome.blade.php'),
             'possible-models' => [],
             'possible-events' => [],
         ], $stub->toArray());
