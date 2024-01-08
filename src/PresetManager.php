@@ -11,7 +11,7 @@ class PresetManager extends Manager
      *
      * @var string
      */
-    protected $defaultPreset = 'laravel';
+    protected string $defaultPreset = 'laravel';
 
     /**
      * Create "laravel" driver.
