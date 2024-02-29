@@ -7,8 +7,8 @@ use Illuminate\Support\Composer;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 
 /**
- * @property string|null  $name
- * @property string|null  $description
+ * @property string|null $name
+ * @property string|null $description
  */
 abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
 {
