@@ -5,13 +5,12 @@ namespace Orchestra\Canvas\Core\Commands;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
-use Orchestra\Canvas\Core\Contracts\Generator as GeneratorContract;
 
 /**
  * @property string|null $name
  * @property string|null $description
  */
-abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode, GeneratorContract
+abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
     use Concerns\CodeGenerator;
     use Concerns\TestGenerator;
