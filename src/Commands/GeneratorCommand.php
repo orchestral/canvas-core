@@ -38,6 +38,7 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand imp
     #[\Override]
     public function handle()
     {
+        /** @phpstan-ignore return.type */
         return $this->generateCode() ? self::SUCCESS : self::FAILURE;
     }
 

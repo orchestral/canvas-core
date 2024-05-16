@@ -63,7 +63,7 @@ class Laravel extends Preset
      */
     public function viewPath()
     {
-        return $this->app['config']['view.paths'][0] ?? $this->app->resourcePath('views');
+        return $this->app->make('config')->get('view.paths')[0] ?? $this->app->resourcePath('views');
     }
 
     /**

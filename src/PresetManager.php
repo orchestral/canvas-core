@@ -18,6 +18,7 @@ class PresetManager extends Manager
      */
     public function createLaravelDriver(): Presets\Laravel
     {
+        /** @phpstan-ignore argument.type */
         return new Presets\Laravel($this->container);
     }
 

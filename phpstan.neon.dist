@@ -10,8 +10,6 @@ parameters:
   level: 7
 
   ignoreErrors:
-    - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
+    # - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 
-  checkGenericClassInNonGenericObjectType: false
-  checkMissingIterableValueType: false
   treatPhpDocTypesAsCertain: false
