@@ -16,7 +16,6 @@ abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGe
     /**
      * Create a new notifications table command instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
     public function __construct(Filesystem $files)
