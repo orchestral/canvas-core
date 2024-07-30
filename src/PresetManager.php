@@ -8,8 +8,6 @@ class PresetManager extends Manager
 {
     /**
      * The default driver name.
-     *
-     * @var string
      */
     protected string $defaultPreset = 'laravel';
 
@@ -18,6 +16,7 @@ class PresetManager extends Manager
      */
     public function createLaravelDriver(): Presets\Laravel
     {
+        /** @phpstan-ignore argument.type */
         return new Presets\Laravel($this->container);
     }
 

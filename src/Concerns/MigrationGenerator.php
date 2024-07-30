@@ -13,7 +13,7 @@ trait MigrationGenerator
      */
     protected function createBaseMigrationUsingCanvas(string $table): string
     {
-        return $this->laravel['migration.creator']->create(
+        return $this->laravel->make('migration.creator')->create(
             "create_{$table}_table", $this->generatorPreset()->migrationPath()
         );
     }
