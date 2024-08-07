@@ -26,7 +26,7 @@ trait CreatesUsingGeneratorPreset
             'preset',
             null,
             InputOption::VALUE_OPTIONAL,
-            sprintf('Preset used %s', $message),
+            \sprintf('Preset used %s', $message),
             null,
         ));
     }
