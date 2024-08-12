@@ -48,9 +48,6 @@
         "issues": "https://github.com/orchestral/canvas/issues"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "9.0-dev"
-        },
         "laravel": {
             "providers": [
                 "Orchestra\\Canvas\\Core\\LaravelServiceProvider"
