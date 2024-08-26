@@ -62,8 +62,8 @@
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "lint": [
-            "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint"
+            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
         "test": "@php vendor/bin/phpunit -c ./ --color",
         "ci": [
