@@ -35,11 +35,11 @@
     "require-dev": {
         "laravel/framework": "^11.0",
         "laravel/pint": "^1.17",
-        "mockery/mockery": "^1.6",
+        "mockery/mockery": "^1.6.10",
         "orchestra/testbench-core": "^9.0",
         "phpstan/phpstan": "^1.11",
-        "phpunit/phpunit": "^11.0",
-        "symfony/yaml": "^7.0"
+        "phpunit/phpunit": "^11.3.6",
+        "symfony/yaml": "^7.0.3"
     },
     "config": {
         "sort-packages": true
