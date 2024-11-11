@@ -68,7 +68,7 @@ trait CodeGenerator
     public function codeAlreadyExists(string $className, string $path): bool
     {
         $this->components->error(
-            sprintf(
+            \sprintf(
                 '%s [%s] already exists!', $this->type, Str::after($path, $this->generatorPreset()->basePath().DIRECTORY_SEPARATOR)
             )
         );
@@ -82,7 +82,7 @@ trait CodeGenerator
     public function codeHasBeenGenerated(string $className, string $path): bool
     {
         $this->components->info(
-            sprintf(
+            \sprintf(
                 '%s [%s] created successfully.', $this->type, Str::after($path, $this->generatorPreset()->basePath().DIRECTORY_SEPARATOR)
             )
         );

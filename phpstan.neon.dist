@@ -10,8 +10,8 @@ parameters:
   level: 7
 
   ignoreErrors:
+    - identifier: function.alreadyNarrowedType
+    - identifier: trait.unused
     - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 
-  checkGenericClassInNonGenericObjectType: false
-  checkMissingIterableValueType: false
   treatPhpDocTypesAsCertain: false

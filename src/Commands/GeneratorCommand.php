@@ -7,8 +7,8 @@ use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 
 /**
- * @property string|null  $name
- * @property string|null  $description
+ * @property string|null $name
+ * @property string|null $description
  */
 abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
 {
