@@ -8,7 +8,6 @@ on:
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
         os:
@@ -21,8 +20,9 @@ jobs:
         dependencies:
           - "highest"
           - "lowest"
-        experimental:
-          - false
+        exclude:
+          - php: 8.3
+            dependencies: "lowest"
 
     name: PHP${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
 
