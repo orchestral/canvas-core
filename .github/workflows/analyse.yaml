@@ -14,7 +14,7 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - 8.1
+          - 8.2
         dependencies:
           - "highest"
         experimental:
@@ -39,5 +39,8 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "--prefer-dist --no-cache"
 
+      - name: Execute Code Style Analysis
+        run: vendor/bin/pint --test
+
       - name: Execute Static Code Analysis
-        run: vendor/bin/phpstan analyse
+        run: vendor/bin/phpstan analyse --verbose

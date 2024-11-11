@@ -25,6 +25,9 @@ jobs:
           - "lowest"
         experimental:
           - false
+        include:
+          - php: 8.3
+            dependencies: "highest"
 
     name: PHP${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
 
