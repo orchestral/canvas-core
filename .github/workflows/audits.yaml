@@ -12,12 +12,6 @@ jobs:
         php:
           - 8.2
           - 8.3
-<<<<<<< HEAD
-          - 8.4
-        experimental:
-          - true
-=======
->>>>>>> 8.x
 
     name: PHP${{ matrix.php }}
 
