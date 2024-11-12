@@ -19,7 +19,7 @@ class UsesGeneratorOverridesTest extends TestCase
      */
     protected function setUp(): void
     {
-        $filesystem = new Filesystem();
+        $filesystem = new Filesystem;
 
         $this->afterApplicationCreated(static function () use ($filesystem) {
             $filesystem->ensureDirectoryExists(join_paths(base_path('app'), 'Events'));
@@ -37,7 +37,7 @@ class UsesGeneratorOverridesTest extends TestCase
     #[Test]
     public function it_can_get_qualify_model_class()
     {
-        $stub = new UsesGeneratorOverridesTestStub();
+        $stub = new UsesGeneratorOverridesTestStub;
 
         $this->assertSame([
             'user-model' => 'App\Models\User',

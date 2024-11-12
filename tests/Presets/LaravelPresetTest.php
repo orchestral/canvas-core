@@ -20,7 +20,7 @@ class LaravelPresetTest extends TestCase
      */
     protected function setUp(): void
     {
-        $filesystem = new Filesystem();
+        $filesystem = new Filesystem;
 
         $this->afterApplicationCreated(static function () use ($filesystem) {
             $filesystem->ensureDirectoryExists(join_paths(base_path('app'), 'Events'));
