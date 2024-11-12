@@ -20,7 +20,7 @@ jobs:
         experimental:
           - true
 
-    name: PHP:${{ matrix.php }} Audit
+    name: PHP:${{ matrix.php }} Code Audit
 
     steps:
       - name: Checkout code
