@@ -13,7 +13,7 @@ jobs:
           - 8.2
           - 8.3
 
-    name: PHP${{ matrix.php }}
+    name: PHP:${{ matrix.php }} Code Audit
 
     steps:
       - name: Checkout code
