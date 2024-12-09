@@ -12,7 +12,7 @@ jobs:
       matrix:
         php: [8.3]
 
-    name: PHP${{ matrix.php }} PHPStan & Pint
+    name: PHP:{{ $matrix.php }} Code Analysis
 
     steps:
       - name: Checkout code
@@ -43,7 +43,7 @@ jobs:
       matrix:
         php: [8.3]
 
-    name: PHP${{ matrix.php }} Code Lint
+    name: PHP:${{ matrix.php }} Code Lint
 
     steps:
       - name: Checkout code
