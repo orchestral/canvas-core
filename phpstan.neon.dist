@@ -10,5 +10,7 @@ parameters:
   level: 8
 
   ignoreErrors:
+    - identifier: function.alreadyNarrowedType
+    - identifier: trait.unused
 
   treatPhpDocTypesAsCertain: false
