@@ -39,7 +39,7 @@
         "orchestra/testbench-core": "^10.0",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^11.5",
-        "symfony/yaml": "^7.0.3"
+        "symfony/yaml": "^7.2"
     },
     "config": {
         "sort-packages": true
