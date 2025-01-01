@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Console\GeneratorCommand as Command;
 use Orchestra\Canvas\Core\Concerns;
 use Orchestra\Canvas\Core\Contracts\GeneratesCode;
 
@@ -10,16 +10,17 @@ use Orchestra\Canvas\Core\Contracts\GeneratesCode;
  * @property string|null $name
  * @property string|null $description
  */
-abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand implements GeneratesCode
+abstract class GeneratorCommand extends Command implements GeneratesCode
 {
     use Concerns\CodeGenerator;
     use Concerns\TestGenerator;
     use Concerns\UsesGeneratorOverrides;
 
     /** {@inheritDoc} */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }

@@ -2,21 +2,22 @@
 
 namespace Orchestra\Canvas\Core\Commands;
 
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Console\MigrationGeneratorCommand as Command;
 use Orchestra\Canvas\Core\Concerns\MigrationGenerator;
 
 /**
  * @property string|null $name
  * @property string|null $description
  */
-abstract class MigrationGeneratorCommand extends \Illuminate\Console\MigrationGeneratorCommand
+abstract class MigrationGeneratorCommand extends Command
 {
     use MigrationGenerator;
 
     /** {@inheritDoc} */
-    public function __construct(Filesystem $files)
+    #[\Override]
+    protected function configure()
     {
-        parent::__construct($files);
+        parent::configure();
 
         $this->addGeneratorPresetOptions();
     }
