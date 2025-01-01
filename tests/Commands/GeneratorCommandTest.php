@@ -20,7 +20,7 @@ class GeneratorCommandTest extends TestCase
      *
      * @var array<int, string>
      */
-    protected $files = [
+    protected array $files = [
         'app/Value/Foo.php',
         'tests/Feature/Value/FooTest.php',
     ];
