@@ -8,29 +8,18 @@ use LogicException;
 abstract class Preset
 {
     /**
-     * The application instance.
-     *
-     * @var \Illuminate\Contracts\Foundation\Application
-     */
-    protected $app;
-
-    /**
      * Construct a new preset.
      *
      * @return void
      */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
+    public function __construct(
+        protected Application $app
+    ) {}
 
     /**
      * Check if preset name equal to $name.
-     *
-     * @param  string  $name
-     * @return bool
      */
-    public function is($name)
+    public function is(string $name): bool
     {
         return $this->name() === $name;
     }
@@ -38,10 +27,9 @@ abstract class Preset
     /**
      * Get the model for the default guard's user provider.
      *
-     * @param  string|null  $guard
-     * @return string|null
+     * @throws \LogicException
      */
-    public function userProviderModel($guard = null)
+    public function userProviderModel(?string $guard = null): ?string
     {
         /** @var \Illuminate\Contracts\Config\Repository $config */
         $config = $this->app->make('config');
@@ -57,120 +45,86 @@ abstract class Preset
 
     /**
      * Preset name.
-     *
-     * @return string
      */
-    abstract public function name();
+    abstract public function name(): string;
 
     /**
      * Get the path to the base working directory.
-     *
-     * @return string
      */
-    abstract public function basePath();
+    abstract public function basePath(): string;
 
     /**
      * Get the path to the source directory.
-     *
-     * @return string
      */
-    abstract public function sourcePath();
+    abstract public function sourcePath(): string;
 
     /**
      * Get the path to the testing directory.
-     *
-     * @return string
      */
-    abstract public function testingPath();
+    abstract public function testingPath(): string;
 
     /**
      * Get the path to the resource directory.
-     *
-     * @return string
      */
-    abstract public function resourcePath();
+    abstract public function resourcePath(): string;
 
     /**
      * Get the path to the view directory.
-     *
-     * @return string
      */
-    abstract public function viewPath();
+    abstract public function viewPath(): string;
 
     /**
      * Get the path to the factory directory.
-     *
-     * @return string
      */
-    abstract public function factoryPath();
+    abstract public function factoryPath(): string;
 
     /**
      * Get the path to the migration directory.
-     *
-     * @return string
      */
-    abstract public function migrationPath();
+    abstract public function migrationPath(): string;
 
     /**
      * Get the path to the seeder directory.
-     *
-     * @return string
      */
-    abstract public function seederPath();
+    abstract public function seederPath(): string;
 
     /**
      * Preset namespace.
-     *
-     * @return string
      */
-    abstract public function rootNamespace();
+    abstract public function rootNamespace(): string;
 
     /**
      * Command namespace.
-     *
-     * @return string
      */
-    abstract public function commandNamespace();
+    abstract public function commandNamespace(): string;
 
     /**
      * Model namespace.
-     *
-     * @return string
      */
-    abstract public function modelNamespace();
+    abstract public function modelNamespace(): string;
 
     /**
      * Provider namespace.
-     *
-     * @return string
      */
-    abstract public function providerNamespace();
+    abstract public function providerNamespace(): string;
 
     /**
      * Testing namespace.
-     *
-     * @return string
      */
-    abstract public function testingNamespace();
+    abstract public function testingNamespace(): string;
 
     /**
      * Database factory namespace.
-     *
-     * @return string
      */
-    abstract public function factoryNamespace();
+    abstract public function factoryNamespace(): string;
 
     /**
      * Database seeder namespace.
-     *
-     * @return string
      */
-    abstract public function seederNamespace();
+    abstract public function seederNamespace(): string;
 
     /**
      * Preset has custom stub path.
-     *
-     * @return bool
      */
-    abstract public function hasCustomStubPath();
+    abstract public function hasCustomStubPath(): bool;
 }
