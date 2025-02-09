@@ -2,6 +2,7 @@ name: audits
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -12,6 +13,7 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
 
     name: PHP:${{ matrix.php }} Code Audit
 

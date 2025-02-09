@@ -34,11 +34,11 @@
     },
     "require-dev": {
         "laravel/framework": "^12.0",
-        "laravel/pint": "^1.17",
+        "laravel/pint": "^1.20",
         "mockery/mockery": "^1.6.10",
         "orchestra/testbench-core": "^10.0",
-        "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^11.5",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5.3",
         "symfony/yaml": "^7.2"
     },
     "config": {

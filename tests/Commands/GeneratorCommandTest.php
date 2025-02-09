@@ -15,7 +15,12 @@ class GeneratorCommandTest extends TestCase
     use InteractsWithPublishedFiles;
     use WithWorkbench;
 
-    protected $files = [
+    /**
+     * List of published files.
+     *
+     * @var array<int, string>
+     */
+    protected array $files = [
         'app/Value/Foo.php',
         'tests/Feature/Value/FooTest.php',
     ];
