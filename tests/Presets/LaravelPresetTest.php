@@ -15,9 +15,8 @@ class LaravelPresetTest extends TestCase
 {
     use WithWorkbench;
 
-    /**
-     * Setup the test environment.
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function setUp(): void
     {
         $filesystem = new Filesystem;

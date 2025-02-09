@@ -14,9 +14,8 @@ use function Illuminate\Filesystem\join_paths;
 
 class UsesGeneratorOverridesTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function setUp(): void
     {
         $filesystem = new Filesystem;
