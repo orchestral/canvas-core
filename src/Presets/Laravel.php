@@ -8,80 +8,64 @@ class Laravel extends Preset
 {
     /**
      * Preset name.
-     *
-     * @return string
      */
-    public function name()
+    public function name(): string
     {
         return 'laravel';
     }
 
     /**
      * Get the path to the base working directory.
-     *
-     * @return string
      */
-    public function basePath()
+    public function basePath(): string
     {
         return $this->app->basePath();
     }
 
     /**
      * Get the path to the source directory.
-     *
-     * @return string
      */
-    public function sourcePath()
+    public function sourcePath(): string
     {
         return $this->app->basePath('app');
     }
 
     /**
      * Get the path to the testing directory.
-     *
-     * @return string
      */
-    public function testingPath()
+    public function testingPath(): string
     {
         return $this->app->basePath('tests');
     }
 
     /**
      * Get the path to the resource directory.
-     *
-     * @return string
      */
-    public function resourcePath()
+    public function resourcePath(): string
     {
         return $this->app->resourcePath();
     }
 
     /**
      * Get the path to the view directory.
-     *
-     * @return string
      */
-    public function viewPath()
+    public function viewPath(): string
     {
         return $this->app->make('config')->get('view.paths')[0] ?? $this->app->resourcePath('views');
     }
 
     /**
      * Get the path to the factory directory.
-     *
-     * @return string
      */
-    public function factoryPath()
+    public function factoryPath(): string
     {
         return $this->app->databasePath('factories');
     }
 
     /**
      * Get the path to the migration directory.
-     *
-     * @return string
      */
-    public function migrationPath()
+    public function migrationPath(): string
     {
         return $this->app->databasePath('migrations');
     }
@@ -100,80 +84,64 @@ class Laravel extends Preset
 
     /**
      * Preset namespace.
-     *
-     * @return string
      */
-    public function rootNamespace()
+    public function rootNamespace(): string
     {
         return $this->app->getNamespace();
     }
 
     /**
      * Command namespace.
-     *
-     * @return string
      */
-    public function commandNamespace()
+    public function commandNamespace(): string
     {
         return "{$this->rootNamespace()}Console\Commands\\";
     }
 
     /**
      * Model namespace.
-     *
-     * @return string
      */
-    public function modelNamespace()
+    public function modelNamespace(): string
     {
         return is_dir(join_paths($this->sourcePath(), 'Models')) ? "{$this->rootNamespace()}Models\\" : $this->rootNamespace();
     }
 
     /**
      * Provider namespace.
-     *
-     * @return string
      */
-    public function providerNamespace()
+    public function providerNamespace(): string
     {
         return "{$this->rootNamespace()}Providers\\";
     }
 
     /**
      * Testing namespace.
-     *
-     * @return string
      */
-    public function testingNamespace()
+    public function testingNamespace(): string
     {
         return 'Tests\\';
     }
 
     /**
      * Database factory namespace.
-     *
-     * @return string
      */
-    public function factoryNamespace()
+    public function factoryNamespace(): string
     {
         return 'Database\Factories\\';
     }
 
     /**
      * Database seeder namespace.
-     *
-     * @return string
      */
-    public function seederNamespace()
+    public function seederNamespace(): string
     {
         return 'Database\Seeders\\';
     }
 
     /**
      * Preset has custom stub path.
-     *
-     * @return bool
      */
-    public function hasCustomStubPath()
+    public function hasCustomStubPath(): bool
     {
         return true;
     }
