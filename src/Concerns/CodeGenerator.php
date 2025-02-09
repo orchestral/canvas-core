@@ -24,7 +24,9 @@ trait CodeGenerator
         // language and that the class name will actually be valid. If it is not valid we
         // can error now and prevent from polluting the filesystem using invalid files.
         if ($this->isReservedName($name)) {
-            $this->components->error('The name "'.$name.'" is reserved by PHP.');
+            $this->components->error(
+                \sprintf('The name "%s" is reserved by PHP.', $name)
+            );
 
             return false;
         }
