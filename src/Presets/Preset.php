@@ -27,6 +27,8 @@ abstract class Preset
     /**
      * Get the model for the default guard's user provider.
      *
+     * @return class-string|null
+     *
      * @throws \LogicException
      */
     public function userProviderModel(?string $guard = null): ?string
@@ -36,8 +38,8 @@ abstract class Preset
 
         $guard = $guard ?: $config->get('auth.defaults.guard');
 
-        if (\is_null($provider = $config->get('auth.guards.'.$guard.'.provider'))) {
-            throw new LogicException('The ['.$guard.'] guard is not defined in your "auth" configuration file.');
+        if (\is_null($provider = $config->get("auth.guards.{$guard}.provider"))) {
+            throw new LogicException(sprintf('The [%s] guard is not defined in your "auth" configuration file.', $guard));
         }
 
         return $config->get("auth.providers.{$provider}.model");
