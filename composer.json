@@ -28,15 +28,15 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "illuminate/console": "^11.42",
-        "illuminate/filesystem": "^11.42",
+        "illuminate/console": "^11.42.1",
+        "illuminate/filesystem": "^11.42.1",
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
-        "laravel/framework": "^11.42",
+        "laravel/framework": "^11.42.1",
         "laravel/pint": "^1.20",
         "mockery/mockery": "^1.6.10",
-        "orchestra/testbench-core": "^9.0",
+        "orchestra/testbench-core": "^9.10.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5.7",
         "symfony/yaml": "^7.0.3"
