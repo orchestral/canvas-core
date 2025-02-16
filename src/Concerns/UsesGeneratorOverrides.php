@@ -19,7 +19,7 @@ trait UsesGeneratorOverrides
 
         $model = str_replace('/', '\\', $model);
 
-        if (Str::startsWith($model, $this->rootNamespace())) {
+        if (str_starts_with($model, $this->rootNamespace())) {
             return $model;
         }
 
