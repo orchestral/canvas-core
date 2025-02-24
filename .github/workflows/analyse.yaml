@@ -41,7 +41,9 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        php: [8.3]
+        php:
+          - 8.3
+          - 8.4
 
     name: PHP:${{ matrix.php }} Code Lint
 
