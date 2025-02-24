@@ -39,7 +39,7 @@
         "mockery/mockery": "^1.6.10",
         "orchestra/testbench-core": "^11.0",
         "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit": "^11.5.7",
+        "phpunit/phpunit": "^12.0",
         "symfony/yaml": "^7.2"
     },
     "config": {
