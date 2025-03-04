@@ -30,14 +30,14 @@
         "composer/semver": "^3.0",
         "illuminate/console": "^11.43.0",
         "illuminate/support": "^11.43.0",
-        "orchestra/sidekick": "^1.0.2",
+        "orchestra/sidekick": "^1.0.5",
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
         "laravel/framework": "^11.43.0",
         "laravel/pint": "^1.20",
         "mockery/mockery": "^1.6.10",
-        "orchestra/testbench-core": "^9.11.0",
+        "orchestra/testbench-core": "^9.12.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5.7",
         "symfony/yaml": "^7.0.3"
