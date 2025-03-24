@@ -1,4 +1,5 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "orchestra/canvas-core",
     "description": "Code Generators Builder for Laravel Applications and Packages",
     "type": "library",
