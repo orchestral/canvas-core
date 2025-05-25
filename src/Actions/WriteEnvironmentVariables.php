@@ -4,7 +4,7 @@ namespace Orchestra\Canvas\Core\Actions;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Testbench\Foundation\Env;
+use Orchestra\Sidekick\Env;
 
 /**
  * @api
