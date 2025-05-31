@@ -7,10 +7,11 @@ parameters:
     - src
 
   # The level 8 is the highest level
-  level: 7
+  level: 8
 
   ignoreErrors:
     - identifier: function.alreadyNarrowedType
+    - identifier: missingType.iterableValue
     - identifier: trait.unused
     - '#Method [a-zA-Z\\\<\>]+::handle\(\) should return bool\|null but returns int.#'
 

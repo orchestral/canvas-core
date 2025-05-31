@@ -29,16 +29,17 @@
     "require": {
         "php": "^8.0",
         "illuminate/console": "^9.52.15",
-        "illuminate/filesystem": "^9.52.15"
+        "illuminate/filesystem": "^9.52.15",
+        "orchestra/sidekick": "^1.1.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
         "laravel/framework": "^9.52.16",
         "laravel/pint": "^1.4",
         "mockery/mockery": "^1.5.1",
-        "orchestra/testbench-core": "^7.47.4",
-        "orchestra/workbench": "^7.0",
-        "phpstan/phpstan": "^2.0",
+        "orchestra/testbench-core": "^7.57.0",
+        "orchestra/workbench": "^7.18.0",
+        "phpstan/phpstan": "^2.1.17",
         "phpunit/phpunit": "^9.6",
         "symfony/yaml": "^6.0.9"
     },
