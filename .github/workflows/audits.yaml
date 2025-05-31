@@ -1,7 +1,6 @@
 name: audits
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
