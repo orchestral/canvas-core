@@ -71,7 +71,7 @@ class UsesGeneratorOverridesTestStub implements Arrayable
         return [
             'user-model' => $this->qualifyModelUsingCanvas('User'),
             'welcome-view' => $this->viewPathUsingCanvas('welcome.blade.php'),
-            'possible-models' => $this->possibleModelsUsingCanvas(),
+            'possible-models' => $this->findAvailableModelsUsingCanvas(),
             'possible-events' => $this->possibleEventsUsingCanvas(),
         ];
     }

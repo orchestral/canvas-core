@@ -67,7 +67,7 @@ trait UsesGeneratorOverrides
      *
      * @return array<int, string>
      */
-    protected function possibleModelsUsingCanvas(): array
+    protected function findAvailableModelsUsingCanvas(): array
     {
         $sourcePath = $this->generatorPreset()->sourcePath();
 
