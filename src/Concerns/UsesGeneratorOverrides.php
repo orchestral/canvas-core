@@ -82,9 +82,9 @@ trait UsesGeneratorOverrides
 
     /**
      * Get a list of possible model names.
-     * 
+     *
      * @return array<int, string>
-     * 
+     *
      * @deprecated 10.1.0 Use `findAvailableModelsUsingCanvas()` instead.
      */
     protected function possibleModelsUsingCanvas(): array
