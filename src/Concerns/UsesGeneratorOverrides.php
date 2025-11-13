@@ -87,7 +87,6 @@ trait UsesGeneratorOverrides
      * 
      * @deprecated 10.1.0 Use `findAvailableModelsUsingCanvas()` instead.
      */
-    #[\Deprecated('Use `findAvailableModelsUsingCanvas()` instead.', since: '10.1.0')]
     protected function possibleModelsUsingCanvas(): array
     {
         return $this->findAvailableModelsUsingCanvas();
