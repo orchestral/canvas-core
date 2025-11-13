@@ -81,6 +81,19 @@ trait UsesGeneratorOverrides
     }
 
     /**
+     * Get a list of possible model names.
+     * 
+     * @return array<int, string>
+     * 
+     * @deprecated 10.1.0 Use `findAvailableModelsUsingCanvas()` instead.
+     */
+    #[\Deprecated('Use `findAvailableModelsUsingCanvas()` instead.', since: '10.1.0')]
+    protected function possibleModelsUsingCanvas(): array
+    {
+        return $this->findAvailableModelsUsingCanvas();
+    }
+
+    /**
      * Get a list of possible event names.
      *
      * @return array<int, string>
