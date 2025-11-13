@@ -70,7 +70,7 @@ abstract class GeneratorCommand extends Command implements GeneratesCode
 
     /** {@inheritDoc} */
     #[\Override]
-    protected function findAvailableModels()
+    protected function possibleModels()
     {
         return $this->possibleModelsUsingCanvas();
     }
