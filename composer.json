@@ -48,6 +48,11 @@
         "orchestra/testbench-core": "<7.25.0"
     },
     "config": {
+        "audit": {
+            "ignore": {
+                "GHSA-78fx-h6xr-vch4": "Affected component is not in use"
+            }
+        },
         "sort-packages": true
     },
     "support": {
