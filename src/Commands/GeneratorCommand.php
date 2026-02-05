@@ -18,7 +18,7 @@ abstract class GeneratorCommand extends Command implements GeneratesCode
 
     /** {@inheritDoc} */
     #[\Override]
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
