@@ -29,7 +29,7 @@ jobs:
           coverage: none
 
       - name: Set package version
-        run: composer config version "7.x-dev"
+        run: composer config version "9.x-dev"
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
