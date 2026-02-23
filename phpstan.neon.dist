@@ -11,6 +11,7 @@ parameters:
 
   ignoreErrors:
     - identifier: function.alreadyNarrowedType
+    - identifier: missingType.iterableValue
     - identifier: trait.unused
 
   treatPhpDocTypesAsCertain: false

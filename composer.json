@@ -31,7 +31,7 @@
         "composer/semver": "^3.0",
         "illuminate/console": "^12.40.0",
         "illuminate/support": "^12.40.0",
-        "orchestra/sidekick": "^1.2.0",
+        "orchestra/sidekick": "~1.1.23|~1.2.20",
         "symfony/polyfill-php83": "^1.33"
     },
     "require-dev": {
@@ -39,14 +39,16 @@
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6.10",
         "orchestra/testbench-core": "^10.8.0",
-        "phpstan/phpstan": "^2.1.14",
+        "phpstan/phpstan": "^2.1.17",
         "phpunit/phpunit": "^11.5.12|^12.0.1",
         "spatie/laravel-ray": "^1.40.2",
         "symfony/yaml": "^7.2"
     },
     "config": {
         "audit": {
-            "block-insecure": false
+            "ignore": {
+                "GHSA-78fx-h6xr-vch4": "Affected component is not in use"
+            }
         },
         "sort-packages": true
     },
