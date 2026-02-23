@@ -12,7 +12,7 @@ jobs:
       matrix:
         php: [8.3]
 
-    name: PHP:{{ $matrix.php }} Code Analysis
+    name: PHP:${{ matrix.php }} Code Analysis
 
     steps:
       - name: Checkout code
