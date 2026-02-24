@@ -10,7 +10,7 @@ use Orchestra\Canvas\Core\Presets\Preset;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 class UsesGeneratorOverridesTest extends TestCase
 {

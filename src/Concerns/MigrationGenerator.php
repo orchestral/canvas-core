@@ -2,7 +2,7 @@
 
 namespace Orchestra\Canvas\Core\Concerns;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 trait MigrationGenerator
 {
