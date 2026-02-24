@@ -6,7 +6,7 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Actions\WriteEnvironmentVariables;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 class WriteEnvironmentVariablesTest extends TestCase
 {

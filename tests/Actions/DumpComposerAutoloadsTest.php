@@ -7,7 +7,7 @@ use Illuminate\Support\Composer;
 use Mockery as m;
 use Orchestra\Canvas\Core\Actions\DumpComposerAutoloads;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 /**
  * @group composer

@@ -5,7 +5,7 @@ namespace Orchestra\Canvas\Core\Tests\Actions;
 use Orchestra\Canvas\Core\Actions\ModifyComposer;
 use RuntimeException;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 /**
  * @requires OS Linux|DAR
