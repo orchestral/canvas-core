@@ -3,15 +3,15 @@
 namespace Orchestra\Canvas\Core\Tests\Actions;
 
 use Orchestra\Canvas\Core\Actions\ModifyComposer;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
+use PHPUnit\Framework\Attributes\Test;
 use RuntimeException;
 
 use function Orchestra\Sidekick\join_paths;
 
-/**
- * @requires OS Linux|DAR
- *
- * @group composer
- */
+#[Group('composer')]
+#[RequiresOperatingSystem('Linux|DAR')]
 class ModifyComposerTest extends TestCase
 {
     /** {@inheritDoc} */
@@ -29,7 +29,7 @@ class ModifyComposerTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_modify_composer_file()
     {
         $workingPath = join_paths(__DIR__, 'tmp');
@@ -51,7 +51,7 @@ class ModifyComposerTest extends TestCase
 }', file_get_contents(join_paths($workingPath, 'composer.json')));
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_exception_when_composer_file_does_not_exists()
     {
         $workingPath = __DIR__;

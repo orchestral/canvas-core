@@ -5,6 +5,8 @@ namespace Orchestra\Canvas\Core\Tests\Actions;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Canvas\Core\Actions\WriteEnvironmentVariables;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestWith;
 
 use function Orchestra\Sidekick\join_paths;
 
@@ -25,7 +27,7 @@ class WriteEnvironmentVariablesTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_write_to_environment_file()
     {
         $filesystem = new Filesystem;
@@ -54,7 +56,7 @@ class WriteEnvironmentVariablesTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_write_and_replace_existing_variable_to_environment_file()
     {
         $filesystem = new Filesystem;
@@ -72,13 +74,10 @@ class WriteEnvironmentVariablesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @testWith [false]
-     *           [null]
-     *           ["./invalid-env-file"]
-     */
+    #[Test]
+    #[TestWith([false])]
+    #[TestWith([null])]
+    #[TestWith(["./invalid-env-file"])]
     public function it_throws_exception_when_env_file_is_not_available(mixed $filename)
     {
         $this->expectException(FileNotFoundException::class);
