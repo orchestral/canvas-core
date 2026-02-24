@@ -6,15 +6,15 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Mockery as m;
 use Orchestra\Canvas\Core\Actions\DumpComposerAutoloads;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Sidekick\join_paths;
 
-/**
- * @group composer
- */
+#[Group('composer')]
 class DumpComposerAutoloadsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_run_dump_autoloads()
     {
         $filesystem = new Filesystem;
