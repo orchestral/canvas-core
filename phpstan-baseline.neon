@@ -1,2 +1,7 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: '#^Method Orchestra\\Canvas\\Core\\Commands\\GeneratorCommand\:\:qualifyModel\(\) should return class\-string but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Commands/GeneratorCommand.php

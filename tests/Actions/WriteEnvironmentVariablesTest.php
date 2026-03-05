@@ -77,7 +77,7 @@ class WriteEnvironmentVariablesTest extends TestCase
     #[Test]
     #[TestWith([false])]
     #[TestWith([null])]
-    #[TestWith(["./invalid-env-file"])]
+    #[TestWith(['./invalid-env-file'])]
     public function it_throws_exception_when_env_file_is_not_available(mixed $filename)
     {
         $this->expectException(FileNotFoundException::class);
