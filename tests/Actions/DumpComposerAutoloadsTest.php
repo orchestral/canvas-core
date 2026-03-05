@@ -1,0 +1,32 @@
+<?php
+
+namespace Orchestra\Canvas\Core\Tests\Actions;
+
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Composer;
+use Mockery as m;
+use Orchestra\Canvas\Core\Actions\DumpComposerAutoloads;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
+
+use function Orchestra\Sidekick\join_paths;
+
+#[Group('composer')]
+class DumpComposerAutoloadsTest extends TestCase
+{
+    #[Test]
+    public function it_can_run_dump_autoloads()
+    {
+        $filesystem = new Filesystem;
+        $workingPath = join_paths(__DIR__, 'stubs');
+
+        $this->instance('canvas.composer', $composer = m::mock(Composer::class, ['files' => $filesystem]));
+
+        $composer->shouldReceive('setWorkingPath')->once()->with($workingPath)->andReturnSelf();
+        $composer->shouldReceive('dumpAutoloads')->once()->andReturnNull();
+
+        $action = new DumpComposerAutoloads($workingPath);
+
+        $action->handle();
+    }
+}

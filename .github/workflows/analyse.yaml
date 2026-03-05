@@ -12,7 +12,7 @@ jobs:
       matrix:
         php: [8.3]
 
-    name: PHP:{{ $matrix.php }} Code Analysis
+    name: PHP:${{ matrix.php }} Code Analysis
 
     steps:
       - name: Checkout code
@@ -24,6 +24,9 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
+
+      - name: Set package version
+        run: composer config version "10.x-dev"
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
@@ -44,6 +47,7 @@ jobs:
         php:
           - 8.3
           - 8.4
+          - 8.5
 
     name: PHP:${{ matrix.php }} Code Lint
 
@@ -57,6 +61,9 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, bcmath, fileinfo
           coverage: none
+
+      - name: Set package version
+        run: composer config version "10.x-dev"
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
