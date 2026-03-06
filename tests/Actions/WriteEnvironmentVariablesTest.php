@@ -8,7 +8,7 @@ use Orchestra\Canvas\Core\Actions\WriteEnvironmentVariables;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 class WriteEnvironmentVariablesTest extends TestCase
 {
