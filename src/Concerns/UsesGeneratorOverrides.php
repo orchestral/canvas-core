@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Orchestra\Canvas\Core\Presets\Preset;
 use Symfony\Component\Finder\Finder;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 trait UsesGeneratorOverrides
 {

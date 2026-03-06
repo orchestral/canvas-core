@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystem;
 use PHPUnit\Framework\Attributes\Test;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 
 class GeneratorCommandTest extends TestCase
 {
